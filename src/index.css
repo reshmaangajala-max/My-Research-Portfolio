@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  /* Dark Mode Default */
+  --bg: #0f1117;
+  --surface: #161922;
+  --surface-elevated: #1e2230;
+  --text-primary: #e4e2de;
+  --text-secondary: #7a7a85;
+  --border: #2a2d3a;
+  
+  --gradient-1: #a78bfa;
+  --gradient-2: #f0abfc;
+  --gradient-3: #7dd3fc;
+  --accent: #a78bfa;
+
+  --gradient-glow: 0 0 30px rgba(167, 139, 250, 0.12), 0 0 60px rgba(125, 211, 252, 0.06);
+  --card-glow-rest: 0 0 20px rgba(167, 139, 250, 0.06);
+  --card-glow-hover: 0 0 30px rgba(167, 139, 250, 0.16), 0 0 60px rgba(125, 211, 252, 0.08);
+  --stat-glow: 0 0 20px rgba(167, 139, 250, 0.45), 0 0 40px rgba(125, 211, 252, 0.2);
+  --pill-glow: 0 0 12px rgba(167, 139, 250, 0.2);
+  --diag-box-bg: #1e2230;
+}
+
+[data-theme="light"] {
+  --bg: #f8f9fc;
+  --surface: #ffffff;
+  --surface-elevated: #f0f1f5;
+  --text-primary: #1e1b2e;
+  --text-secondary: #6b6880;
+  --border: #e2e0ec;
+
+  --gradient-1: #7c3aed;
+  --gradient-2: #c026d3;
+  --gradient-3: #2563eb;
+  --accent: #7c3aed;
+
+  --gradient-glow: 0 0 20px rgba(124, 58, 237, 0.08), 0 0 40px rgba(37, 99, 235, 0.04);
+  --card-glow-rest: 0 0 15px rgba(124, 58, 237, 0.03);
+  --card-glow-hover: 0 0 25px rgba(124, 58, 237, 0.1), 0 0 50px rgba(37, 99, 235, 0.05);
+  --stat-glow: 0 0 18px rgba(124, 58, 237, 0.3);
+  --pill-glow: none;
+  --diag-box-bg: #f0f1f5;
+}
+
+@keyframes aurora-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.aurora-gradient {
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3), var(--gradient-1));
+  background-size: 300% 300%;
+  animation: aurora-shift 8s ease infinite;
+  will-change: background-position;
+}
+
+.aurora-text {
+  background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3), var(--gradient-1));
+  background-size: 300% 300%;
+  animation: aurora-shift 8s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: background-position;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.75;
+  font-weight: 300;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-accent {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-handwriting {
+  font-family: 'Caveat', 'Dancing Script', cursive;
+}
