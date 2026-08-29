@@ -25,7 +25,7 @@ const columns = [
     examples: 'Truebill / Rocket Money, Cleo, Sortifyd',
   },
   {
-    title: 'Renew',
+    title: 'Offload',
     isHero: true,
     traits: [
       { text: 'Auto-detects across ALL categories', negative: false },

@@ -7,9 +7,8 @@ import { RenewSecondaryResearch } from './RenewSecondaryResearch';
 import { RenewSynthesis } from './RenewSynthesis';
 import { RenewValueProposition } from './RenewValueProposition';
 import { RenewDeliverables } from './RenewDeliverables';
-import { RenewEnding } from './RenewEnding';
+import { OffloadPrototypePreview } from './OffloadPrototypePreview';
 import { RenewImpact } from './RenewImpact';
-import { RenewDocumentation } from './RenewDocumentation';
 import { SectionDivider } from '../SectionDivider';
 import { Footer } from '../Footer';
 
@@ -40,11 +39,9 @@ export function RenewCaseStudy({ onBackToPortfolio }: RenewCaseStudyProps) {
       <SectionDivider />
       <RenewDeliverables />
       <SectionDivider />
-      <RenewEnding />
+      <OffloadPrototypePreview />
       <SectionDivider />
       <RenewImpact />
-      <SectionDivider />
-      <RenewDocumentation />
       <Footer />
     </div>
   );

@@ -220,7 +220,7 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
 
                   {/* Title */}
                   <h3 className="font-bold text-[22px] text-[var(--text-primary)] tracking-tight mb-1">
-                    Renew
+                    Offload
                   </h3>
 
                   {/* Subtitle */}
@@ -230,12 +230,12 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
 
                   {/* Description */}
                   <p className="text-[15px] text-[var(--text-primary)] font-light leading-[1.75] mb-6">
-                    Designed and circulated a primary user survey and conducted internal team interviews, combined with competitive analysis, to define product principles and value proposition. Translated research findings into a working prototype covering five core user flows, documenting technical trade-offs.
+                    Designed and circulated a primary user survey and conducted internal team interviews, combined with competitive analysis, to define product principles and value proposition. Translated research findings into an interactive working prototype covering core zero-input user flows.
                   </p>
 
                   {/* View Case Study Button */}
                   <button
-                    id="renew-case-study-btn"
+                    id="offload-case-study-btn"
                     onClick={(e) => {
                       e.stopPropagation();
                       onOpenRenewCaseStudy?.();
