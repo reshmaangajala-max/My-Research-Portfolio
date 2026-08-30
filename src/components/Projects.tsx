@@ -220,12 +220,12 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
 
                   {/* Title */}
                   <h3 className="font-bold text-[22px] text-[var(--text-primary)] tracking-tight mb-1">
-                    Offload
+                    Tara
                   </h3>
 
                   {/* Subtitle */}
                   <p className="text-[14px] text-[var(--text-secondary)] font-light mb-3.5">
-                    AI Life Admin Assistant · Company Case Study
+                    Tara — Your Digital Best Friend · Company Case Study
                   </p>
 
                   {/* Description */}
@@ -235,7 +235,7 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
 
                   {/* View Case Study Button */}
                   <button
-                    id="offload-case-study-btn"
+                    id="tara-case-study-btn"
                     onClick={(e) => {
                       e.stopPropagation();
                       onOpenRenewCaseStudy?.();

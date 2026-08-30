@@ -52,7 +52,7 @@ export function RenewHero({ onBack }: RenewHeroProps) {
             className="font-bold text-[36px] sm:text-[44px] md:text-[56px] leading-[1.1] tracking-tight mb-2"
           >
             <span className="aurora-text drop-shadow-[0_0_30px_rgba(167,139,250,0.15)]">
-              Offload
+              Tara
             </span>
           </motion.h1>
 
@@ -64,7 +64,7 @@ export function RenewHero({ onBack }: RenewHeroProps) {
             transition={{ duration: 0.5, delay: 0.7, ease: 'easeOut' }}
             className="font-light text-[20px] sm:text-[22px] text-[var(--text-primary)] leading-snug mb-6"
           >
-            AI Life Admin Assistant
+            Your Digital Best Friend
           </motion.p>
 
           {/* Problem statement: 0.9s */}

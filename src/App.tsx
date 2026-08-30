@@ -17,7 +17,7 @@ export function App() {
   const [currentView, setCurrentView] = useState<'portfolio' | 'reyo-case-study' | 'renew-case-study'>(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash;
-      if (hash === '#offload-case-study' || hash === '#offload' || hash === '#renew-case-study' || hash === '#renew') {
+      if (hash === '#tara-case-study' || hash === '#tara' || hash === '#offload-case-study' || hash === '#offload' || hash === '#renew-case-study' || hash === '#renew') {
         return 'renew-case-study';
       }
       if (hash === '#reyo-case-study' || hash === '#reyo' || hash.startsWith('#case-study')) {
@@ -30,7 +30,7 @@ export function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash === '#offload-case-study' || hash === '#offload' || hash === '#renew-case-study' || hash === '#renew') {
+      if (hash === '#tara-case-study' || hash === '#tara' || hash === '#offload-case-study' || hash === '#offload' || hash === '#renew-case-study' || hash === '#renew') {
         setCurrentView('renew-case-study');
       } else if (hash === '#reyo-case-study' || hash === '#reyo' || hash.startsWith('#case-study')) {
         setCurrentView('reyo-case-study');
@@ -50,7 +50,7 @@ export function App() {
   };
 
   const openRenewCaseStudy = () => {
-    window.location.hash = '#offload-case-study';
+    window.location.hash = '#tara-case-study';
     setCurrentView('renew-case-study');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

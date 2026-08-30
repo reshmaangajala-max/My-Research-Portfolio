@@ -141,7 +141,7 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
               SURVEY INSIGHTS & ANALYSIS
             </h3>
             <p className="text-[13px] text-[#94a3b8] font-light mt-1.5">
-              Understanding users, their challenges, and what they need from an AI Life Assistant.
+              Understanding users, their challenges, and what they need from a digital assistant.
             </p>
           </div>
         </div>
@@ -249,10 +249,10 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
         </div>
       </div>
 
-      {/* What Users Want in an AI Life Assistant (5 cards) */}
+      {/* What Users Want in a Digital Best Friend (5 cards) */}
       <div className="mb-6">
         <h4 className="text-[14px] font-bold text-white mb-3">
-          What Users Want in an AI Life Assistant
+          What Users Want in a Digital Best Friend
         </h4>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {userDesires.map((item) => {
@@ -338,7 +338,7 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
         </div>
         <div className="text-[12.5px] text-[#cbd5e1] leading-relaxed">
           <strong className="text-white font-bold mr-2">Key Takeaway:</strong>
-          There is a strong need for an AI Life Assistant that proactively detects, organizes, and resolves obligations across all categories — with privacy by default.
+          There is a strong need for an assistant that proactively detects, organizes, and resolves obligations across all categories — with privacy by default.
         </div>
       </div>
     </div>

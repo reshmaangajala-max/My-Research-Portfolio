@@ -25,7 +25,7 @@ const columns = [
     examples: 'Truebill / Rocket Money, Cleo, Sortifyd',
   },
   {
-    title: 'Offload',
+    title: 'Tara',
     isHero: true,
     traits: [
       { text: 'Auto-detects across ALL categories', negative: false },
@@ -34,7 +34,7 @@ const columns = [
       { text: 'Privacy-first, on-device processing by default', negative: false },
       { text: "Doesn't just remind — helps resolve obligations", negative: false },
     ],
-    examples: 'Unified AI life admin assistant',
+    examples: 'Tara — Your Digital Best Friend',
   },
 ];
 

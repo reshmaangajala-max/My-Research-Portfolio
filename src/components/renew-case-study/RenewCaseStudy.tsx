@@ -7,7 +7,7 @@ import { RenewSecondaryResearch } from './RenewSecondaryResearch';
 import { RenewSynthesis } from './RenewSynthesis';
 import { RenewValueProposition } from './RenewValueProposition';
 import { RenewDeliverables } from './RenewDeliverables';
-import { OffloadPrototypePreview } from './OffloadPrototypePreview';
+import { TaraPrototypeVideo } from './TaraPrototypeVideo';
 import { RenewImpact } from './RenewImpact';
 import { SectionDivider } from '../SectionDivider';
 import { Footer } from '../Footer';
@@ -39,7 +39,7 @@ export function RenewCaseStudy({ onBackToPortfolio }: RenewCaseStudyProps) {
       <SectionDivider />
       <RenewDeliverables />
       <SectionDivider />
-      <OffloadPrototypePreview />
+      <TaraPrototypeVideo />
       <SectionDivider />
       <RenewImpact />
       <Footer />

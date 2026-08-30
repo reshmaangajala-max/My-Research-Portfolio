@@ -1,450 +1,618 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
-import { LifeAssistantCompetitiveMatrixDoc } from './artifacts/LifeAssistantCompetitiveMatrixDoc';
-import { RenewResearchArtifactModal } from './artifacts/RenewResearchArtifactModal';
+import { motion, AnimatePresence } from 'motion/react';
+import { Sparkles, CheckCircle2, ChevronRight, FileText, Lock, Eye, AlertCircle, ArrowUpRight, Cpu } from 'lucide-react';
 
-interface Competitor {
+type CompetitorCapability = 'Core' | 'Full' | 'Strong' | 'Partial' | 'Limited' | 'None' | 'Not clearly positioned as a core capability' | 'Future vision / approval-based' | 'Core principle';
+
+interface CompetitorData {
   name: string;
-  capture: string;
-  types: string;
-  docUnderstanding: string;
-  docType: 'none' | 'partial' | 'ocr' | 'integration';
-  privacy: string;
-  limitation: string;
+  badge?: string;
+  isTara?: boolean;
+  role: string;
+  obligationDetection: { level: CompetitorCapability; detail: string };
+  lifeCoverage: { level: CompetitorCapability; detail: string };
+  proactiveAttention: { level: CompetitorCapability; detail: string };
+  contentUnderstanding: { level: CompetitorCapability; detail: string };
+  aiPrioritization: { level: CompetitorCapability; detail: string };
+  actionExecution: { level: CompetitorCapability; detail: string };
+  privacyControl: { level: CompetitorCapability; detail: string };
+  overallRole: string;
 }
 
-const competitors: Competitor[] = [
+const competitors: CompetitorData[] = [
   {
-    name: 'Google Reminders',
-    capture: 'Manual create',
-    types: 'General tasks',
-    docUnderstanding: 'None',
-    docType: 'none',
-    privacy: 'Google ecosystem',
-    limitation: 'User must create each reminder manually',
+    name: 'Meet Iris',
+    role: 'Broad personal AI assistant',
+    obligationDetection: {
+      level: 'Partial',
+      detail: 'Partial / contextual extraction from connected feeds',
+    },
+    lifeCoverage: {
+      level: 'Strong',
+      detail: 'Strong / broad across personal and work workflows',
+    },
+    proactiveAttention: {
+      level: 'Strong',
+      detail: 'Strong daily suggestions and proactive alerts',
+    },
+    contentUnderstanding: {
+      level: 'Strong',
+      detail: 'Strong across connected content, but not positioned primarily around obligation extraction',
+    },
+    aiPrioritization: {
+      level: 'Strong',
+      detail: 'Strong contextual assistance & scheduling focus',
+    },
+    actionExecution: {
+      level: 'Strong',
+      detail: 'Strong — email, calendar, bookings and phone calls',
+    },
+    privacyControl: {
+      level: 'Strong',
+      detail: 'Connected data with explicit permissions and controls',
+    },
+    overallRole: 'Broad proactive AI assistant focused on getting things done',
   },
   {
-    name: 'Apple Reminders',
-    capture: 'Manual + Siri',
-    types: 'General tasks',
-    docUnderstanding: 'None',
-    docType: 'none',
-    privacy: 'On-device',
-    limitation: 'No document scanning, no auto-detection',
+    name: 'Tase',
+    role: 'Broad personal AI / second brain',
+    obligationDetection: {
+      level: 'Partial',
+      detail: 'Partial — strong task/finance/health context, but users still interact to create or manage records',
+    },
+    lifeCoverage: {
+      level: 'Strong',
+      detail: 'Very strong personal knowledge & lifestyle span',
+    },
+    proactiveAttention: {
+      level: 'Strong',
+      detail: 'Strong proactive alerts and contextual awareness',
+    },
+    contentUnderstanding: {
+      level: 'Strong',
+      detail: 'Strong — document analysis and personal knowledge',
+    },
+    aiPrioritization: {
+      level: 'Strong',
+      detail: 'Strong — proactive proposals, reality checks & context',
+    },
+    actionExecution: {
+      level: 'Strong',
+      detail: 'Strong — autonomous agents can perform multi-step work',
+    },
+    privacyControl: {
+      level: 'Strong',
+      detail: 'Connected accounts and user-controlled data',
+    },
+    overallRole: 'Full-life AI system combining memory, tracking and agentic execution',
   },
   {
-    name: 'Todoist',
-    capture: 'Manual create',
-    types: 'Tasks, projects',
-    docUnderstanding: 'None',
-    docType: 'none',
-    privacy: 'Cloud-based',
-    limitation: 'Productivity tool, not life admin focused',
+    name: 'ARIS',
+    role: 'Ambient personal AI assistant',
+    obligationDetection: {
+      level: 'Partial',
+      detail: 'Partial contextual capture',
+    },
+    lifeCoverage: {
+      level: 'Partial',
+      detail: 'Broad personal context across daily routines',
+    },
+    proactiveAttention: {
+      level: 'Strong',
+      detail: 'Strong morning briefs and ambient nudges',
+    },
+    contentUnderstanding: {
+      level: 'Partial',
+      detail: 'Partial document and media ingestion',
+    },
+    aiPrioritization: {
+      level: 'Strong',
+      detail: 'Strong contextual reminders and daily briefing',
+    },
+    actionExecution: {
+      level: 'Partial',
+      detail: 'Moderate execution via integrated assistants',
+    },
+    privacyControl: {
+      level: 'Partial',
+      detail: 'Connected assistant model (based on public info)',
+    },
+    overallRole: 'Ambient AI companion that stays ahead of the user’s day',
   },
   {
-    name: 'Any.do',
-    capture: 'Manual + calendar sync',
-    types: 'Tasks, calendar events',
-    docUnderstanding: 'None',
-    docType: 'none',
-    privacy: 'Cloud-based',
-    limitation: 'No obligation detection, just task management',
+    name: 'Adminest',
+    role: 'AI life-admin / document intelligence assistant',
+    obligationDetection: {
+      level: 'Strong',
+      detail: 'STRONG — specializes in extracting obligations from paperwork',
+    },
+    lifeCoverage: {
+      level: 'Strong',
+      detail: 'Strong for life-admin, bills, notices and renewals',
+    },
+    proactiveAttention: {
+      level: 'Partial',
+      detail: 'Moderate — reminder based on extracted document dates',
+    },
+    contentUnderstanding: {
+      level: 'Strong',
+      detail: 'STRONG — deep OCR and structured invoice/policy parsing',
+    },
+    aiPrioritization: {
+      level: 'Partial',
+      detail: 'Moderate / task-oriented deadline mapping',
+    },
+    actionExecution: {
+      level: 'Limited',
+      detail: 'Limited compared with full AI agents',
+    },
+    privacyControl: {
+      level: 'Strong',
+      detail: 'Strong emphasis on private storage, encryption and deletion controls',
+    },
+    overallRole: 'Closest benchmark for turning messy documents into actionable life-admin tasks',
   },
   {
-    name: 'Microsoft To Do',
-    capture: 'Manual + Outlook sync',
-    types: 'Tasks, emails (flagged)',
-    docUnderstanding: 'Email flags only',
-    docType: 'integration',
-    privacy: 'Microsoft ecosystem',
-    limitation: 'Only flags emails user marks, no auto-detection',
+    name: 'Hero Assistant',
+    role: 'All-in-one daily assistant',
+    obligationDetection: {
+      level: 'Partial',
+      detail: 'Partial / image and schedule assisted',
+    },
+    lifeCoverage: {
+      level: 'Partial',
+      detail: 'Moderate to broad lifestyle and agenda scope',
+    },
+    proactiveAttention: {
+      level: 'Strong',
+      detail: 'Strong push alerts and schedule optimization',
+    },
+    contentUnderstanding: {
+      level: 'Partial',
+      detail: 'Partial — includes AI text/photo scanning',
+    },
+    aiPrioritization: {
+      level: 'Strong',
+      detail: 'Strong for actions, tasks, events and reminders',
+    },
+    actionExecution: {
+      level: 'Partial',
+      detail: 'Moderate / strong in selected workflows',
+    },
+    privacyControl: {
+      level: 'Partial',
+      detail: 'Standard cloud account protections (public data)',
+    },
+    overallRole: 'Proactive daily productivity assistant with strong attention/reminder behavior',
   },
   {
-    name: 'TickTick',
-    capture: 'Manual create',
-    types: 'Tasks, habits',
-    docUnderstanding: 'None',
-    docType: 'none',
-    privacy: 'Cloud-based',
-    limitation: 'Feature-rich but fully manual setup',
-  },
-  {
-    name: 'Reminders by Apple',
-    capture: 'Manual + location-based',
-    types: 'General',
-    docUnderstanding: 'None',
-    docType: 'none',
-    privacy: 'On-device',
-    limitation: 'No intelligence, no document awareness',
-  },
-  {
-    name: 'Due',
-    capture: 'Manual, persistent alerts',
-    types: 'Time-based only',
-    docUnderstanding: 'None',
-    docType: 'none',
-    privacy: 'On-device',
-    limitation: 'Just aggressive re-reminding, no smart detection',
-  },
-  {
-    name: 'BZ Reminder',
-    capture: 'Manual create',
-    types: 'Basic reminders',
-    docUnderstanding: 'None',
-    docType: 'none',
-    privacy: 'Local storage',
-    limitation: 'Minimal features, no AI',
-  },
-  {
-    name: 'Sortifyd',
-    capture: 'Document organization',
-    types: 'Insurance, medical, financial',
-    docUnderstanding: 'Partial — categorizes uploaded docs',
-    docType: 'partial',
-    privacy: 'Cloud',
-    limitation: "Organizes documents but doesn't extract deadlines or create reminders",
-  },
-  {
-    name: 'Doxie',
-    capture: 'Document scanning',
-    types: 'Scanned documents',
-    docUnderstanding: 'OCR text extraction',
-    docType: 'ocr',
-    privacy: 'Local/cloud',
-    limitation: "Scans but doesn't understand what's inside — no date detection",
-  },
-  {
-    name: 'Cleo (AI)',
-    capture: 'Chat-based',
-    types: 'Financial only',
-    docUnderstanding: 'Bank account integration',
-    docType: 'integration',
-    privacy: 'Cloud, financial data',
-    limitation: "Finance-only, doesn't cover insurance, medical, subscriptions",
-  },
-  {
-    name: 'Truebill / Rocket Money',
-    capture: 'Auto-detect subscriptions',
-    types: 'Subscriptions only',
-    docUnderstanding: 'Bank transaction analysis',
-    docType: 'integration',
-    privacy: 'Cloud, financial data',
-    limitation: 'Only catches subscriptions, misses insurance, vehicle, medical',
-  },
-  {
-    name: 'Google Assistant',
-    capture: 'Voice command',
-    types: 'General tasks, reminders',
-    docUnderstanding: 'Partial — email/calendar awareness',
-    docType: 'partial',
-    privacy: 'Google ecosystem',
-    limitation: "Reactive — waits for user to ask, doesn't proactively detect",
-  },
-  {
-    name: 'Siri / Apple Intelligence',
-    capture: 'Voice command',
-    types: 'General tasks',
-    docUnderstanding: 'Partial — on-device processing',
-    docType: 'partial',
-    privacy: 'On-device',
-    limitation: 'Limited proactive suggestions, no document scanning for deadlines',
+    name: 'Tara',
+    badge: 'Concept & Prototype',
+    isTara: true,
+    role: 'Your Digital Best Friend',
+    obligationDetection: {
+      level: 'Core',
+      detail: 'Core — background discovery across messages, emails & images without manual task creation',
+    },
+    lifeCoverage: {
+      level: 'Core',
+      detail: 'Broad — designed to adapt flexibly to the user’s personal data sources',
+    },
+    proactiveAttention: {
+      level: 'Core',
+      detail: 'Core — proactively surfaces time-sensitive obligations before you ask',
+    },
+    contentUnderstanding: {
+      level: 'Core',
+      detail: 'Core — multimodal understanding of documents, emails, screenshots and chat snippets',
+    },
+    aiPrioritization: {
+      level: 'Core',
+      detail: 'Core — determines consequence, urgency, and what actually deserves mental space',
+    },
+    actionExecution: {
+      level: 'Future vision / approval-based',
+      detail: 'Future vision — strictly approval-based action proposals (guided one-tap actions)',
+    },
+    privacyControl: {
+      level: 'Core principle',
+      detail: 'Core principle — local-first inference, zero data training, full audit log and granular revoke',
+    },
+    overallRole: 'Your Digital Best Friend — notices what you might miss, understands what matters, and helps you take care of it.',
   },
 ];
 
-const swotData = {
-  strengths: [
-    'No competitor combines auto-detection + all obligation categories + proactive action',
-    'Privacy-first approach differentiates from cloud-heavy competitors',
-    'AI/LLM capabilities now make document understanding feasible at consumer scale',
-  ],
-  weaknesses: [
-    'Solo designer — no dedicated development team during research phase',
-    'Building trust for an app that accesses personal documents is a high bar',
-    'Android-first limits initial reach',
-  ],
-  opportunities: [
-    'Life admin is a universal pain point across all demographics',
-    'Indian market specifically: insurance renewals, vehicle documents, government deadlines are highly manual',
-    'Growing comfort with AI assistants (Google Assistant, Siri) lowers adoption friction',
-  ],
-  threats: [
-    'Google or Apple could add proactive life admin features to their existing assistants',
-    'Privacy regulation changes could restrict document scanning capabilities',
-    'User trust barrier — people may not want to share insurance/financial documents with a new app',
-  ],
-};
+function getCapabilityBadge(level: CompetitorCapability, isTara?: boolean) {
+  switch (level) {
+    case 'Core':
+      return (
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-[#2a1b4e] text-[#d8b4fe] border border-[#a78bfa]/40">
+          Core
+        </span>
+      );
+    case 'Full':
+    case 'Strong':
+      return (
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#142820] text-[#6ee7b7] border border-[#059669]/30">
+          {level}
+        </span>
+      );
+    case 'Partial':
+      return (
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#2a2212] text-[#fcd34d] border border-[#d97706]/30">
+          Partial
+        </span>
+      );
+    case 'Limited':
+      return (
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#2c1a14] text-[#fdba74] border border-[#ea580c]/30">
+          Limited
+        </span>
+      );
+    case 'None':
+      return (
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#2d1519] text-[#fca5a5] border border-[#dc2626]/30">
+          None
+        </span>
+      );
+    case 'Future vision / approval-based':
+      return (
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#241a3e] text-[#c4b5fd] border border-[#8b5cf6]/30">
+          Future Vision
+        </span>
+      );
+    case 'Core principle':
+      return (
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-[#1e153d] text-[#e9d5ff] border border-[#a855f7]/40">
+          Core Principle
+        </span>
+      );
+    default:
+      return (
+        <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-white/5 text-[var(--text-secondary)] border border-white/10">
+          Not Core
+        </span>
+      );
+  }
+}
 
 export function RenewSecondaryResearch() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedDocId, setSelectedDocId] = useState('renew-comp-matrix');
-
-  const openDoc = (docId: string) => {
-    setSelectedDocId(docId);
-    setModalOpen(true);
-  };
-
-  const getDocBadge = (comp: Competitor) => {
-    switch (comp.docType) {
-      case 'none':
-        return (
-          <span className="text-[12px] text-red-400/80 font-medium font-accent">
-            None
-          </span>
-        );
-      case 'partial':
-        return (
-          <span className="text-[12px] text-[var(--accent)]/90 font-medium font-accent">
-            {comp.docUnderstanding}
-          </span>
-        );
-      case 'ocr':
-      case 'integration':
-      default:
-        return (
-          <span className="text-[12px] text-[var(--text-secondary)] font-medium font-accent">
-            {comp.docUnderstanding}
-          </span>
-        );
-    }
-  };
+  const [selectedCompetitor, setSelectedCompetitor] = useState<CompetitorData | null>(null);
 
   return (
     <section
-      id="renew-secondary-research"
-      className="w-full bg-[var(--bg)] py-24 md:py-32 transition-colors duration-500"
+      id="renew-competitive-analysis"
+      className="w-full bg-[var(--bg-primary)] py-24 md:py-32 transition-colors duration-500 overflow-hidden"
     >
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="max-w-[1240px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Section label */}
-          <div className="text-[var(--accent)] font-medium text-[13px] uppercase tracking-[5px] mb-3">
-            SECONDARY RESEARCH: EVERY APP FALLS SHORT
+          {/* Section tag */}
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-[var(--accent)] text-[12px] font-accent font-medium uppercase tracking-[2px] mb-3">
+            <Cpu className="w-3.5 h-3.5" />
+            <span>Competitive Matrix &amp; Positioning</span>
           </div>
 
+          {/* Section title */}
           <h2
-            id="renew-secondary-research-heading"
-            className="font-bold text-[24px] sm:text-[28px] text-[var(--text-primary)] mb-6 tracking-tight"
+            id="competitive-landscape-heading"
+            className="font-bold text-[28px] sm:text-[36px] md:text-[42px] text-[var(--text-primary)] mb-3 tracking-tight"
           >
-            Testing Every Reminder and Personal Assistant App
+            Competitive Landscape
           </h2>
 
-          <p className="font-light text-[16px] text-[var(--text-primary)] leading-[1.8] max-w-[900px] mb-12">
-            Downloaded and tested 15+ existing apps across the reminder, to-do, and personal assistant categories. Each app was evaluated over 2-3 days of real use, measuring: how obligations are captured (manual vs automatic), what types of obligations it covers, how it handles recurring tasks, whether it understands document content (PDFs, emails), and its privacy approach. Tested both direct competitors (reminder-specific apps) and indirect competitors (general productivity and personal assistant apps).
+          {/* Subtitle */}
+          <p className="font-light text-[17px] sm:text-[19px] text-[var(--text-secondary)] max-w-[840px] mb-12 leading-relaxed">
+            Where Tara fits among today&apos;s AI assistants, life-admin tools and proactive personal assistants.
           </p>
 
-          {/* Responsive Competitive Matrix */}
-          <div className="mb-14">
-            <h3 className="font-semibold text-[18px] text-[var(--text-primary)] mb-4 tracking-tight">
-              Competitive Matrix (15 Apps Evaluated)
-            </h3>
-
-            {/* Desktop Table View */}
-            <div className="hidden lg:block overflow-x-auto rounded-[12px] border border-[var(--border)] bg-[var(--surface)] shadow-sm">
-              <table className="w-full text-left text-[13px] border-collapse">
+          {/* Core Table Container */}
+          <div className="relative rounded-[20px] bg-[#120d1c]/90 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-md overflow-hidden mb-12">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse min-w-[980px]">
                 <thead>
-                  <tr className="border-b border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--text-secondary)] font-accent uppercase text-[10px] tracking-[1.5px]">
-                    <th className="py-3.5 px-4 font-semibold">App Name</th>
-                    <th className="py-3.5 px-4 font-semibold">Capture Method</th>
-                    <th className="py-3.5 px-4 font-semibold">Obligation Types</th>
-                    <th className="py-3.5 px-4 font-semibold">Document Understanding</th>
-                    <th className="py-3.5 px-4 font-semibold">Privacy Approach</th>
-                    <th className="py-3.5 px-4 font-semibold">Limitation</th>
+                  <tr className="border-b border-white/10 bg-[#1a1329]/80 text-[12px] font-semibold uppercase tracking-[1.5px] text-[var(--accent)]">
+                    <th className="py-4 px-4 w-[160px]">App</th>
+                    <th className="py-4 px-3 w-[150px]">Obligation Detection</th>
+                    <th className="py-4 px-3 w-[130px]">Life Coverage</th>
+                    <th className="py-4 px-3 w-[130px]">Proactive Attention</th>
+                    <th className="py-4 px-3 w-[150px]">Content Understanding</th>
+                    <th className="py-4 px-3 w-[140px]">AI Prioritization</th>
+                    <th className="py-4 px-3 w-[130px]">Action / Execution</th>
+                    <th className="py-4 px-3 w-[140px]">Privacy &amp; Control</th>
+                    <th className="py-4 px-4 min-w-[180px]">Overall Role</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[var(--border)]">
-                  {competitors.map((comp, idx) => (
-                    <motion.tr
-                      key={comp.name}
-                      initial={{ opacity: 0, y: 6 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: '-20px' }}
-                      transition={{ duration: 0.25, delay: idx * 0.03 }}
-                      className="hover:bg-[var(--surface-elevated)]/50 transition-colors"
-                    >
-                      <td className="py-3.5 px-4 font-medium text-[var(--text-primary)] whitespace-nowrap">
-                        {comp.name}
-                      </td>
-                      <td className="py-3.5 px-4 text-[var(--text-secondary)] font-light">
-                        {comp.capture}
-                      </td>
-                      <td className="py-3.5 px-4 text-[var(--text-secondary)] font-light">
-                        {comp.types}
-                      </td>
-                      <td className="py-3.5 px-4">{getDocBadge(comp)}</td>
-                      <td className="py-3.5 px-4 text-[var(--text-secondary)] font-light">
-                        {comp.privacy}
-                      </td>
-                      <td className="py-3.5 px-4 text-[var(--text-primary)] font-light text-[12.5px] leading-snug">
-                        {comp.limitation}
-                      </td>
-                    </motion.tr>
-                  ))}
+                <tbody className="divide-y divide-white/5 text-[13px] text-[#cbd5e1]">
+                  {competitors.map((comp) => {
+                    const isTara = comp.isTara;
+                    return (
+                      <tr
+                        key={comp.name}
+                        onClick={() => setSelectedCompetitor(comp)}
+                        className={`transition-colors cursor-pointer group ${
+                          isTara
+                            ? 'bg-gradient-to-r from-[#24163a]/90 via-[#2f1b4c]/90 to-[#24163a]/90 hover:bg-[#38215c]/90 border-t-2 border-b-2 border-[var(--accent)]/40 shadow-[0_0_30px_rgba(167,139,250,0.1)]'
+                            : 'hover:bg-white/[0.03]'
+                        }`}
+                      >
+                        {/* App Name */}
+                        <td className="py-4 px-4 align-top">
+                          <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-1.5 font-bold text-[14.5px] text-white">
+                              {isTara && <Sparkles className="w-3.5 h-3.5 text-[var(--accent)]" />}
+                              <span className={isTara ? 'text-[#e9d5ff] font-extrabold' : ''}>
+                                {comp.name}
+                              </span>
+                            </div>
+                            {comp.badge && (
+                              <span className="inline-block text-[10px] font-mono text-[var(--accent)]/90 tracking-wide">
+                                {comp.badge}
+                              </span>
+                            )}
+                            <span className="text-[11px] text-[var(--text-secondary)] font-light leading-snug">
+                              {comp.role}
+                            </span>
+                          </div>
+                        </td>
+
+                        {/* Obligation Detection */}
+                        <td className="py-4 px-3 align-top">
+                          <div className="flex flex-col gap-1.5">
+                            {getCapabilityBadge(comp.obligationDetection.level, isTara)}
+                            <span className="text-[11.5px] text-slate-300 font-light leading-tight">
+                              {comp.obligationDetection.detail}
+                            </span>
+                          </div>
+                        </td>
+
+                        {/* Life Coverage */}
+                        <td className="py-4 px-3 align-top">
+                          <div className="flex flex-col gap-1.5">
+                            {getCapabilityBadge(comp.lifeCoverage.level, isTara)}
+                            <span className="text-[11.5px] text-slate-300 font-light leading-tight">
+                              {comp.lifeCoverage.detail}
+                            </span>
+                          </div>
+                        </td>
+
+                        {/* Proactive Attention */}
+                        <td className="py-4 px-3 align-top">
+                          <div className="flex flex-col gap-1.5">
+                            {getCapabilityBadge(comp.proactiveAttention.level, isTara)}
+                            <span className="text-[11.5px] text-slate-300 font-light leading-tight">
+                              {comp.proactiveAttention.detail}
+                            </span>
+                          </div>
+                        </td>
+
+                        {/* Document / Content Understanding */}
+                        <td className="py-4 px-3 align-top">
+                          <div className="flex flex-col gap-1.5">
+                            {getCapabilityBadge(comp.contentUnderstanding.level, isTara)}
+                            <span className="text-[11.5px] text-slate-300 font-light leading-tight">
+                              {comp.contentUnderstanding.detail}
+                            </span>
+                          </div>
+                        </td>
+
+                        {/* AI Prioritization */}
+                        <td className="py-4 px-3 align-top">
+                          <div className="flex flex-col gap-1.5">
+                            {getCapabilityBadge(comp.aiPrioritization.level, isTara)}
+                            <span className="text-[11.5px] text-slate-300 font-light leading-tight">
+                              {comp.aiPrioritization.detail}
+                            </span>
+                          </div>
+                        </td>
+
+                        {/* Action / Execution */}
+                        <td className="py-4 px-3 align-top">
+                          <div className="flex flex-col gap-1.5">
+                            {getCapabilityBadge(comp.actionExecution.level, isTara)}
+                            <span className="text-[11.5px] text-slate-300 font-light leading-tight">
+                              {comp.actionExecution.detail}
+                            </span>
+                          </div>
+                        </td>
+
+                        {/* Privacy & Control */}
+                        <td className="py-4 px-3 align-top">
+                          <div className="flex flex-col gap-1.5">
+                            {getCapabilityBadge(comp.privacyControl.level, isTara)}
+                            <span className="text-[11.5px] text-slate-300 font-light leading-tight">
+                              {comp.privacyControl.detail}
+                            </span>
+                          </div>
+                        </td>
+
+                        {/* Overall Role */}
+                        <td className="py-4 px-4 align-top">
+                          <p className={`text-[12px] leading-relaxed ${isTara ? 'text-[#f3e8ff] font-medium' : 'text-slate-300 font-light'}`}>
+                            {comp.overallRole}
+                          </p>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
 
-            {/* Mobile / Tablet Cards View */}
-            <div className="lg:hidden flex flex-col gap-3">
-              {competitors.map((comp, idx) => (
+            {/* Bottom table helper note */}
+            <div className="px-5 py-3 bg-[#0d0915] border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-[11.5px] text-[var(--text-secondary)] font-mono">
+              <div className="flex items-center gap-2">
+                <span>Legend:</span>
+                <span className="inline-flex items-center gap-1 text-[#6ee7b7]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" /> Strong / Core
+                </span>
+                <span className="inline-flex items-center gap-1 text-[#fcd34d]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b]" /> Partial
+                </span>
+                <span className="inline-flex items-center gap-1 text-[#fdba74]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#ea580c]" /> Limited
+                </span>
+              </div>
+              <span className="text-white/60">
+                Click any row for detailed capability breakdown
+              </span>
+            </div>
+          </div>
+
+          {/* Key Strategic Takeaways Section */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Takeaway 1 */}
+            <div className="rounded-[16px] bg-[#160f23] p-6 border border-white/10 relative overflow-hidden flex flex-col justify-between">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[var(--accent)] to-purple-500 opacity-60" />
+              <div>
+                <span className="font-mono text-[11px] text-[var(--accent)] font-semibold uppercase tracking-[2px] block mb-2">
+                  Insight 01
+                </span>
+                <h4 className="font-bold text-[16px] text-white mb-2 leading-snug">
+                  Core Attention Job
+                </h4>
+                <p className="text-[14px] text-[var(--text-secondary)] font-light leading-relaxed">
+                  Most existing products excel at either assistant-style execution, life-admin organization, or proactive reminders. Tara combines these around one core job: understanding what deserves your attention.
+                </p>
+              </div>
+            </div>
+
+            {/* Takeaway 2 */}
+            <div className="rounded-[16px] bg-[#160f23] p-6 border border-white/10 relative overflow-hidden flex flex-col justify-between">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-indigo-500 opacity-60" />
+              <div>
+                <span className="font-mono text-[11px] text-[var(--accent)] font-semibold uppercase tracking-[2px] block mb-2">
+                  Insight 02
+                </span>
+                <h4 className="font-bold text-[16px] text-white mb-2 leading-snug">
+                  Execution vs. Ingestion Benchmark
+                </h4>
+                <p className="text-[14px] text-[var(--text-secondary)] font-light leading-relaxed">
+                  Adminest comes closest to document-to-obligation understanding, while Meet Iris and Tase push further into broad AI execution.
+                </p>
+              </div>
+            </div>
+
+            {/* Takeaway 3 */}
+            <div className="rounded-[16px] bg-[#160f23] p-6 border border-white/10 relative overflow-hidden flex flex-col justify-between">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-[var(--accent)] opacity-60" />
+              <div>
+                <span className="font-mono text-[11px] text-[var(--accent)] font-semibold uppercase tracking-[2px] block mb-2">
+                  Insight 03
+                </span>
+                <h4 className="font-bold text-[16px] text-white mb-2 leading-snug">
+                  The White Space Opportunity
+                </h4>
+                <p className="text-[14px] text-[var(--text-secondary)] font-light leading-relaxed">
+                  The opportunity is not another reminder list. It is a personal layer that connects scattered information, understands its consequences, and decides what is worth bringing to you.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Modal / Slide-out for detailed row inspection */}
+          <AnimatePresence>
+            {selectedCompetitor && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedCompetitor(null)}
+                className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+              >
                 <motion.div
-                  key={comp.name}
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-20px' }}
-                  transition={{ duration: 0.25, delay: idx * 0.03 }}
-                  className="p-4 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] flex flex-col gap-2"
+                  initial={{ scale: 0.95, opacity: 0, y: 10 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.95, opacity: 0, y: 10 }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="bg-[#171026] border border-white/15 rounded-[24px] p-6 sm:p-8 max-w-[620px] w-full shadow-2xl text-left"
                 >
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-semibold text-[15px] text-[var(--text-primary)]">
-                      {comp.name}
-                    </h4>
-                    {getDocBadge(comp)}
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-[12px] text-[var(--text-secondary)] font-light pt-1 border-t border-[var(--border)]">
+                  <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-4">
                     <div>
-                      <span className="font-accent uppercase tracking-wider text-[9px] text-[var(--text-secondary)] block">
-                        Capture
-                      </span>
-                      {comp.capture}
+                      <div className="flex items-center gap-2">
+                        {selectedCompetitor.isTara && <Sparkles className="w-4 h-4 text-[var(--accent)]" />}
+                        <h3 className="font-bold text-[22px] text-white">
+                          {selectedCompetitor.name}
+                        </h3>
+                      </div>
+                      <p className="text-[13px] text-[var(--accent)] font-mono">
+                        {selectedCompetitor.role}
+                      </p>
                     </div>
-                    <div>
-                      <span className="font-accent uppercase tracking-wider text-[9px] text-[var(--text-secondary)] block">
-                        Types
-                      </span>
-                      {comp.types}
-                    </div>
+                    <button
+                      onClick={() => setSelectedCompetitor(null)}
+                      className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors text-sm"
+                    >
+                      ✕
+                    </button>
                   </div>
-                  <div className="text-[13px] text-[var(--text-primary)] font-light pt-1 bg-[var(--surface-elevated)]/50 p-2.5 rounded-[8px]">
-                    <span className="font-accent uppercase tracking-wider text-[9px] text-[var(--accent)] block mb-0.5">
-                      Limitation
-                    </span>
-                    {comp.limitation}
+
+                  <p className="text-[14px] text-slate-200 mb-6 leading-relaxed bg-[#100b1a] p-4 rounded-xl border border-white/5">
+                    <strong className="text-white block font-medium mb-1">Positioning Summary:</strong>
+                    {selectedCompetitor.overallRole}
+                  </p>
+
+                  <div className="space-y-3.5 max-h-[50vh] overflow-y-auto pr-1">
+                    <div className="bg-white/5 p-3 rounded-lg border border-white/5">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[12px] font-semibold text-[var(--accent)] uppercase tracking-wider">
+                          Obligation Discovery
+                        </span>
+                        {getCapabilityBadge(selectedCompetitor.obligationDetection.level)}
+                      </div>
+                      <p className="text-[13px] text-slate-300">{selectedCompetitor.obligationDetection.detail}</p>
+                    </div>
+
+                    <div className="bg-white/5 p-3 rounded-lg border border-white/5">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[12px] font-semibold text-[var(--accent)] uppercase tracking-wider">
+                          Document &amp; Content Understanding
+                        </span>
+                        {getCapabilityBadge(selectedCompetitor.contentUnderstanding.level)}
+                      </div>
+                      <p className="text-[13px] text-slate-300">{selectedCompetitor.contentUnderstanding.detail}</p>
+                    </div>
+
+                    <div className="bg-white/5 p-3 rounded-lg border border-white/5">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[12px] font-semibold text-[var(--accent)] uppercase tracking-wider">
+                          AI Prioritization
+                        </span>
+                        {getCapabilityBadge(selectedCompetitor.aiPrioritization.level)}
+                      </div>
+                      <p className="text-[13px] text-slate-300">{selectedCompetitor.aiPrioritization.detail}</p>
+                    </div>
+
+                    <div className="bg-white/5 p-3 rounded-lg border border-white/5">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[12px] font-semibold text-[var(--accent)] uppercase tracking-wider">
+                          Action &amp; Autonomous Execution
+                        </span>
+                        {getCapabilityBadge(selectedCompetitor.actionExecution.level)}
+                      </div>
+                      <p className="text-[13px] text-slate-300">{selectedCompetitor.actionExecution.detail}</p>
+                    </div>
+
+                    <div className="bg-white/5 p-3 rounded-lg border border-white/5">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[12px] font-semibold text-[var(--accent)] uppercase tracking-wider">
+                          Privacy &amp; Permissions
+                        </span>
+                        {getCapabilityBadge(selectedCompetitor.privacyControl.level)}
+                      </div>
+                      <p className="text-[13px] text-slate-300">{selectedCompetitor.privacyControl.detail}</p>
+                    </div>
                   </div>
                 </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* AI Life Assistant Landscape Interactive Artifact & Gap Analysis */}
-          <div className="mb-20 space-y-8">
-            <div>
-              <h3 className="font-semibold text-[20px] text-[var(--text-primary)] mb-3 tracking-tight">
-                AI Life Assistant Landscape Benchmark
-              </h3>
-              <p className="font-light text-[16px] text-[var(--text-primary)] leading-[1.8] max-w-[840px] mb-6">
-                Comparative analysis of 6 market solutions across AI auto-detection, multi-category coverage, proactive intelligence, document understanding, and user data privacy.
-              </p>
-
-              {/* Full Artifact Component */}
-              <LifeAssistantCompetitiveMatrixDoc
-                onExpand={() => openDoc('renew-comp-matrix')}
-              />
-            </div>
-
-            {/* Gap Box */}
-            <div className="w-full bg-[var(--surface-elevated)] border-l-[3px] border-l-[var(--accent)] border-y border-r border-[var(--border)] rounded-[12px] p-6 shadow-sm flex flex-col justify-center">
-              <span className="font-accent text-[11px] uppercase tracking-[2px] text-[var(--accent)] font-semibold block mb-2">
-                SYNTHESIZED GAP ANALYSIS
-              </span>
-              <p className="text-[15px] font-light text-[var(--text-primary)] leading-[1.8]">
-                The market splits into two categories that never meet. Reminder apps (Todoist, Any.do, Google Reminders) are powerful task managers but require 100% manual input — the user must know what to remind themselves about. Document/finance apps (Sortifyd, Truebill, Cleo) can detect some obligations automatically but only cover one category (subscriptions OR finance OR documents). No single product combines: (1) auto-detection of obligations from multiple sources (email, documents, messages), (2) across all life admin categories (insurance, vehicle, medical, bills, subscriptions), (3) with proactive reminders that don&apos;t require manual setup.
-              </p>
-            </div>
-          </div>
-
-          {/* SWOT Analysis 2x2 Grid */}
-          <div>
-            <h3 className="font-semibold text-[20px] text-[var(--text-primary)] mb-6 tracking-tight">
-              SWOT Analysis
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Strengths */}
-              <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[12px] p-6 shadow-sm">
-                <span className="font-accent text-[12px] uppercase tracking-[2px] text-[var(--accent)] font-semibold block mb-3">
-                  Strengths
-                </span>
-                <ul className="flex flex-col gap-2.5">
-                  {swotData.strengths.map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="text-[14px] text-[var(--text-primary)] font-light leading-relaxed flex items-start gap-2"
-                    >
-                      <span className="text-[var(--accent)] mt-1 text-[11px]">▪</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Weaknesses */}
-              <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[12px] p-6 shadow-sm">
-                <span className="font-accent text-[12px] uppercase tracking-[2px] text-[var(--text-secondary)] font-semibold block mb-3">
-                  Weaknesses
-                </span>
-                <ul className="flex flex-col gap-2.5">
-                  {swotData.weaknesses.map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="text-[14px] text-[var(--text-primary)] font-light leading-relaxed flex items-start gap-2"
-                    >
-                      <span className="text-[var(--text-secondary)] mt-1 text-[11px]">▪</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Opportunities */}
-              <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[12px] p-6 shadow-sm">
-                <span className="font-accent text-[12px] uppercase tracking-[2px] text-[var(--accent)] font-semibold block mb-3">
-                  Opportunities
-                </span>
-                <ul className="flex flex-col gap-2.5">
-                  {swotData.opportunities.map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="text-[14px] text-[var(--text-primary)] font-light leading-relaxed flex items-start gap-2"
-                    >
-                      <span className="text-[var(--accent)] mt-1 text-[11px]">▪</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Threats */}
-              <div className="bg-[var(--surface)] border border-[var(--border)] rounded-[12px] p-6 shadow-sm">
-                <span className="font-accent text-[12px] uppercase tracking-[2px] text-[var(--text-secondary)] font-semibold block mb-3">
-                  Threats
-                </span>
-                <ul className="flex flex-col gap-2.5">
-                  {swotData.threats.map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="text-[14px] text-[var(--text-primary)] font-light leading-relaxed flex items-start gap-2"
-                    >
-                      <span className="text-[var(--text-secondary)] mt-1 text-[11px]">▪</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
-
-      {/* Password-protected artifact modal */}
-      <RenewResearchArtifactModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        selectedDocId={selectedDocId}
-      />
     </section>
   );
 }

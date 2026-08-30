@@ -72,9 +72,9 @@ export const RENEW_ARTIFACT_DOCS: RenewArtifactDocInfo[] = [
     title: 'Competitive analysis matrix',
     category: 'Secondary Research',
     type: 'Benchmark & Feature Grid',
-    summary: 'Multi-dimensional evaluation of 6 market solutions (Cleo, Rocket Money, Google Assistant, Apple Reminders, Todoist) establishing Offload’s wedge.',
+    summary: 'Multi-dimensional evaluation of 5 closest conceptual solutions (Meet Iris, Tase, ARIS, Adminest, Hero Assistant) alongside Tara establishing positioning as Your Digital Best Friend.',
     date: 'May 2026',
-    pagesOrSize: '6 Tools · 7 Dimensions Matrix',
+    pagesOrSize: '5 Conceptual Peers + Tara · 7 Dimensions Matrix',
     securityLevel: 'Internal Research',
   },
   {
@@ -92,7 +92,7 @@ export const RENEW_ARTIFACT_DOCS: RenewArtifactDocInfo[] = [
     title: 'Product principles document',
     category: 'Product Strategy',
     type: 'Design System Principles',
-    summary: 'The 4 zero-input pillars governing Offload: proactive discovery, contextual notification budgets, on-device OCR, and strict user consent.',
+    summary: 'The 4 zero-input pillars governing Tara: proactive discovery, contextual notification budgets, on-device OCR, and strict user consent.',
     date: 'June 2026',
     pagesOrSize: '4 Core Pillars · Spec Brief',
     securityLevel: 'Internal Research',
@@ -230,7 +230,7 @@ export function RenewResearchArtifactModal({
               <div>
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-[14px] text-white tracking-tight">
-                    Offload AI Life Assistant · Research Repository
+                    Tara — Your Digital Best Friend · Research Repository
                   </span>
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-[#1e293b] text-[#94a3b8] border border-[#334155]">
                     {currentDoc.securityLevel}
@@ -485,7 +485,7 @@ export function RenewResearchArtifactModal({
                         <div className="p-3.5 rounded-[10px] bg-[#1e293b]/50 border border-[#334155]/40">
                           <span className="font-mono text-[10px] text-[#818cf8] font-bold block mb-1">SECTION 3: AI AUTO-DETECTION & DESIRED CAPABILITIES</span>
                           <p className="text-white">Q6. Would you use an assistant that extracts deadlines directly from policy PDFs and email receipts?</p>
-                          <p className="text-white">Q7. Rank the top 5 features most valuable to you in a life admin assistant.</p>
+                          <p className="text-white">Q7. Rank the top 5 features most valuable to you in a personal AI assistant.</p>
                           <p className="text-white">Q8. How would you prefer notifications to be scheduled? (e.g., 7 days ahead, 3 days, day of due date)</p>
                         </div>
                         <div className="p-3.5 rounded-[10px] bg-[#1e293b]/50 border border-[#334155]/40">
@@ -499,7 +499,7 @@ export function RenewResearchArtifactModal({
 
                   {activeDocId === 'renew-swot-analysis' && (
                     <div className="rounded-[14px] bg-[#111827]/80 border border-[#1f2937] p-5 sm:p-6 space-y-4">
-                      <h4 className="text-[16px] font-bold text-white mb-2">Offload SWOT Analysis & Strategic Moat</h4>
+                      <h4 className="text-[16px] font-bold text-white mb-2">Tara SWOT Analysis & Strategic Moat</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[12.5px]">
                         <div className="p-4 rounded-[10px] bg-[#065f46]/20 border border-[#059669]/40">
                           <span className="font-bold text-[#34d399] uppercase tracking-wider text-[11px] block mb-2 font-mono">STRENGTHS</span>
@@ -586,7 +586,7 @@ export function RenewResearchArtifactModal({
                         <div className="p-3.5 rounded-[10px] bg-[#1e293b]/40 border border-[#334155]/40 flex items-start gap-3">
                           <span className="w-6 h-6 rounded-full bg-[#4f46e5] text-white flex items-center justify-center font-bold text-[11px] shrink-0">2</span>
                           <div>
-                            <span className="font-bold text-white block">Centralized Life Admin Dashboard</span>
+                            <span className="font-bold text-white block">Centralized Life & Obligation Dashboard</span>
                             <span className="text-[#94a3b8] font-light">Urgency-sorted timeline (Next 7 Days, This Month, Later), category filter chips, and total pending financial liabilities.</span>
                           </div>
                         </div>

@@ -152,7 +152,7 @@ export function generateResumePdf() {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(9.5);
   doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-  doc.text('Offload — AI Life Assistant & Obligation Hub', margin, y);
+  doc.text('Tara — AI Life Assistant & Obligation Hub', margin, y);
   y += 4;
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8.5);

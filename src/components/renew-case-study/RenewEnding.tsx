@@ -27,7 +27,7 @@ export function RenewEnding() {
           </h2>
 
           <p className="font-light text-[17px] text-[var(--text-primary)] leading-[1.8] mb-8">
-            After completing the research, product direction, wireframes, UI, and tech stack documentation, I was reassigned to a different project within the company. The Android development team consisted of only 1-2 developers, and the company&apos;s priorities shifted. The Renew project was paused with all deliverables preserved for potential future development.
+            After completing the research, product direction, wireframes, UI, and tech stack documentation, I was reassigned to a different project within the company. The Android development team consisted of only 1-2 developers, and the company&apos;s priorities shifted. The Tara project was paused with all deliverables preserved for potential future development.
           </p>
 
           {/* Neutral callout box */}
