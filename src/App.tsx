@@ -7,6 +7,7 @@ import { Skills } from './components/Skills';
 import { Experience } from './components/Experience';
 import { Projects } from './components/Projects';
 import { Education } from './components/Education';
+import { WhyConsiderMe } from './components/WhyConsiderMe';
 import { PersonalInterests } from './components/PersonalInterests';
 import { Footer } from './components/Footer';
 import { SectionDivider } from './components/SectionDivider';
@@ -89,16 +90,18 @@ export function App() {
               <Hero />
               <About />
               <SectionDivider />
-              <Skills />
-              <SectionDivider />
-              <Experience />
-              <SectionDivider />
               <Projects
                 onOpenReyoCaseStudy={openReyoCaseStudy}
                 onOpenRenewCaseStudy={openRenewCaseStudy}
               />
               <SectionDivider />
+              <Skills />
+              <SectionDivider />
+              <Experience />
+              <SectionDivider />
               <Education />
+              <SectionDivider />
+              <WhyConsiderMe />
               <SectionDivider />
               <PersonalInterests />
             </main>

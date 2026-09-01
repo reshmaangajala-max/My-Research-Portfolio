@@ -1,175 +1,220 @@
-import { useState } from 'react';
-import { motion } from 'motion/react';
-import { Sparkles, BookOpen, Music, Compass, Wrench, ArrowRight, Heart } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import danceImage from '../assets/images/dancing_expressive_1788284827707.jpg';
+import writingImage from '../assets/images/creative_writing_desk_1788284851893.jpg';
+import toolsImage from '../assets/images/exploring_tools_lab_1788284872643.jpg';
+import readingImage from '../assets/images/reading_stories_mood_1788284904281.jpg';
 
-const interestCards = [
+interface Hobby {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  tag: string;
+}
+
+const HOBBIES: Hobby[] = [
   {
-    id: 'tool-teardowns',
-    title: 'Tool Teardowns & Product Labs',
-    badge: 'Curiosity Engine',
-    desc: 'Digging deep into how newly launched tools and technologies work under the hood, identifying usability gaps, and prototyping reimagined products around them.',
-    icon: Wrench,
-    accentColor: 'text-[#38bdf8]',
-    borderHover: 'hover:border-[#38bdf8]/60',
-    bgBadge: 'bg-[#38bdf8]/10 text-[#38bdf8] border-[#38bdf8]/20',
-    funFact: 'Always testing 5+ experimental apps at any given time.',
-    emoji: '⚡️',
+    id: 'dancing',
+    number: '01 / 04',
+    title: 'Dancing',
+    description:
+      'I’ve loved dancing for as long as I can remember. It’s how I switch off, express myself without overthinking, and come back with a completely different kind of energy.',
+    image: danceImage,
+    alt: 'Cinematic visual of expressive dance and movement',
+    tag: 'Movement & Rhythm',
   },
   {
-    id: 'story-building',
-    title: 'Creative Writing & Story Building',
-    badge: 'Narrative Craft',
-    desc: 'Writing original stories, developing character arcs, and creating lore universes. Storytelling directly informs how I build engaging user journeys.',
-    icon: BookOpen,
-    accentColor: 'text-[#f472b6]',
-    borderHover: 'hover:border-[#f472b6]/60',
-    bgBadge: 'bg-[#f472b6]/10 text-[#f472b6] border-[#f472b6]/20',
-    funFact: 'Worldbuilding and structure mirror system architecture.',
-    emoji: '✍️',
+    id: 'writing',
+    number: '02 / 04',
+    title: 'Creative Writing',
+    description:
+      'I spend a lot of time creating stories in my head — characters, relationships, entire worlds and all the little details in between. Writing is how I give those imaginary worlds somewhere to live.',
+    image: writingImage,
+    alt: 'Atmospheric creative writing desk with notebooks and story drafts',
+    tag: 'Worldbuilding & Stories',
   },
   {
-    id: 'dance-rhythm',
-    title: 'Dancing & Rhythm',
-    badge: 'Movement & Energy',
-    desc: 'Passionate dancer bringing rhythm, kinetic expression, and creative spontaneity. Keeps energy high, thoughts clear, and perspective fresh.',
-    icon: Music,
-    accentColor: 'text-[#fbbf24]',
-    borderHover: 'hover:border-[#fbbf24]/60',
-    bgBadge: 'bg-[#fbbf24]/10 text-[#fbbf24] border-[#fbbf24]/20',
-    funFact: 'Choreography is just visual sequencing and timing.',
-    emoji: '💃',
+    id: 'exploring',
+    number: '03 / 04',
+    title: 'Exploring New Tools',
+    description:
+      'I’m always curious about a new tool or technology. I like taking it apart, figuring out how it works, finding what’s missing, and then wondering what I could build around it.',
+    image: toolsImage,
+    alt: 'Experimental product workspace with interface prototypes and digital tools',
+    tag: 'Curiosity & Play',
   },
   {
-    id: 'research-design',
-    title: 'Research & Living Docs',
-    badge: 'Systematic Mind',
-    desc: 'Obsessed with transforming unstructured user observations, mental models, and edge cases into crystal-clear living documentation that teams actually use.',
-    icon: Compass,
-    accentColor: 'text-[#34d399]',
-    borderHover: 'hover:border-[#34d399]/60',
-    bgBadge: 'bg-[#34d399]/10 text-[#34d399] border-[#34d399]/20',
-    funFact: 'A well-structured taxonomy is pure satisfaction.',
-    emoji: '🧭',
+    id: 'reading',
+    number: '04 / 04',
+    title: 'Getting Lost in Stories',
+    description:
+      'I’ve always loved fictional worlds. Reading is my favourite escape — the kind where a few pages can make me forget where I am and completely disappear into someone else’s story.',
+    image: readingImage,
+    alt: 'Moody cinematic nook with an open book and warm light',
+    tag: 'Fictional Worlds',
   },
 ];
 
 export function PersonalInterests() {
-  const [activeCard, setActiveCard] = useState<string | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Auto transition every 4.5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % HOBBIES.length);
+    }, 4500);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const currentHobby = HOBBIES[currentIndex];
 
   return (
-    <section id="outside-work" className="w-full bg-[var(--bg)] py-24 md:py-32 transition-colors duration-500 overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section
+      id="outside-work"
+      className="relative w-full bg-[var(--bg)] py-28 md:py-36 transition-colors duration-500 overflow-hidden"
+    >
+      {/* Background ambient lighting */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(167,139,250,0.06)_0%,rgba(96,165,250,0.02)_50%,transparent_75%)] blur-3xl" />
+      </div>
+
+      <div className="relative max-w-[1200px] mx-auto px-6 sm:px-8 z-10">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-[720px] mb-12 sm:mb-16"
         >
-          {/* Section label */}
+          {/* Eyebrow */}
           <div className="text-[var(--accent)] font-medium text-[13px] uppercase tracking-[5px] mb-3">
             OUTSIDE WORK
           </div>
 
-          {/* Section heading */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-            <div>
-              <h2
-                id="outside-work-heading"
-                className="font-bold text-[26px] sm:text-[32px] text-[var(--text-primary)] tracking-tight"
-              >
-                Curiosities, Play & Creative Energy
-              </h2>
-              <p className="text-[15px] text-[var(--text-secondary)] font-light mt-1.5 max-w-[650px]">
-                The pursuits and experiments that shape how I think about systems, human behavior, and storytelling.
-              </p>
+          {/* Headline */}
+          <h2
+            id="outside-work-heading"
+            className="font-bold text-[28px] sm:text-[34px] md:text-[40px] leading-[1.18] tracking-tight text-[var(--text-primary)] mb-3"
+          >
+            My personal interests
+          </h2>
+
+          {/* Subline */}
+          <p className="text-[15.5px] sm:text-[17px] text-[var(--text-secondary)] font-light leading-[1.7]">
+            When I’m not designing, I’m usually creating, exploring, moving, or getting lost in another world.
+          </p>
+        </motion.div>
+
+        {/* Cinematic Visual Stage & Editorial Narrative */}
+        <div className="relative rounded-[24px] bg-[var(--surface)] border border-[var(--border)] p-4 sm:p-7 md:p-8 overflow-hidden shadow-2xl backdrop-blur-md">
+          {/* Top Progress & Subtle Indicator Bar */}
+          <div className="flex items-center justify-between border-b border-[var(--border)]/70 pb-4 sm:pb-5 mb-6 sm:mb-8">
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
+              <span className="font-accent text-[11px] uppercase tracking-[2px] text-[var(--text-secondary)]">
+                A Visual Diary
+              </span>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--surface-elevated)] border border-[var(--border)] text-[12px] text-[var(--text-secondary)] font-accent self-start md:self-auto shrink-0">
-              <Sparkles className="w-3.5 h-3.5 text-[var(--accent)]" />
-              <span>Experimenting & Building Daily</span>
-            </div>
-          </div>
-
-          {/* Highlight Quote Box */}
-          <div className="relative rounded-[20px] bg-gradient-to-br from-[var(--surface)] to-[var(--surface-elevated)] border border-[var(--border)] p-6 sm:p-8 mb-8 overflow-hidden shadow-lg group hover:border-[var(--accent)]/50 transition-all duration-300">
-            {/* Background subtle glowing blob */}
-            <div className="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-[var(--accent)]/5 blur-3xl pointer-events-none group-hover:bg-[var(--accent)]/10 transition-colors duration-500" />
-
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[var(--accent)]/15 border border-[var(--accent)]/30 flex items-center justify-center text-[var(--accent)] text-lg shrink-0 mt-1">
-                ✨
-              </div>
-              <div>
-                <blockquote className="text-[16px] sm:text-[18px] md:text-[19px] text-[var(--text-primary)] font-normal leading-relaxed mb-3">
-                  &ldquo;Enjoy exploring and experimenting with new tools and technologies — digging into how a tool works to identify gaps and imagining new products around them. Passionate about research, documentation, and design, alongside dancing and creative writing; I build and write original stories.&rdquo;
-                </blockquote>
-                <div className="flex flex-wrap items-center gap-2 text-[12px] text-[var(--text-secondary)] font-accent">
-                  <span className="px-2.5 py-0.5 rounded-full bg-[var(--surface)] border border-[var(--border)]">#ProductIdeation</span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-[var(--surface)] border border-[var(--border)]">#CreativeWriting</span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-[var(--surface)] border border-[var(--border)]">#DanceRhythm</span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-[var(--surface)] border border-[var(--border)]">#StoryBuilder</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 4 Fun Bento Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {interestCards.map((card, idx) => {
-              const Icon = card.icon;
-              const isHovered = activeCard === card.id;
-
-              return (
-                <motion.div
-                  key={card.id}
-                  id={`interest-card-${card.id}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.4, delay: idx * 0.1, ease: 'easeOut' }}
-                  onMouseEnter={() => setActiveCard(card.id)}
-                  onMouseLeave={() => setActiveCard(null)}
-                  className={`relative rounded-[16px] bg-[var(--surface)] border border-[var(--border)] p-6 flex flex-col justify-between transition-all duration-300 cursor-default hover:shadow-xl hover:-translate-y-1 ${card.borderHover}`}
+            {/* Automated Progress Stepper */}
+            <div className="flex items-center gap-2">
+              {HOBBIES.map((hobby, idx) => (
+                <button
+                  key={hobby.id}
+                  onClick={() => setCurrentIndex(idx)}
+                  className="group relative py-1 focus:outline-none"
+                  aria-label={`Go to slide ${idx + 1}: ${hobby.title}`}
                 >
-                  <div>
-                    {/* Top Row: Icon & Badge */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-9 h-9 rounded-lg bg-[var(--bg)] border border-[var(--border)] flex items-center justify-center">
-                          <Icon className={`w-4 h-4 ${card.accentColor}`} />
-                        </div>
-                        <span className="text-lg">{card.emoji}</span>
-                      </div>
+                  <div
+                    className={`h-1 rounded-full transition-all duration-500 ${
+                      idx === currentIndex
+                        ? 'w-8 sm:w-10 bg-[var(--accent)]'
+                        : 'w-2.5 sm:w-3 bg-[var(--border)] hover:bg-[var(--text-secondary)]/40'
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
 
-                      <span className={`font-accent text-[10.5px] uppercase tracking-[1.5px] font-semibold px-2.5 py-0.5 rounded-full border ${card.bgBadge}`}>
-                        {card.badge}
-                      </span>
-                    </div>
+          {/* Main Gallery Composition: Large Visual with Harmonious Story Reveal */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center min-h-[380px] sm:min-h-[440px]">
+            {/* Left: Cinematic Frame */}
+            <div className="lg:col-span-7 relative h-[280px] sm:h-[380px] md:h-[420px] rounded-[18px] overflow-hidden bg-[#0d1017] border border-[var(--border)]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentHobby.id}
+                  initial={{ opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <img
+                    src={currentHobby.image}
+                    alt={currentHobby.alt}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover object-center"
+                  />
+                  {/* Subtle Gradient Overlays for Cinematic Depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface)]/90 via-transparent to-black/20" />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(13,16,23,0.6)_100%)]" />
 
-                    {/* Title & Desc */}
-                    <h3 className="font-bold text-[17px] text-[var(--text-primary)] mb-2 tracking-tight">
-                      {card.title}
-                    </h3>
-                    <p className="text-[13.5px] text-[var(--text-secondary)] font-light leading-relaxed mb-4">
-                      {card.desc}
-                    </p>
-                  </div>
-
-                  {/* Bottom Fun Fact pill */}
-                  <div className="pt-3 border-t border-[var(--border)] flex items-center justify-between text-[11.5px] text-[var(--text-secondary)] font-accent">
-                    <span className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
-                      <span>{card.funFact}</span>
-                    </span>
-                    <span className="text-[var(--accent)] opacity-60 group-hover:opacity-100 transition-opacity">
-                      ✦
+                  {/* Corner Badge */}
+                  <div className="absolute bottom-4 left-4 z-10">
+                    <span className="font-accent text-[11px] uppercase tracking-[1.5px] font-medium px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[var(--accent)] border border-white/10">
+                      {currentHobby.tag}
                     </span>
                   </div>
                 </motion.div>
-              );
-            })}
+              </AnimatePresence>
+            </div>
+
+            {/* Right: Editorial Typography & Fluid Reveal */}
+            <div className="lg:col-span-5 flex flex-col justify-between h-full py-2 sm:py-4">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentHobby.id}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col justify-center"
+                >
+                  {/* Step Display */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="font-mono text-[13px] font-semibold tracking-[3px] text-[var(--accent)]">
+                      {currentHobby.number}
+                    </span>
+                    <div className="h-px w-6 bg-[var(--border)]" />
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-bold text-[26px] sm:text-[32px] md:text-[36px] tracking-tight text-[var(--text-primary)] leading-[1.2] mb-4">
+                    {currentHobby.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-[16px] sm:text-[17px] text-[var(--text-secondary)] font-light leading-[1.75]">
+                    {currentHobby.description}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Seamless Rhythm Indicator at Bottom */}
+              <div className="pt-8 sm:pt-10 mt-6 border-t border-[var(--border)]/70 flex items-center justify-end text-[12px] text-[var(--text-secondary)] font-accent">
+                <span className="text-[var(--accent)] font-mono">
+                  {`0${currentIndex + 1}`} · 04
+                </span>
+              </div>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

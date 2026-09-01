@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="overlayBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080612"/>
+      <stop offset="50%" stop-color="#0b0818"/>
+      <stop offset="100%" stop-color="#06040f"/>
+    </linearGradient>
+    <linearGradient id="btnGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#overlayBg)"/>
+
+  <g opacity="0.2">
+    <circle cx="300" cy="200" r="2" fill="#ffffff"/>
+    <circle cx="650" cy="180" r="1.5" fill="#a855f7"/>
+    <circle cx="1200" cy="260" r="2" fill="#ffffff"/>
+    <circle cx="1600" cy="190" r="1.5" fill="#a855f7"/>
+    <circle cx="400" cy="800" r="2" fill="#ffffff"/>
+    <circle cx="950" cy="880" r="1.5" fill="#a855f7"/>
+    <circle cx="1500" cy="780" r="2" fill="#ffffff"/>
+    <line x1="300" y1="200" x2="650" y2="180" stroke="#7c3aed" stroke-width="0.8"/>
+    <line x1="1200" y1="260" x2="1600" y2="190" stroke="#7c3aed" stroke-width="0.8"/>
+    <line x1="400" y1="800" x2="950" y2="880" stroke="#7c3aed" stroke-width="0.8"/>
+    <line x1="950" y1="880" x2="1500" y2="780" stroke="#7c3aed" stroke-width="0.8"/>
+  </g>
+
+  <g transform="translate(1840, 40)" opacity="0.7">
+    <line x1="0" y1="0" x2="20" y2="20" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="20" y1="0" x2="0" y2="20" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(480, 160)">
+    <g transform="translate(370, 0)">
+      <rect width="220" height="38" rx="19" fill="#1e153a" stroke="#4c337d" stroke-width="1.5"/>
+      <text x="30" y="24" font-size="14">&#x2728;</text>
+      <text x="56" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#c084fc" letter-spacing="1.5">ONE STEP AWAY</text>
+    </g>
+
+    <g transform="translate(480, 110)">
+      <text x="0" y="0" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="44" font-weight="800" fill="#ffffff" letter-spacing="-0.8">
+        Reyo will find your exact saves in 5 seconds
+      </text>
+      <text x="0" y="58" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="44" font-weight="800" fill="#ffffff" letter-spacing="-0.8">
+        &#x2014; by understanding what you're working on
+      </text>
+      <text x="0" y="116" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="44" font-weight="800" fill="#ffffff" letter-spacing="-0.8">
+        right now.
+      </text>
+    </g>
+
+    <text x="480" y="280" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="20" fill="#94a3b8" font-weight="400">
+      Just a quick permission so I can scan your workspace context.
+    </text>
+
+    <g transform="translate(50, 330)">
+      <g transform="translate(0, 0)">
+        <rect width="410" height="130" rx="18" fill="#130e26" stroke="#251b47" stroke-width="1.5"/>
+        <text x="28" y="44" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="17" font-weight="700" fill="#22c55e">&#x2713;  Reads:</text>
+        <text x="28" y="84" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" fill="#cbd5e1">Tab title &#xB7; Active file name &#xB7; Workspace context</text>
+      </g>
+
+      <g transform="translate(450, 0)">
+        <rect width="410" height="130" rx="18" fill="#130e26" stroke="#251b47" stroke-width="1.5"/>
+        <text x="28" y="44" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="17" font-weight="700" fill="#ef4444">&#x2715;  Won't read:</text>
+        <text x="28" y="78" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" fill="#cbd5e1">File contents &#xB7; Personal data &#xB7; Browsing</text>
+        <text x="28" y="102" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" fill="#cbd5e1">history</text>
+      </g>
+    </g>
+
+    <g transform="translate(180, 510)">
+      <rect width="600" height="74" rx="37" fill="url(#btnGrad)"/>
+      <text x="300" y="46" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="700" fill="#ffffff">Sure, take a look &#x2192;</text>
+    </g>
+
+    <g transform="translate(480, 630)">
+      <text x="0" y="0" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="500" fill="#94a3b8">Skip this</text>
+      <text x="0" y="38" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" fill="#64748b">You can change this anytime in settings</text>
+    </g>
+  </g>
+</svg>

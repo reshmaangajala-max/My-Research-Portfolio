@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tsBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#090614"/>
+      <stop offset="50%" stop-color="#0d091e"/>
+      <stop offset="100%" stop-color="#080512"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#tsBg)"/>
+
+  <!-- TOP HEADER -->
+  <g transform="translate(60, 36)">
+    <text x="0" y="24" font-family="-apple-system, sans-serif" font-size="24" font-weight="600" fill="#cbd5e1">&#x2190;</text>
+
+    <g transform="translate(48, 0)">
+      <circle cx="16" cy="16" r="15" fill="#1c1438" stroke="#6d28d9" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="5" fill="#c084fc"/>
+      <text x="40" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="800" fill="#ffffff">Reyo</text>
+    </g>
+
+    <g transform="translate(500, -4)">
+      <rect width="700" height="44" rx="22" fill="#140e28" stroke="#2a1e4d" stroke-width="1.5"/>
+      <circle cx="24" cy="22" r="6" fill="none" stroke="#94a3b8" stroke-width="2"/>
+      <line x1="28" y1="26" x2="34" y2="32" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+      <text x="48" y="27" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14.5" fill="#cbd5e1">Search for fintech onboarding...</text>
+    </g>
+
+    <g transform="translate(1660, -4)">
+      <circle cx="22" cy="22" r="20" fill="#3b0764"/>
+      <text x="22" y="28" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="16" font-weight="700" fill="#e9d5ff">R</text>
+
+      <text x="100" y="28" font-family="-apple-system, sans-serif" font-size="22" fill="#94a3b8">&#x2715;</text>
+    </g>
+  </g>
+
+  <!-- VIDEO TOOLBAR STRIP PREVIEW -->
+  <g transform="translate(60, 105)">
+    <rect width="1800" height="52" rx="8" fill="#171926" stroke="#2a2e40" stroke-width="1"/>
+    <g transform="translate(720, 8)">
+      <rect width="360" height="36" rx="6" fill="#0f172a"/>
+      <text x="30" y="24" font-size="16" fill="#94a3b8">&#x2756;</text>
+      <text x="75" y="24" font-size="16" fill="#94a3b8">#</text>
+      <text x="120" y="24" font-size="16" fill="#94a3b8">&#x25CB;</text>
+      <text x="165" y="24" font-size="16" fill="#94a3b8">&#x270E;</text>
+      <text x="210" y="24" font-size="16" fill="#94a3b8">T</text>
+      <text x="255" y="24" font-size="16" fill="#94a3b8">&#x1F4AC;</text>
+    </g>
+  </g>
+
+  <!-- TITLE & ACTIONS -->
+  <g transform="translate(60, 195)">
+    <text x="0" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="34" font-weight="800" fill="#ffffff">
+      Designing a KYC Onboarding Flow &#x2014; Full UX Case Study
+    </text>
+
+    <g transform="translate(0, 52)">
+      <rect width="34" height="22" rx="11" fill="#334155"/>
+      <text x="17" y="15" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#ffffff">MI</text>
+      
+      <text x="44" y="16" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="600" fill="#e2e8f0">Mizko</text>
+      <rect x="96" y="3" width="18" height="14" rx="3" fill="#ef4444"/>
+      <polygon points="102,6 109,10 102,14" fill="#ffffff"/>
+
+      <text x="0" y="46" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" fill="#94a3b8">Saved 1 month ago</text>
+    </g>
+
+    <g transform="translate(1590, 0)">
+      <rect width="210" height="46" rx="23" fill="#18132e" stroke="#3d2a63" stroke-width="1.5"/>
+      <text x="105" y="28" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14.5" font-weight="700" fill="#ffffff">Watch Original &#x2197;</text>
+    </g>
+  </g>
+
+  <!-- TIMESTAMPS LIST -->
+  <g transform="translate(60, 335)">
+    <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="700" fill="#ffffff">Timestamps</text>
+
+    <!-- Item 1 (0:00) -->
+    <g transform="translate(0, 48)">
+      <text x="12" y="28" font-family="ui-monospace, monospace" font-size="15" font-weight="700" fill="#c084fc">0:00</text>
+      <text x="120" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15.5" font-weight="600" fill="#cbd5e1">Introduction and project brief</text>
+      <line x1="0" y1="46" x2="1800" y2="46" stroke="#1c1630" stroke-width="1"/>
+    </g>
+
+    <!-- Item 2 (1:45) -->
+    <g transform="translate(0, 104)">
+      <text x="12" y="28" font-family="ui-monospace, monospace" font-size="15" font-weight="700" fill="#c084fc">1:45</text>
+      <text x="120" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15.5" font-weight="600" fill="#cbd5e1">Competitor analysis of existing KYC flows</text>
+      <line x1="0" y1="46" x2="1800" y2="46" stroke="#1c1630" stroke-width="1"/>
+    </g>
+
+    <!-- Item 3 (3:20) -->
+    <g transform="translate(0, 160)">
+      <text x="12" y="28" font-family="ui-monospace, monospace" font-size="15" font-weight="700" fill="#c084fc">3:20</text>
+      <text x="120" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15.5" font-weight="600" fill="#cbd5e1">User pain points in verification processes</text>
+      <line x1="0" y1="46" x2="1800" y2="46" stroke="#1c1630" stroke-width="1"/>
+    </g>
+
+    <!-- Item 4: HIGHLIGHTED KEY RESULT (5:38) -->
+    <g transform="translate(0, 222)">
+      <rect width="1800" height="130" rx="14" fill="#1b1236" stroke="#7c3aed" stroke-width="2"/>
+      <rect x="0" y="0" width="8" height="130" rx="4" fill="#a855f7"/>
+
+      <text x="36" y="44" font-family="ui-monospace, monospace" font-size="17" font-weight="800" fill="#c084fc">5:38</text>
+      <text x="120" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="800" fill="#ffffff">Document upload screen design decisions</text>
+      
+      <text x="120" y="78" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" fill="#e2e8f0" font-weight="400">
+        Breaks down the exact layout choices for the ID upload card &#x2014; camera trigger vs gallery upload, progress indicator placement, and
+      </text>
+      <text x="120" y="104" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" fill="#e2e8f0" font-weight="400">
+        error state handling. Directly maps to the ID Upload Screen V3 frame you're designing.
+      </text>
+
+      <g transform="translate(1520, 28)">
+        <text x="0" y="16" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14.5" font-weight="700" fill="#c084fc">&#x2726; Relevant to your project</text>
+      </g>
+    </g>
+
+    <!-- Item 5 (8:12) -->
+    <g transform="translate(0, 370)">
+      <text x="12" y="28" font-family="ui-monospace, monospace" font-size="15" font-weight="700" fill="#c084fc">8:12</text>
+      <text x="120" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15.5" font-weight="600" fill="#cbd5e1">Selfie verification and liveness check UX</text>
+      <line x1="0" y1="46" x2="1800" y2="46" stroke="#1c1630" stroke-width="1"/>
+    </g>
+
+    <!-- Item 6 (11:30) -->
+    <g transform="translate(0, 426)">
+      <text x="12" y="28" font-family="ui-monospace, monospace" font-size="15" font-weight="700" fill="#c084fc">11:30</text>
+      <text x="120" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15.5" font-weight="600" fill="#cbd5e1">Error handling and retry flows</text>
+      <line x1="0" y1="46" x2="1800" y2="46" stroke="#1c1630" stroke-width="1"/>
+    </g>
+
+    <!-- Item 7 (14:05) -->
+    <g transform="translate(0, 482)">
+      <text x="12" y="28" font-family="ui-monospace, monospace" font-size="15" font-weight="700" fill="#c084fc">14:05</text>
+      <text x="120" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15.5" font-weight="600" fill="#cbd5e1">Trust signals and microcopy for data safety</text>
+    </g>
+  </g>
+</svg>

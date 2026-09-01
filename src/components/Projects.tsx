@@ -22,7 +22,7 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
         >
           {/* Section label */}
           <div className="text-[var(--accent)] font-medium text-[13px] uppercase tracking-[5px] mb-3">
-            PROJECTS
+            MY WORK
           </div>
 
           {/* Section heading */}
@@ -30,7 +30,7 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
             id="projects-heading"
             className="font-bold text-[24px] sm:text-[28px] text-[var(--text-primary)] mb-12 tracking-tight"
           >
-            What I&apos;ve Built
+            Here’s how I put it into practice.
           </h2>
 
           {/* Three project cards stacked vertically with 48px gap */}
@@ -92,15 +92,18 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
 
                   {/* Subtitle */}
                   <p className="text-[14px] text-[var(--text-secondary)] font-light mb-3.5">
-                    Save-and-Retrieval Tool for Designers
+                    AI-powered Save &amp; Retrieval Tool for Designers
                   </p>
-
-                  {/* 14px gap (handled by mb-3.5) */}
 
                   {/* Description */}
-                  <p className="text-[15px] text-[var(--text-primary)] font-light leading-[1.75] mb-6">
-                    Conceived and applied a metadata and taxonomy classification framework — topic, objective, concept, skill — so designers can retrieve the exact moment they need from a saved video, instead of a flat list of bookmarks. Conducted primary research and competitive analysis. Self-taught full-stack development to build independently using LLM-based tagging.
-                  </p>
+                  <div className="text-[15px] text-[var(--text-primary)] font-light leading-[1.75] mb-6 space-y-3.5">
+                    <p>
+                      Reyo turns a large library of saved videos into a searchable knowledge base. It understands what each video contains and helps designers quickly find the exact insight, concept, or skill they need instead of scrolling through endless bookmarks.
+                    </p>
+                    <p>
+                      It transforms scattered inspiration into organized, instantly retrievable knowledge.
+                    </p>
+                  </div>
 
                   {/* Tech tags (Space Grotesk 11px, border-only pills, secondary text) */}
                   <div className="flex flex-wrap items-center gap-2 font-accent text-[11px] text-[var(--text-secondary)] mb-6">
@@ -225,12 +228,12 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
 
                   {/* Subtitle */}
                   <p className="text-[14px] text-[var(--text-secondary)] font-light mb-3.5">
-                    Tara — Your Digital Best Friend · Company Case Study
+                    Tara — Your Digital Best Friend
                   </p>
 
                   {/* Description */}
                   <p className="text-[15px] text-[var(--text-primary)] font-light leading-[1.75] mb-6">
-                    Designed and circulated a primary user survey and conducted internal team interviews, combined with competitive analysis, to define product principles and value proposition. Translated research findings into an interactive working prototype covering core zero-input user flows.
+                    Tara is an Android-first digital best friend designed to catch what you might miss — from bills and insurance to appointments and subscriptions. She finds important information scattered across everyday life, understands what it means, prioritizes what needs your attention, and helps you take care of it before it becomes a problem.
                   </p>
 
                   {/* View Case Study Button */}
@@ -249,10 +252,10 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
 
                 {/* Right column (42%): stats */}
                 <div className="w-full lg:w-[42%] flex flex-col sm:flex-row lg:flex-col justify-between gap-6 pt-6 lg:pt-0 border-t lg:border-t-0 lg:border-l border-[var(--border)] lg:pl-8">
-                  {/* Stat 1: 10 (accent, counts up, glows on finish) */}
+                  {/* Stat 1: 20+ (accent, counts up, glows on finish) */}
                   <div className="flex flex-col">
                     <div className="text-[44px] md:text-[48px] leading-none">
-                      <StatCounter numericTarget={10} isAccent={true} />
+                      <StatCounter numericTarget={20} suffix="+" isAccent={true} />
                     </div>
                     <span className="font-accent text-[10px] uppercase text-[var(--text-secondary)] tracking-[2px] mt-2 font-normal">
                       RESPONDENTS
@@ -334,29 +337,29 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
 
                   {/* Title */}
                   <h3 className="font-bold text-[22px] text-[var(--text-primary)] tracking-tight mb-1">
-                    EV Concept for Women Riders
+                    Next-Gen Electric Two-Wheeler
                   </h3>
 
                   {/* Subtitle */}
                   <p className="text-[14px] text-[var(--text-secondary)] font-light mb-3.5">
-                    Market & Problem-Space Research
+                    User Research &amp; Product Opportunity Mapping
                   </p>
 
                   {/* Description */}
                   <p className="text-[15px] text-[var(--text-primary)] font-light leading-[1.75]">
-                    Conducted in-person primary research, interviewing engineering students across multiple disciplines, to explore a women-focused EV product concept. Performed secondary research, competitor app analysis, and SWOT analysis. Documented findings and a proposed solution direction referenced by leadership and the AI/ML team.
+                    This is a research project where I explored what young urban riders in India need from their next electric two-wheeler. Through user interviews, market and competitor research, I identified key gaps and opportunities, which I then translated into possible future product solutions and directions.
                   </p>
                 </div>
 
                 {/* Right column (42%): stats */}
                 <div className="w-full lg:w-[42%] flex flex-col sm:flex-row lg:flex-col justify-between gap-6 pt-6 lg:pt-0 border-t lg:border-t-0 lg:border-l border-[var(--border)] lg:pl-8">
-                  {/* Stat 1: 4 (accent, counts up, glows on finish) */}
+                  {/* Stat 1: 30+ Interviews (accent, counts up, glows on finish) */}
                   <div className="flex flex-col">
                     <div className="text-[44px] md:text-[48px] leading-none">
-                      <StatCounter numericTarget={4} isAccent={true} />
+                      <StatCounter numericTarget={30} suffix="+" isAccent={true} />
                     </div>
                     <span className="font-accent text-[10px] uppercase text-[var(--text-secondary)] tracking-[2px] mt-2 font-normal">
-                      DISCIPLINES INTERVIEWED
+                      INTERVIEWS
                     </span>
                   </div>
 

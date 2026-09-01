@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2100" height="980" viewBox="0 0 2100 980" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mainBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#090614"/>
+      <stop offset="50%" stop-color="#0b0718"/>
+      <stop offset="100%" stop-color="#070412"/>
+    </linearGradient>
+
+    <linearGradient id="heroCardBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#140d2b"/>
+      <stop offset="100%" stop-color="#0f0921"/>
+    </linearGradient>
+
+    <linearGradient id="circleNodeBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#150c2f" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0f0824" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <linearGradient id="purpleBtn" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+
+    <linearGradient id="pBarGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="2100" height="980" fill="url(#mainBg)"/>
+
+  <g opacity="0.45">
+    <circle cx="280" cy="180" r="1.5" fill="#a855f7"/>
+    <circle cx="580" cy="240" r="1.2" fill="#ffffff"/>
+    <circle cx="920" cy="150" r="1.5" fill="#a855f7"/>
+    <circle cx="1280" cy="220" r="1.2" fill="#ffffff"/>
+    <circle cx="1560" cy="170" r="1.5" fill="#a855f7"/>
+    <circle cx="340" cy="780" r="1.5" fill="#ffffff"/>
+    <circle cx="720" cy="860" r="1.5" fill="#a855f7"/>
+    <circle cx="1180" cy="800" r="1.2" fill="#ffffff"/>
+    <circle cx="1440" cy="910" r="1.5" fill="#a855f7"/>
+    <circle cx="500" cy="620" r="1.5" fill="#a855f7"/>
+    <circle cx="1100" cy="640" r="1.5" fill="#a855f7"/>
+  </g>
+
+  <!-- 1. LEFT NAVIGATION RAIL -->
+  <g transform="translate(0, 0)">
+    <line x1="80" y1="0" x2="80" y2="980" stroke="#1c1438" stroke-width="1.5" opacity="0.6"/>
+
+    <g transform="translate(28, 40)">
+      <g transform="translate(0, 8)">
+        <circle cx="8" cy="8" r="7" fill="none" stroke="#a855f7" stroke-width="1.8"/>
+        <circle cx="8" cy="8" r="2.5" fill="#c084fc"/>
+        <circle cx="5" cy="5" r="1.2" fill="#ffffff"/>
+        <circle cx="11" cy="6" r="1.2" fill="#ffffff"/>
+        <circle cx="10" cy="11" r="1.2" fill="#ffffff"/>
+      </g>
+      <text x="24" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="-0.3">Reyo</text>
+    </g>
+
+    <g transform="translate(20, 320)">
+      <rect width="42" height="230" rx="14" fill="#130c2b" stroke="#251747" stroke-width="1.5"/>
+
+      <g transform="translate(6, 12)">
+        <rect width="30" height="30" rx="8" fill="#24154a"/>
+        <path d="M7 16 L15 9 L23 16 V23 C23 23.5 22.5 24 22 24 H8 C7.5 24 7 23.5 7 23 Z" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 24 V18 H18 V24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linejoin="round"/>
+      </g>
+
+      <g transform="translate(6, 68)">
+        <path d="M6 10 C6 9 7 8 8 8 H12 L14 10 H22 C23 10 24 11 24 12 V22 C24 23 23 24 22 24 H8 C7 24 6 23 6 22 Z" fill="none" stroke="#71717a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+
+      <g transform="translate(6, 124)">
+        <path d="M15 6 L16.5 11.5 L22 13 L16.5 14.5 L15 20 L13.5 14.5 L8 13 L13.5 11.5 Z" fill="none" stroke="#71717a" stroke-width="1.8" stroke-linejoin="round"/>
+        <circle cx="21" cy="7" r="1" fill="#71717a"/>
+      </g>
+
+      <g transform="translate(6, 180)">
+        <polygon points="15,6 18,12 24,13 20,17 21,23 15,20 9,23 10,17 6,13 12,12" fill="none" stroke="#71717a" stroke-width="1.8" stroke-linejoin="round"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- 2. TOP APP BAR -->
+  <g transform="translate(130, 36)">
+    <circle cx="22" cy="22" r="21" fill="#7c3aed"/>
+    <text x="22" y="29" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="700" fill="#ffffff">R</text>
+
+    <g transform="translate(56, 0)">
+      <text x="0" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="700" fill="#ffffff">
+        Good morning, Reshma <tspan fill="#f59e0b">&#x2728;</tspan>
+      </text>
+      <text x="0" y="39" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="400" fill="#8e8a9f">
+        Here's what's happening in your library
+      </text>
+    </g>
+
+    <g transform="translate(540, 2)">
+      <rect width="520" height="42" rx="21" fill="#140e28" stroke="#251847" stroke-width="1.5"/>
+      <circle cx="24" cy="21" r="5.5" fill="none" stroke="#8e8a9f" stroke-width="1.8"/>
+      <line x1="28" y1="25" x2="33" y2="30" stroke="#8e8a9f" stroke-width="1.8" stroke-linecap="round"/>
+      <text x="44" y="26" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" fill="#8e8a9f">Search for packaging...</text>
+    </g>
+
+    <g transform="translate(1110, 10)">
+      <path d="M12 5 A5 5 0 0 1 22 5 L22 13 L25 16 L9 16 L12 13 Z M14 18 A3 3 0 0 0 20 18" fill="none" stroke="#8e8a9f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="23" cy="5" r="3" fill="#a855f7"/>
+    </g>
+  </g>
+
+  <!-- 3. HERO RIGHT NOW BANNER CARD -->
+  <g transform="translate(130, 115)">
+    <rect width="1240" height="210" rx="18" fill="url(#heroCardBg)" stroke="#381c70" stroke-width="1.5"/>
+
+    <g transform="translate(36, 32)">
+      <text x="0" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="800" fill="#818cf8" letter-spacing="1.5">
+        RIGHT NOW
+      </text>
+
+      <text x="0" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="700" fill="#ffffff">
+        You're working on <tspan fill="#c084fc">bottle-label-concept</tspan>
+      </text>
+
+      <text x="0" y="80" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14.5" font-weight="400" fill="#94a3b8">
+        I found 7 saves from 3 sources that match this project
+      </text>
+
+      <g transform="translate(0, 104)">
+        <rect width="160" height="38" rx="10" fill="url(#purpleBtn)"/>
+        <text x="80" y="24" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="700" fill="#ffffff">
+          View matches &#x2192;
+        </text>
+      </g>
+    </g>
+
+    <g transform="translate(850, 22)">
+      <clipPath id="heroStackClip">
+        <rect width="360" height="166" rx="12"/>
+      </clipPath>
+      <g clip-path="url(#heroStackClip)">
+        <rect x="0" y="0" width="120" height="166" fill="#e2d4c0"/>
+        <g transform="translate(15, 20)">
+          <rect width="80" height="24" rx="3" fill="#ffffff" opacity="0.9"/>
+          <line x1="10" y1="12" x2="70" y2="12" stroke="#475569" stroke-width="1.5"/>
+          <rect y="40" width="90" height="30" rx="3" fill="#f8fafc" opacity="0.9"/>
+          <line x1="10" y1="52" x2="80" y2="52" stroke="#475569" stroke-width="1.5"/>
+          <rect y="85" width="75" height="22" rx="3" fill="#cbd5e1" opacity="0.9"/>
+        </g>
+
+        <rect x="110" y="0" width="130" height="166" fill="#78350f"/>
+        <ellipse cx="170" cy="60" rx="55" ry="90" fill="#b45309" transform="rotate(-25 170 60)"/>
+        <rect x="130" y="80" width="90" height="70" rx="4" fill="#fef3c7" opacity="0.9"/>
+        <line x1="140" y1="100" x2="200" y2="100" stroke="#78350f" stroke-width="2"/>
+        <line x1="140" y1="115" x2="190" y2="115" stroke="#78350f" stroke-width="1.5"/>
+        <line x1="140" y1="130" x2="175" y2="130" stroke="#78350f" stroke-width="1.5"/>
+        <circle cx="160" cy="140" r="12" fill="#fb7185" opacity="0.8"/>
+        <circle cx="178" cy="148" r="10" fill="#f43f5e" opacity="0.8"/>
+
+        <rect x="230" y="0" width="130" height="166" fill="#cbd5e1"/>
+        <g transform="translate(245, 15)">
+          <rect width="45" height="30" rx="3" fill="#ffffff"/>
+          <line x1="6" y1="15" x2="38" y2="15" stroke="#64748b" stroke-width="1.5"/>
+          <rect x="55" y="10" width="50" height="40" rx="3" fill="#94a3b8"/>
+          <rect x="0" y="60" width="60" height="35" rx="3" fill="#64748b"/>
+          <rect x="40" y="105" width="65" height="35" rx="3" fill="#475569"/>
+        </g>
+      </g>
+      <rect width="360" height="166" rx="12" fill="none" stroke="#4c2889" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <!-- 4. TABS: Topics | All -->
+  <g transform="translate(130, 360)">
+    <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="700" fill="#ffffff">Topics</text>
+    <rect x="0" y="32" width="56" height="3" rx="1.5" fill="#a855f7"/>
+
+    <text x="84" y="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="500" fill="#71717a">All</text>
+  </g>
+
+  <!-- 5. KNOWLEDGE GRAPH CONSTELLATION WITH CIRCLE NODES -->
+  <g transform="translate(130, 420)">
+    <line x1="650" y1="280" x2="330" y2="140" stroke="#3d1d73" stroke-width="1.8"/>
+    <line x1="650" y1="280" x2="980" y2="140" stroke="#3d1d73" stroke-width="1.8"/>
+    <line x1="650" y1="280" x2="220" y2="340" stroke="#3d1d73" stroke-width="1.8"/>
+    <line x1="650" y1="280" x2="380" y2="460" stroke="#3d1d73" stroke-width="1.8"/>
+    <line x1="650" y1="280" x2="950" y2="460" stroke="#3d1d73" stroke-width="1.8"/>
+    <line x1="330" y1="140" x2="980" y2="140" stroke="#2a1552" stroke-width="1.2"/>
+    <line x1="330" y1="140" x2="220" y2="340" stroke="#2a1552" stroke-width="1.2"/>
+    <line x1="220" y1="340" x2="380" y2="460" stroke="#2a1552" stroke-width="1.2"/>
+    <line x1="380" y1="460" x2="950" y2="460" stroke="#2a1552" stroke-width="1.2"/>
+
+    <circle cx="510" cy="210" r="2.5" fill="#c084fc"/>
+    <circle cx="820" cy="205" r="2.5" fill="#c084fc"/>
+    <circle cx="430" cy="305" r="2.5" fill="#c084fc"/>
+    <circle cx="490" cy="385" r="2.5" fill="#c084fc"/>
+    <circle cx="800" cy="375" r="2.5" fill="#c084fc"/>
+    <circle cx="620" cy="140" r="2" fill="#a855f7"/>
+    <circle cx="680" cy="460" r="2" fill="#a855f7"/>
+
+    <!-- NODE 1 (CENTER): Packaging Design (14 saves) -->
+    <g transform="translate(650, 280)">
+      <circle cx="0" cy="0" r="115" fill="url(#circleNodeBg)" stroke="#8b5cf6" stroke-width="1.8"/>
+      <text x="0" y="-14" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="21" font-weight="700" fill="#ffffff">
+        Packaging Design
+      </text>
+      <text x="0" y="16" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" fill="#c084fc">
+        14 saves
+      </text>
+      <g transform="translate(0, 42)">
+        <g transform="translate(-32, 0)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+          <polygon points="-3,-4 4,0 -3,4" fill="#a855f7"/>
+        </g>
+        <g transform="translate(0, 0)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+          <rect x="-4.5" y="-4.5" width="9" height="9" rx="2.5" fill="none" stroke="#a855f7" stroke-width="1"/>
+          <circle cx="0" cy="0" r="2" fill="none" stroke="#a855f7" stroke-width="0.8"/>
+        </g>
+        <g transform="translate(32, 0)">
+          <circle cx="0" cy="0" r="9" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+          <path d="M-6 0 C-2 3, 2 3, 6 0 M0 -6 C0 0, 4 4, 6 5 M-5 -3 C-1 -1, 3 -4, 4 -6" fill="none" stroke="#a855f7" stroke-width="0.9"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- NODE 2 (TOP-LEFT): Typography (9 saves) -->
+    <g transform="translate(330, 140)">
+      <circle cx="0" cy="0" r="90" fill="url(#circleNodeBg)" stroke="#8b5cf6" stroke-width="1.8"/>
+      <text x="0" y="-12" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="700" fill="#ffffff">
+        Typography
+      </text>
+      <text x="0" y="14" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#c084fc">
+        9 saves
+      </text>
+      <g transform="translate(0, 36)">
+        <g transform="translate(-16, 0)">
+          <circle cx="0" cy="0" r="8" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+          <rect x="-3.5" y="-3.5" width="7" height="7" rx="2" fill="none" stroke="#a855f7" stroke-width="1"/>
+        </g>
+        <g transform="translate(16, 0)">
+          <circle cx="0" cy="0" r="8" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+          <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.5" fill="none" stroke="#a855f7" stroke-width="0.9"/>
+          <circle cx="-1" cy="-1" r="1" fill="#a855f7"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- NODE 3 (TOP-RIGHT): Branding (11 saves) -->
+    <g transform="translate(980, 140)">
+      <circle cx="0" cy="0" r="90" fill="url(#circleNodeBg)" stroke="#8b5cf6" stroke-width="1.8"/>
+      <text x="0" y="-12" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="700" fill="#ffffff">
+        Branding
+      </text>
+      <text x="0" y="14" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#c084fc">
+        11 saves
+      </text>
+      <g transform="translate(0, 36)">
+        <g transform="translate(-16, 0)">
+          <circle cx="0" cy="0" r="8" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+          <rect x="-3.5" y="-3.5" width="7" height="7" rx="1.5" fill="none" stroke="#a855f7" stroke-width="0.9"/>
+        </g>
+        <g transform="translate(16, 0)">
+          <circle cx="0" cy="0" r="8" fill="none" stroke="#a855f7" stroke-width="1.2"/>
+          <path d="M-5 0 C-1 2, 1 2, 5 0" fill="none" stroke="#a855f7" stroke-width="0.9"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- NODE 4 (LEFT-BOTTOM): Illustration (4 saves) -->
+    <g transform="translate(220, 340)">
+      <circle cx="0" cy="0" r="64" fill="url(#circleNodeBg)" stroke="#8b5cf6" stroke-width="1.8"/>
+      <text x="0" y="-8" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="700" fill="#ffffff">
+        Illustration
+      </text>
+      <text x="0" y="14" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" fill="#c084fc">
+        4 saves
+      </text>
+      <g transform="translate(0, 30)">
+        <g transform="translate(-12, 0)">
+          <circle cx="0" cy="0" r="7" fill="none" stroke="#a855f7" stroke-width="1"/>
+        </g>
+        <g transform="translate(12, 0)">
+          <circle cx="0" cy="0" r="7" fill="none" stroke="#a855f7" stroke-width="1"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- NODE 5 (BOTTOM-LEFT-CENTER): Motion Design (7 saves) -->
+    <g transform="translate(380, 460)">
+      <circle cx="0" cy="0" r="72" fill="url(#circleNodeBg)" stroke="#8b5cf6" stroke-width="1.8"/>
+      <text x="0" y="-8" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="15.5" font-weight="700" fill="#ffffff">
+        Motion Design
+      </text>
+      <text x="0" y="14" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" fill="#c084fc">
+        7 saves
+      </text>
+      <g transform="translate(0, 32)">
+        <g transform="translate(-14, 0)">
+          <circle cx="0" cy="0" r="7.5" fill="none" stroke="#a855f7" stroke-width="1"/>
+          <polygon points="-2.5,-3 3,0 -2.5,3" fill="#a855f7"/>
+        </g>
+        <g transform="translate(14, 0)">
+          <circle cx="0" cy="0" r="7.5" fill="none" stroke="#a855f7" stroke-width="1"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- NODE 6 (BOTTOM-RIGHT-CENTER): UI/UX Design (5 saves) -->
+    <g transform="translate(950, 460)">
+      <circle cx="0" cy="0" r="68" fill="url(#circleNodeBg)" stroke="#8b5cf6" stroke-width="1.8"/>
+      <text x="0" y="-8" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="15.5" font-weight="700" fill="#ffffff">
+        UI/UX Design
+      </text>
+      <text x="0" y="14" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" fill="#c084fc">
+        5 saves
+      </text>
+      <g transform="translate(0, 32)">
+        <g transform="translate(-14, 0)">
+          <circle cx="0" cy="0" r="7.5" fill="none" stroke="#a855f7" stroke-width="1"/>
+        </g>
+        <g transform="translate(14, 0)">
+          <circle cx="0" cy="0" r="7.5" fill="none" stroke="#a855f7" stroke-width="1"/>
+          <polygon points="-2.5,-3 3,0 -2.5,3" fill="#a855f7"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- 6. RIGHT SIDEBAR -->
+  <g transform="translate(1640, 36)">
+    <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="700" fill="#ffffff">
+      Learning Progress
+    </text>
+
+    <!-- Section 1: Progress Items Card -->
+    <g transform="translate(0, 46)">
+      <rect width="380" height="260" rx="16" fill="#130c2b" stroke="#251747" stroke-width="1.5"/>
+
+      <!-- Progress Item 1: Packaging Design -->
+      <g transform="translate(24, 24)">
+        <text x="0" y="14" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="600" fill="#ffffff">Packaging Design</text>
+        <text x="0" y="36" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#94a3b8">14 saves &#xB7; going deep</text>
+        <rect x="0" y="48" width="332" height="6" rx="3" fill="#20153f"/>
+        <rect x="0" y="48" width="275" height="6" rx="3" fill="url(#pBarGrad)"/>
+      </g>
+
+      <!-- Progress Item 2: Typography -->
+      <g transform="translate(24, 104)">
+        <text x="0" y="14" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="600" fill="#ffffff">Typography</text>
+        <text x="0" y="36" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#94a3b8">6 saves &#xB7; exploring</text>
+        <rect x="0" y="48" width="332" height="6" rx="3" fill="#20153f"/>
+        <rect x="0" y="48" width="140" height="6" rx="3" fill="url(#pBarGrad)"/>
+      </g>
+
+      <!-- Progress Item 3: Motion Design -->
+      <g transform="translate(24, 184)">
+        <text x="0" y="14" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="600" fill="#ffffff">Motion Design</text>
+        <text x="0" y="36" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#94a3b8">2 saves &#xB7; just started</text>
+        <rect x="0" y="48" width="332" height="6" rx="3" fill="#20153f"/>
+        <rect x="0" y="48" width="55" height="6" rx="3" fill="url(#pBarGrad)"/>
+      </g>
+    </g>
+
+    <!-- Section 2: This Week Card -->
+    <g transform="translate(0, 330)">
+      <rect width="380" height="190" rx="16" fill="#130c2b" stroke="#251747" stroke-width="1.5"/>
+      <g transform="translate(24, 28)">
+        <text x="0" y="16" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="700" fill="#ffffff">
+          &#x2728; This Week
+        </text>
+
+        <text x="0" y="52" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" fill="#cbd5e1" font-weight="400">
+          You saved 8 things across 3 topics. Your
+        </text>
+        <text x="0" y="74" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" fill="#cbd5e1" font-weight="400">
+          deepest dive was Packaging Design (5
+        </text>
+        <text x="0" y="96" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" fill="#cbd5e1" font-weight="400">
+          saves).
+        </text>
+
+        <text x="0" y="134" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="600" fill="#c084fc">
+          See weekly summary &#x2192;
+        </text>
+      </g>
+    </g>
+
+    <!-- Section 3: Need your help Card -->
+    <g transform="translate(0, 544)">
+      <rect width="380" height="165" rx="16" fill="#130c2b" stroke="#251747" stroke-width="1.5"/>
+      <g transform="translate(24, 28)">
+        <text x="0" y="16" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="700" fill="#ffffff">
+          Need your help
+        </text>
+
+        <text x="0" y="52" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" fill="#cbd5e1" font-weight="400">
+          I found 3 saves I'm not sure about &#x2014;
+        </text>
+        <text x="0" y="74" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" fill="#cbd5e1" font-weight="400">
+          help me place them?
+        </text>
+
+        <text x="0" y="112" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="600" fill="#c084fc">
+          Sort now &#x2192;
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

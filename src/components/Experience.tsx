@@ -79,13 +79,13 @@ export function Experience() {
                 {/* Three description paragraphs */}
                 <div className="flex flex-col gap-3 text-[15px] text-[var(--text-primary)] leading-[1.7] font-light">
                   <p>
-                    Conducted in-person primary research, including structured interviews with engineering students across mechanical, electrical, AI/ML, and CS disciplines, to inform a new EV product concept for women riders.
+                    Worked as the sole designer across early-stage product initiatives, taking open-ended ideas and requirements into product concepts, user flows, UI, visual direction, and final design deliverables.
                   </p>
                   <p>
-                    Performed secondary research and competitive analysis (SWOT) of existing EV products and applications, including hands-on testing of competitor apps, to identify interface, functionality, and market gaps.
+                    Worked closely with the CEO, engineering, and AI/ML teams to understand complex requirements, explore ideas, and turn them into clear and practical product experiences.
                   </p>
                   <p>
-                    Documented research insights and proposed product direction for leadership and the AI/ML team, supporting knowledge management and future product development.
+                    Iterated designs through stakeholder feedback while maintaining consistency across layouts, typography, colour, and interaction patterns.
                   </p>
                 </div>
               </div>
@@ -121,10 +121,10 @@ export function Experience() {
                 {/* Two description paragraphs */}
                 <div className="flex flex-col gap-3 text-[15px] text-[var(--text-primary)] leading-[1.7] font-light">
                   <p>
-                    Supported primary and secondary research and documentation across early-stage product exploration, including user interviews and competitive analysis.
+                    Supported early-stage product exploration through research, ideation, user flows, UI design, visual concepts, and prototypes.
                   </p>
                   <p>
-                    Collaborated with development and AI/ML teams to translate research findings into design and technical direction.
+                    Collaborated with development and AI/ML teams through feedback, revisions, documentation, and final handoff.
                   </p>
                 </div>
               </div>

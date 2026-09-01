@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, type ChangeEvent } from 'react';
+import { useState, useRef, useEffect, type ChangeEvent, type DragEvent } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, Upload, AlertCircle, RotateCcw } from 'lucide-react';
 
@@ -10,11 +10,12 @@ interface TaraPrototypeVideoProps {
 
 export function TaraPrototypeVideo({
   videoSrc = '/tara-prototype.mp4',
-  posterSrc = '/tara-poster.png',
+  posterSrc,
   figmaUrl = 'https://www.figma.com/proto/placeholder-tara-prototype',
 }: TaraPrototypeVideoProps) {
   const [hasError, setHasError] = useState(false);
   const [customVideoSrc, setCustomVideoSrc] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const activeSrc = customVideoSrc || videoSrc;
@@ -27,17 +28,40 @@ export function TaraPrototypeVideo({
   const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const url = URL.createObjectURL(file);
-      setCustomVideoSrc(url);
-      setHasError(false);
-      setTimeout(() => {
-        if (videoRef.current) {
-          videoRef.current.load();
-          videoRef.current.play().catch((err) => {
-            console.warn('Playback error:', err);
-          });
-        }
-      }, 100);
+      loadFile(file);
+    }
+  };
+
+  const loadFile = (file: File) => {
+    const url = URL.createObjectURL(file);
+    setCustomVideoSrc(url);
+    setHasError(false);
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.load();
+        videoRef.current.play().catch((err) => {
+          console.warn('Auto-play notice:', err);
+        });
+      }
+    }, 100);
+  };
+
+  const handleDragOver = (e: DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file && (file.type.includes('video') || file.name.endsWith('.mp4') || file.name.endsWith('.mov') || file.name.endsWith('.webm'))) {
+      loadFile(file);
     }
   };
 
@@ -52,9 +76,9 @@ export function TaraPrototypeVideo({
   return (
     <section
       id="tara-prototype"
-      className="w-full bg-[var(--surface)] py-24 md:py-32 transition-colors duration-500 overflow-hidden"
+      className="w-full bg-[var(--surface)] py-20 md:py-28 transition-colors duration-500 overflow-hidden"
     >
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="max-w-[1100px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -77,104 +101,115 @@ export function TaraPrototypeVideo({
           </h2>
 
           {/* Supporting Text */}
-          <p className="font-light text-[17px] sm:text-[19px] md:text-[20px] text-[var(--text-secondary)] max-w-[720px] mb-12 leading-relaxed">
+          <p className="font-light text-[17px] sm:text-[19px] md:text-[20px] text-[var(--text-secondary)] max-w-[720px] mb-10 leading-relaxed">
             &ldquo;See Tara turn scattered life information into the things that actually need your attention.&rdquo;
           </p>
 
-          {/* Device Mock Container */}
-          <div className="w-full max-w-[340px] sm:max-w-[380px] md:max-w-[400px] relative">
-            {/* Subtle ambient glow behind phone */}
-            <div
-              className="absolute -inset-4 bg-gradient-to-tr from-[var(--accent)]/20 via-purple-500/15 to-transparent rounded-[50px] blur-2xl opacity-70 pointer-events-none"
-              aria-hidden="true"
-            />
-
-            {/* Android Device Hardware Frame */}
-            <div className="relative rounded-[40px] bg-[#0c1017] p-3 border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.6)] backdrop-blur-sm">
-              {/* Camera punch hole / speaker bar */}
-              <div
-                className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-4 bg-[#05080e] rounded-full z-30 border border-white/10 flex items-center justify-center pointer-events-none"
-                aria-hidden="true"
+          {/* Main Direct Video Player Container - Clean, Large, Without Phone Hardware Mockup */}
+          <div
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            className={`w-full max-w-[940px] relative rounded-2xl overflow-hidden bg-[#0c1017] border transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${
+              isDragging ? 'border-[var(--accent)] ring-2 ring-[var(--accent)]/40 scale-[1.01]' : 'border-white/10'
+            }`}
+          >
+            {/* Direct Video Element - natural dimensions, responsive scaling, no crop/stretch */}
+            <div className="relative w-full flex items-center justify-center bg-black min-h-[300px]">
+              <video
+                id="tara-actual-prototype-video"
+                ref={videoRef}
+                src={activeSrc}
+                poster={posterSrc}
+                className="w-full h-auto max-h-[80vh] object-contain block mx-auto"
+                controls
+                playsInline
+                preload="metadata"
+                onError={(e) => {
+                  console.warn('Video load error:', e);
+                  setHasError(true);
+                }}
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-[#151c28] border border-white/20 mr-2" />
-                <div className="w-8 h-1 rounded-full bg-white/20" />
-              </div>
+                <source src={activeSrc} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
 
-              {/* Screen Area with rounded corners and aspect ratio */}
-              <div className="relative w-full rounded-[28px] overflow-hidden bg-black aspect-[9/20] flex items-center justify-center border border-white/10 shadow-inner">
-                {/* Standard HTML5 Video Element */}
-                <video
-                  id="tara-actual-prototype-video"
-                  ref={videoRef}
-                  src={activeSrc}
-                  poster={posterSrc}
-                  className="w-full h-full object-contain bg-black"
-                  controls
-                  playsInline
-                  preload="metadata"
-                  onError={(e) => {
-                    console.warn('Video element load notice:', e);
-                    setHasError(true);
-                  }}
+              {/* Drag and Drop Hover Overlay */}
+              {isDragging && (
+                <div className="absolute inset-0 z-30 bg-[#120d18]/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center text-white border-2 border-dashed border-[var(--accent)]">
+                  <Upload className="w-12 h-12 text-[var(--accent)] mb-3 animate-bounce" />
+                  <p className="font-bold text-[17px] text-white mb-1">Drop your prototype video file here</p>
+                  <p className="text-[13px] text-white/70">MP4, WebM, or MOV formats supported</p>
+                </div>
+              )}
+
+              {/* Fallback if Video Loading Error Occurs */}
+              {hasError && (
+                <div
+                  id="tara-video-error-state"
+                  className="absolute inset-0 z-20 bg-[#0f172a] flex flex-col items-center justify-center p-8 text-center text-white"
                 >
-                  <source src={activeSrc} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-
-                {/* Graceful Fallback if Video Loading is Blocked */}
-                {hasError && (
-                  <div
-                    id="tara-video-error-state"
-                    className="absolute inset-0 z-20 bg-[#0f172a] flex flex-col items-center justify-center p-6 text-center text-white"
-                  >
-                    <div className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-3">
-                      <AlertCircle className="w-7 h-7 text-amber-400" />
-                    </div>
-                    <h4 className="font-bold text-[16px] text-white mb-1">
-                      Prototype video couldn&apos;t load.
-                    </h4>
-                    <p className="text-[12.5px] text-white/70 max-w-[260px] mb-5 leading-relaxed">
-                      The video file could not be rendered by your browser. You can retry loading or select a local MP4 recording.
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <button
-                        id="tara-video-retry-btn"
-                        onClick={handleRetry}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-[12px] font-medium transition-colors"
-                      >
-                        <RotateCcw className="w-3.5 h-3.5" />
-                        <span>Retry</span>
-                      </button>
-                      <label
-                        id="tara-video-replace-btn"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[var(--accent)] text-white text-[12px] font-medium cursor-pointer hover:brightness-110 transition-all"
-                      >
-                        <Upload className="w-3.5 h-3.5" />
-                        <span>Replace video</span>
-                        <input
-                          type="file"
-                          accept="video/mp4,video/webm,video/quicktime"
-                          className="hidden"
-                          onChange={handleFileUpload}
-                        />
-                      </label>
-                    </div>
+                  <div className="w-14 h-14 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-3">
+                    <AlertCircle className="w-7 h-7 text-amber-400" />
                   </div>
-                )}
-              </div>
+                  <h4 className="font-bold text-[17px] text-white mb-1.5">
+                    Prototype video couldn&apos;t load
+                  </h4>
+                  <p className="text-[13.5px] text-white/70 max-w-[360px] mb-6 leading-relaxed">
+                    The video source could not be played directly. You can retry or attach your local prototype MP4 file.
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <button
+                      id="tara-video-retry-btn"
+                      onClick={handleRetry}
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-[13px] font-medium transition-colors"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                      <span>Retry</span>
+                    </button>
+                    <label
+                      id="tara-video-replace-btn"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--accent)] text-white text-[13px] font-medium cursor-pointer hover:brightness-110 transition-all"
+                    >
+                      <Upload className="w-4 h-4" />
+                      <span>Select MP4</span>
+                      <input
+                        type="file"
+                        accept="video/mp4,video/webm,video/quicktime"
+                        className="hidden"
+                        onChange={handleFileUpload}
+                      />
+                    </label>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
-          {/* CTA Below Video linking to Figma */}
-          <div className="mt-10">
+          {/* Action CTAs below the video */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <label
+              id="tara-upload-mp4-btn"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#211b26] hover:bg-[#2d2434] border border-white/10 hover:border-[var(--accent)]/50 text-[13.5px] text-white font-medium cursor-pointer transition-all shadow-sm group"
+            >
+              <Upload className="w-4 h-4 text-[var(--accent)] group-hover:scale-110 transition-transform" />
+              <span>Attach / Change MP4 Video</span>
+              <input
+                type="file"
+                accept="video/mp4,video/webm,video/quicktime"
+                className="hidden"
+                onChange={handleFileUpload}
+              />
+            </label>
+
             <a
               id="tara-figma-prototype-cta"
               href={figmaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--surface)] hover:bg-[var(--border)] border border-[var(--border)] hover:border-[var(--accent)]/60 text-[var(--text-primary)] hover:text-[var(--accent)] font-medium text-[14.5px] shadow-sm hover:shadow-[0_0_20px_rgba(167,139,250,0.2)] transition-all duration-300 group cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[var(--surface)] hover:bg-[var(--border)] border border-[var(--border)] hover:border-[var(--accent)]/60 text-[var(--text-primary)] hover:text-[var(--accent)] font-medium text-[13.5px] shadow-sm hover:shadow-[0_0_20px_rgba(167,139,250,0.2)] transition-all duration-300 group cursor-pointer"
             >
-              <span>Explore the interactive prototype</span>
+              <span>Explore interactive Figma flow</span>
               <span className="text-[var(--accent)] font-bold transition-transform duration-200 group-hover:translate-x-1">
                 →
               </span>

@@ -53,7 +53,7 @@ const decisionMappings = [
     finding:
       'Every competitor covers only one category (finance OR subscriptions OR general tasks)',
     decision:
-      'Cover all life admin categories in one app: insurance, vehicle, medical, bills, subscriptions, government deadlines',
+      'Cover all life obligation categories in one app: insurance, vehicle, medical, bills, subscriptions, government deadlines',
   },
   {
     finding: '43% have paid late fees due to missed renewals',

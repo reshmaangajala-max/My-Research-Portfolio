@@ -7,9 +7,9 @@ interface CaseStudyHeroProps {
 
 export function CaseStudyHero({ onBack }: CaseStudyHeroProps) {
   const scrollToNext = () => {
-    const contextEl = document.getElementById('case-study-context');
-    if (contextEl) {
-      contextEl.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById('ch-01-origin');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -68,23 +68,66 @@ export function CaseStudyHero({ onBack }: CaseStudyHeroProps) {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7, ease: 'easeOut' }}
-            className="font-light text-[20px] sm:text-[22px] text-[var(--text-primary)] leading-snug mb-6"
+            className="font-light text-[20px] sm:text-[22px] text-[var(--text-primary)] leading-snug mb-8"
           >
             Save-and-Retrieval Tool for Designers
           </motion.p>
 
-          {/* 24px gap */}
-
-          {/* Problem statement: 0.9s */}
-          <motion.p
-            id="case-study-problem-stmt"
+          {/* Central Origin Question with Handwritten Annotation & Hand-drawn Arrow: 0.9s */}
+          <motion.div
+            id="case-study-problem-stmt-container"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.9, ease: 'easeOut' }}
-            className="font-light text-[17px] sm:text-[18px] text-[var(--text-secondary)] italic leading-relaxed mb-10"
+            className="relative mb-12 w-full max-w-[900px]"
           >
-            “Why can’t designers find what they’ve already learned?”
-          </motion.p>
+            {/* The Main Question */}
+            <p
+              id="case-study-problem-stmt"
+              className="text-[20px] sm:text-[23px] md:text-[26px] font-normal text-[var(--text-primary)] leading-[1.4] tracking-tight pr-4"
+            >
+              “Why can’t designers find what they saved at the moment they need it, without researching or breaking the flow again?”
+            </p>
+
+            {/* Handwritten Notebook Note + Rough Hand-Drawn Sketch Arrow */}
+            <div className="mt-3 sm:mt-2 flex items-center gap-2.5 text-[#c4b5fd]/80 dark:text-[#c4b5fd]/75 select-none">
+              {/* Hand-drawn sketchy curved arrow */}
+              <svg
+                width="42"
+                height="28"
+                viewBox="0 0 52 34"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="shrink-0 stroke-current text-[#c4b5fd]/70 -rotate-6"
+                aria-hidden="true"
+              >
+                {/* Main curved sketchy stroke */}
+                <path
+                  d="M48 26 C 36 28, 20 25, 8 10"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  strokeDasharray="0.5 0.5"
+                />
+                {/* Rough arrow tip barb 1 */}
+                <path
+                  d="M6 18 C 6.5 14, 7.5 10, 8 9"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                />
+                {/* Rough arrow tip barb 2 */}
+                <path
+                  d="M17 11 C 12 9.5, 8.5 9, 8 9"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                />
+              </svg>
+
+              {/* Handwritten note text */}
+              <span className="font-handwriting text-[19px] sm:text-[21px] md:text-[22px] tracking-wide -rotate-1 text-[#c4b5fd]/90">
+                this is where Reyo started
+              </span>
+            </div>
+          </motion.div>
 
           {/* 40px gap */}
 

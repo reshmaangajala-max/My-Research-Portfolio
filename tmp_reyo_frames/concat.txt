@@ -1,0 +1,17 @@
+file '/app/applet/tmp_reyo_frames/frame_00.png'
+duration 4
+file '/app/applet/tmp_reyo_frames/frame_01.png'
+duration 3.5
+file '/app/applet/tmp_reyo_frames/frame_02.png'
+duration 3
+file '/app/applet/tmp_reyo_frames/frame_03.png'
+duration 4
+file '/app/applet/tmp_reyo_frames/frame_04.png'
+duration 4.5
+file '/app/applet/tmp_reyo_frames/frame_05.png'
+duration 3
+file '/app/applet/tmp_reyo_frames/frame_06.png'
+duration 5
+file '/app/applet/tmp_reyo_frames/frame_07.png'
+duration 3
+file '/app/applet/tmp_reyo_frames/frame_07.png'
