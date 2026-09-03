@@ -31,7 +31,7 @@ export function Chapter05Competition({ onOpenArtifact }: Chapter05Props) {
 
   return (
     <section
-      id="ch-05-competition"
+      id="ch-04-competition"
       className="w-full py-20 md:py-28 bg-[var(--bg)] transition-colors duration-500"
     >
       <div className="max-w-[1100px] mx-auto px-6">
@@ -44,7 +44,7 @@ export function Chapter05Competition({ onOpenArtifact }: Chapter05Props) {
           {/* Chapter Eyebrow */}
           <div className="flex items-center gap-2 mb-3">
             <span className="font-mono text-[12px] font-semibold text-[var(--accent)] px-2 py-0.5 rounded bg-[var(--accent)]/10 border border-[var(--accent)]/20">
-              05
+              04
             </span>
             <span className="font-accent text-[11px] uppercase tracking-[3px] text-[var(--text-secondary)] font-medium">
               WHAT ALREADY EXISTS?

@@ -7,7 +7,7 @@ interface CaseStudyHeroProps {
 
 export function CaseStudyHero({ onBack }: CaseStudyHeroProps) {
   const scrollToNext = () => {
-    const el = document.getElementById('ch-01-origin');
+    const el = document.getElementById('ch-00-product') || document.getElementById('ch-01-origin');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -42,7 +42,7 @@ export function CaseStudyHero({ onBack }: CaseStudyHeroProps) {
             transition={{ duration: 0.4, delay: 0.2 }}
             className="font-accent text-[11px] uppercase tracking-[4px] text-[var(--accent)] font-medium mb-4"
           >
-            RESEARCH CASE STUDY
+            PRODUCT CASE STUDY
           </motion.div>
 
           {/* 16px gap */}

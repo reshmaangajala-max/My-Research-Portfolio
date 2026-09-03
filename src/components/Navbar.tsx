@@ -8,7 +8,13 @@ interface NavbarProps {
   onNavigateHome?: () => void;
 }
 
-const portfolioNavItems = [
+interface NavItem {
+  label: string;
+  href: string;
+  secondary?: boolean;
+}
+
+const portfolioNavItems: NavItem[] = [
   { label: 'About', href: '#about' },
   { label: 'Work', href: '#projects' },
   { label: 'Skills', href: '#skills' },
@@ -16,18 +22,22 @@ const portfolioNavItems = [
   { label: 'Education', href: '#education' },
 ];
 
-const reyoNavItems = [
-  { label: 'Context', href: '#case-study-context' },
-  { label: 'Methodology', href: '#case-study-methodology' },
-  { label: 'Primary', href: '#case-study-primary-research' },
-  { label: 'Secondary', href: '#case-study-secondary-research' },
-  { label: 'Analysis', href: '#case-study-content-analysis' },
-  { label: 'Synthesis', href: '#case-study-synthesis' },
-  { label: 'Trade-offs', href: '#case-study-tradeoffs' },
-  { label: 'Impact', href: '#case-study-impact' },
+const reyoNavItems: NavItem[] = [
+  { label: 'Product', href: '#ch-00-product' },
+  { label: 'Problem', href: '#ch-01-origin' },
+  { label: 'Research', href: '#ch-02-research' },
+  { label: 'Audience', href: '#ch-03-audience' },
+  { label: 'Landscape', href: '#ch-04-competition', secondary: true },
+  { label: 'Exploration', href: '#ch-05-exploration' },
+  { label: 'Decisions', href: '#ch-07-decisions' },
+  { label: 'Flow', href: '#ch-08-experience', secondary: true },
+  { label: 'Design', href: '#ch-10-feel' },
+  { label: 'Testing', href: '#ch-11-testing' },
+  { label: 'Build', href: '#ch-12-building' },
+  { label: 'Next', href: '#ch-14-next' },
 ];
 
-const renewNavItems = [
+const renewNavItems: NavItem[] = [
   { label: 'Context', href: '#renew-context' },
   { label: 'Methodology', href: '#renew-methodology' },
   { label: 'Primary', href: '#renew-primary-research' },
@@ -63,21 +73,37 @@ export function Navbar({ viewMode = 'portfolio', onNavigateHome }: NavbarProps) 
       }
 
       // Determine active section
-      let sectionIds: string[] = [];
       if (viewMode === 'reyo-case-study') {
-        sectionIds = [
-          'case-study-documentation',
-          'case-study-impact',
-          'case-study-tradeoffs',
-          'case-study-synthesis',
-          'case-study-content-analysis',
-          'case-study-secondary-research',
-          'case-study-primary-research',
-          'case-study-methodology',
-          'case-study-context',
+        const reyoScrollItems = [
+          { id: 'ch-14-next', navId: 'ch-14-next' },
+          { id: 'ch-13-product-testing', navId: 'ch-12-building' },
+          { id: 'ch-12-building', navId: 'ch-12-building' },
+          { id: 'ch-11-testing', navId: 'ch-11-testing' },
+          { id: 'ch-10-feel', navId: 'ch-10-feel' },
+          { id: 'ch-09-architecture', navId: 'ch-08-experience' },
+          { id: 'ch-08-experience', navId: 'ch-08-experience' },
+          { id: 'ch-07-decisions', navId: 'ch-07-decisions' },
+          { id: 'ch-06-possibility', navId: 'ch-05-exploration' },
+          { id: 'ch-05-exploration', navId: 'ch-05-exploration' },
+          { id: 'ch-04-competition', navId: 'ch-04-competition' },
+          { id: 'ch-03-audience', navId: 'ch-03-audience' },
+          { id: 'ch-02-research', navId: 'ch-02-research' },
+          { id: 'ch-01-origin', navId: 'ch-01-origin' },
+          { id: 'ch-00-product', navId: 'ch-00-product' },
         ];
+
+        for (const item of reyoScrollItems) {
+          const el = document.getElementById(item.id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 200 && rect.bottom >= 80) {
+              setActiveSection(item.navId);
+              return;
+            }
+          }
+        }
       } else if (viewMode === 'renew-case-study') {
-        sectionIds = [
+        const renewSectionIds = [
           'renew-documentation',
           'renew-impact',
           'renew-ending',
@@ -89,20 +115,32 @@ export function Navbar({ viewMode = 'portfolio', onNavigateHome }: NavbarProps) 
           'renew-methodology',
           'renew-context',
         ];
-      } else {
-        sectionIds = ['education', 'projects', 'experience', 'skills', 'about'];
-      }
 
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 160 && rect.bottom >= 100) {
-            setActiveSection(id);
-            return;
+        for (const id of renewSectionIds) {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 160 && rect.bottom >= 100) {
+              setActiveSection(id);
+              return;
+            }
+          }
+        }
+      } else {
+        const portfolioSectionIds = ['education', 'projects', 'experience', 'skills', 'about'];
+
+        for (const id of portfolioSectionIds) {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 160 && rect.bottom >= 100) {
+              setActiveSection(id);
+              return;
+            }
           }
         }
       }
+
       if (window.scrollY <= scrollThreshold) {
         setActiveSection('');
       }
@@ -117,7 +155,9 @@ export function Navbar({ viewMode = 'portfolio', onNavigateHome }: NavbarProps) 
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      const yOffset = -60;
+      const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
@@ -151,7 +191,7 @@ export function Navbar({ viewMode = 'portfolio', onNavigateHome }: NavbarProps) 
             <button
               id="nav-monogram-btn"
               onClick={handleMonogramClick}
-              className="group text-[26px] font-semibold cursor-pointer flex items-center transition-all duration-300 font-handwriting tracking-wide leading-none"
+              className="group text-[26px] font-semibold cursor-pointer flex items-center transition-all duration-300 font-handwriting tracking-wide leading-none shrink-0"
               aria-label={isCaseStudy ? 'Back to Portfolio' : 'Scroll to top'}
               title={isCaseStudy ? 'Back to Portfolio' : 'Scroll to top'}
             >
@@ -164,7 +204,13 @@ export function Navbar({ viewMode = 'portfolio', onNavigateHome }: NavbarProps) 
             </button>
 
             {/* Desktop & Tablet Navigation links */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav
+              className={`hidden md:flex items-center ${
+                viewMode === 'reyo-case-study'
+                  ? 'gap-2.5 lg:gap-3.5 xl:gap-5'
+                  : 'space-x-8'
+              }`}
+            >
               {navItems.map((item) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (
@@ -173,7 +219,9 @@ export function Navbar({ viewMode = 'portfolio', onNavigateHome }: NavbarProps) 
                     id={`nav-link-${item.label.toLowerCase()}`}
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href)}
-                    className={`text-[13px] font-light tracking-wide transition-colors duration-200 py-1 ${
+                    className={`text-[12px] xl:text-[13px] font-light tracking-wide transition-colors duration-200 py-1 whitespace-nowrap ${
+                      item.secondary ? 'hidden lg:inline-block' : ''
+                    } ${
                       isActive
                         ? 'text-[var(--accent)] font-medium'
                         : 'text-[var(--text-secondary)] hover:text-[var(--accent)]'

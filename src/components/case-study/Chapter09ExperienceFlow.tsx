@@ -1,8 +1,5 @@
-import { useState } from 'react';
 import { motion } from 'motion/react';
 import {
-  Bookmark,
-  Cpu,
   Sparkles,
   Search,
   Play,
@@ -12,94 +9,10 @@ import {
   Layers,
 } from 'lucide-react';
 
-interface StepItem {
-  step: string;
-  title: string;
-  sub: string;
-  icon: typeof Bookmark;
-  color: string;
-  borderColor: string;
-  bg: string;
-  whatUserDoes: string;
-  whatReyoDoes: string;
-}
-
-const userFlowSteps: StepItem[] = [
-  {
-    step: '01',
-    title: 'SAVE',
-    sub: '1-Click Ingestion',
-    icon: Bookmark,
-    color: 'text-indigo-400',
-    borderColor: 'border-indigo-500/40',
-    bg: 'bg-indigo-950/20',
-    whatUserDoes: 'Designer spots a great Figma tutorial on YouTube and clicks the Reyo extension button (or presses Alt+S).',
-    whatReyoDoes: 'Extracts video ID, captures title, duration, author, and sends URL to processing queue in background.',
-  },
-  {
-    step: '02',
-    title: 'PROCESS',
-    sub: 'Transcript & Chunks',
-    icon: Cpu,
-    color: 'text-cyan-400',
-    borderColor: 'border-cyan-500/40',
-    bg: 'bg-cyan-950/20',
-    whatUserDoes: 'Continues browsing or goes back to design work without waiting.',
-    whatReyoDoes: 'Downloads clean timestamped captions via yt-dlp (or Deepgram Nova-3 ASR fallback) and segments transcript into ~45s semantic chunks.',
-  },
-  {
-    step: '03',
-    title: 'ORGANIZE',
-    sub: 'Zero-Manual Tagging',
-    icon: Sparkles,
-    color: 'text-purple-400',
-    borderColor: 'border-purple-500/40',
-    bg: 'bg-purple-950/20',
-    whatUserDoes: 'Zero manual tagging, zero folder creation, zero metadata entry.',
-    whatReyoDoes: 'LLM maps chunks to 4-tier taxonomy (Topic, Objective, Concept, Skill) and clusters them in an interactive knowledge constellation.',
-  },
-  {
-    step: '04',
-    title: 'FIND',
-    sub: 'In-Flow Spotlight',
-    icon: Search,
-    color: 'text-emerald-400',
-    borderColor: 'border-emerald-500/40',
-    bg: 'bg-emerald-950/20',
-    whatUserDoes: 'Days later, designer is stuck in Figma, presses Alt+Shift+R to trigger the instant spotlight search overlay.',
-    whatReyoDoes: 'Scans workspace context with strict privacy boundaries (reads tab & file name, never private contents) to surface matching references in <5s.',
-  },
-  {
-    step: '05',
-    title: 'RETRIEVE',
-    sub: 'Exact Timestamp Jump',
-    icon: Play,
-    color: 'text-amber-400',
-    borderColor: 'border-amber-500/40',
-    bg: 'bg-amber-950/20',
-    whatUserDoes: 'Clicks top result; Reyo opens the precise timestamp at 5:38 where document upload layout choices and error states are demonstrated.',
-    whatReyoDoes: 'Cues the player to the exact timestamp, highlights the relevant project breakdown bullet, and enables immediate playback.',
-  },
-  {
-    step: '06',
-    title: 'USE',
-    sub: 'Back to Work in 30s',
-    icon: CheckCircle2,
-    color: 'text-teal-400',
-    borderColor: 'border-teal-500/40',
-    bg: 'bg-teal-950/20',
-    whatUserDoes: 'Designer grabs the exact insight needed, closes Reyo with Esc, and returns directly to the Figma canvas without losing focus.',
-    whatReyoDoes: 'Reyo steps out of the way completely. The entire save-to-use cycle took seconds instead of hours of re-searching.',
-  },
-];
-
 export function Chapter09ExperienceFlow() {
-  const [activeStep, setActiveStep] = useState(0);
-  const currentStep = userFlowSteps[activeStep];
-
   return (
     <section
-      id="ch-09-experience"
+      id="ch-08-experience"
       className="w-full py-20 md:py-28 bg-[var(--bg)] transition-colors duration-500"
     >
       <div className="max-w-[1100px] mx-auto px-6">
@@ -127,78 +40,6 @@ export function Chapter09ExperienceFlow() {
           <p className="font-light text-[16px] sm:text-[17px] text-[var(--text-secondary)] leading-[1.8] max-w-[840px] mb-12">
             The core design challenge was invisible friction. If saving took more than one click, designers wouldn’t save. If retrieval took more than two keypresses, designers would revert to Google. Here is how the end-to-end loop operates.
           </p>
-
-          {/* Interactive Step Navigator */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-8">
-            {userFlowSteps.map((step, idx) => {
-              const Icon = step.icon;
-              const isSelected = activeStep === idx;
-              return (
-                <button
-                  key={step.step}
-                  onClick={() => setActiveStep(idx)}
-                  className={`p-3.5 rounded-[12px] border text-left transition-all cursor-pointer ${
-                    isSelected
-                      ? 'bg-[var(--surface-elevated)] border-[var(--accent)] shadow-sm ring-1 ring-[var(--accent)]/40'
-                      : 'bg-[var(--surface)] border-[var(--border)] opacity-70 hover:opacity-100 hover:border-[var(--accent)]/30'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-[10px] text-[var(--accent)] font-bold">
-                      STEP {step.step}
-                    </span>
-                    <Icon className={`w-3.5 h-3.5 ${step.color}`} />
-                  </div>
-                  <div className="text-[13px] font-semibold text-[var(--text-primary)] mb-0.5">
-                    {step.title}
-                  </div>
-                  <div className="text-[10.5px] text-[var(--text-secondary)] truncate">
-                    {step.sub}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Focused Active Step Detail Card */}
-          <div className="p-6 sm:p-8 rounded-[16px] bg-[var(--surface)] border border-[var(--border)] shadow-[var(--card-glow-rest)] relative overflow-hidden mb-10">
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[11px] font-bold px-2.5 py-0.5 rounded bg-[var(--accent)]/10 text-[var(--accent)] border border-[var(--accent)]/30">
-                    STEP {currentStep.step}
-                  </span>
-                  <span className="text-[13px] font-accent uppercase text-[var(--text-secondary)] font-medium">
-                    {currentStep.sub}
-                  </span>
-                </div>
-              </div>
-
-              <h3 className="text-[22px] sm:text-[26px] font-bold text-[var(--text-primary)] mb-5">
-                {currentStep.title}
-              </h3>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[14px]">
-                <div className="p-4 sm:p-5 rounded-[12px] bg-[var(--bg)] border border-[var(--border)]">
-                  <span className="text-[11px] font-accent uppercase tracking-wider text-[var(--accent)] font-semibold block mb-2">
-                    WHAT THE DESIGNER EXPERIENCES:
-                  </span>
-                  <p className="text-[var(--text-primary)] font-light leading-relaxed">
-                    {currentStep.whatUserDoes}
-                  </p>
-                </div>
-
-                <div className="p-4 sm:p-5 rounded-[12px] bg-[var(--surface-elevated)] border border-[var(--border)]">
-                  <span className="text-[11px] font-accent uppercase tracking-wider text-cyan-400 font-semibold block mb-2">
-                    {currentStep.step === '06' ? 'THE CORE OUTCOME:' : 'WHAT HAPPENS UNDER THE HOOD:'}
-                  </span>
-                  <p className="text-[var(--text-secondary)] font-light leading-relaxed">
-                    {currentStep.whatReyoDoes}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* Visual "Return to Work" Experience Flow Sequence */}
           <div className="w-full rounded-[16px] bg-[#070512] border border-[var(--border)] p-6 sm:p-8 relative overflow-hidden shadow-[var(--card-glow-rest)]">

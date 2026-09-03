@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Layers, Database, ArrowRight, Sparkles, Network, FileCode, CheckCircle2 } from 'lucide-react';
-import { TaxonomyDiagram } from '../TaxonomyDiagram';
+import { LiveTaxonomyExplorer } from './LiveTaxonomyExplorer';
 
 interface Chapter10Props {
   onOpenArtifact: (docId: string) => void;
@@ -40,7 +40,7 @@ const taxonomyTiers = [
 export function Chapter10Architecture({ onOpenArtifact }: Chapter10Props) {
   return (
     <section
-      id="ch-10-architecture"
+      id="ch-09-architecture"
       className="w-full py-20 md:py-28 bg-[var(--surface)] transition-colors duration-500"
     >
       <div className="max-w-[1100px] mx-auto px-6">
@@ -53,7 +53,7 @@ export function Chapter10Architecture({ onOpenArtifact }: Chapter10Props) {
           {/* Chapter Eyebrow */}
           <div className="flex items-center gap-2 mb-3">
             <span className="font-mono text-[12px] font-semibold text-[var(--accent)] px-2 py-0.5 rounded bg-[var(--accent)]/10 border border-[var(--accent)]/20">
-              10
+              09
             </span>
             <span className="font-accent text-[11px] uppercase tracking-[3px] text-[var(--text-secondary)] font-medium">
               HOW SHOULD INFORMATION BE ORGANIZED?
@@ -123,7 +123,7 @@ export function Chapter10Architecture({ onOpenArtifact }: Chapter10Props) {
               </button>
             </div>
 
-            <TaxonomyDiagram />
+            <LiveTaxonomyExplorer />
           </div>
         </motion.div>
       </div>

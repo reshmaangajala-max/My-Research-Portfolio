@@ -88,7 +88,7 @@ const typographySpec = [
 export function Chapter11DesignSystem() {
   return (
     <section
-      id="ch-11-feel"
+      id="ch-10-feel"
       className="w-full py-20 md:py-28 bg-[var(--bg)] transition-colors duration-500"
     >
       <div className="max-w-[1100px] mx-auto px-6">

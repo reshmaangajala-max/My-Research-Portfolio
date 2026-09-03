@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { CaseStudyHero } from './CaseStudyHero';
 import { CaseStudyStickyNav } from './CaseStudyStickyNav';
 import { Chapter01Origin } from './Chapter01Origin';
 import { Chapter02Validation } from './Chapter02Validation';
-import { Chapter03ResearchFindings } from './Chapter03ResearchFindings';
 import { Chapter04Audience } from './Chapter04Audience';
 import { Chapter05Competition } from './Chapter05Competition';
 import { Chapter06Ideation } from './Chapter06Ideation';
@@ -12,9 +12,7 @@ import { Chapter08Decisions } from './Chapter08Decisions';
 import { Chapter09ExperienceFlow } from './Chapter09ExperienceFlow';
 import { Chapter10Architecture } from './Chapter10Architecture';
 import { Chapter11DesignSystem } from './Chapter11DesignSystem';
-import { Chapter12Wireframes } from './Chapter12Wireframes';
 import { Chapter13Testing } from './Chapter13Testing';
-import { Chapter14ChangesFeedback } from './Chapter14ChangesFeedback';
 import { Chapter15FinalUI } from './Chapter15FinalUI';
 import { Chapter16BuildingProduct } from './Chapter16BuildingProduct';
 import { Chapter17TestingProduct } from './Chapter17TestingProduct';
@@ -50,92 +48,92 @@ export function ReyoCaseStudy({ onBackToPortfolio }: ReyoCaseStudyProps) {
 
       <SectionDivider />
 
+      {/* 00 — THE PRODUCT (FINISHED PRODUCT FIRST) */}
+      <Chapter15FinalUI />
+
+      {/* Transition to how it was born */}
+      <div className="w-full max-w-[1200px] mx-auto px-6 py-10 md:py-14 overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center gap-4 sm:gap-6"
+        >
+          <div className="flex-1 h-[1px] bg-[var(--accent)] opacity-30" />
+          <span className="font-accent text-[12px] sm:text-[13px] uppercase tracking-[3px] text-[var(--text-secondary)] font-medium select-none whitespace-nowrap">
+            Now, how it was born.
+          </span>
+          <div className="flex-1 h-[1px] bg-[var(--accent)] opacity-30" />
+        </motion.div>
+      </div>
+
       {/* 01 — WHERE THE IDEA CAME FROM */}
       <Chapter01Origin />
 
       <SectionDivider />
 
-      {/* 02 — IS THIS ACTUALLY A REAL PROBLEM? */}
-      <Chapter02Validation />
+      {/* 02 — RESEARCH → INSIGHT → DECISION */}
+      <Chapter02Validation onOpenArtifact={handleOpenArtifact} />
 
       <SectionDivider />
 
-      {/* 03 — RESEARCH, VALIDATION AND WHAT I FOUND */}
-      <Chapter03ResearchFindings onOpenArtifact={handleOpenArtifact} />
-
-      <SectionDivider />
-
-      {/* 04 — WHO AM I BUILDING FOR? */}
+      {/* 03 — WHO AM I BUILDING FOR? */}
       <Chapter04Audience />
 
       <SectionDivider />
 
-      {/* 05 — WHAT ALREADY EXISTS? */}
+      {/* 04 — WHAT ALREADY EXISTS? */}
       <Chapter05Competition onOpenArtifact={handleOpenArtifact} />
 
       <SectionDivider />
 
-      {/* 06 — WHAT COULD REYO BECOME? */}
+      {/* 05 — EXPLORATION → STRUCTURE */}
       <Chapter06Ideation />
 
       <SectionDivider />
 
-      {/* 07 — WHAT IS ACTUALLY POSSIBLE? */}
+      {/* 06 — WHAT IS ACTUALLY POSSIBLE? */}
       <Chapter07Feasibility onOpenArtifact={handleOpenArtifact} />
 
       <SectionDivider />
 
-      {/* 08 — WHAT DID I DECIDE TO BUILD FIRST? */}
+      {/* 07 — WHAT DID I DECIDE TO BUILD FIRST? */}
       <Chapter08Decisions />
 
       <SectionDivider />
 
-      {/* 09 — HOW SHOULD THE EXPERIENCE WORK? */}
+      {/* 08 — HOW SHOULD THE EXPERIENCE WORK? */}
       <Chapter09ExperienceFlow />
 
       <SectionDivider />
 
-      {/* 10 — HOW SHOULD INFORMATION BE ORGANIZED? */}
+      {/* 09 — HOW SHOULD INFORMATION BE ORGANIZED? */}
       <Chapter10Architecture onOpenArtifact={handleOpenArtifact} />
 
       <SectionDivider />
 
-      {/* 11 — WHAT SHOULD REYO FEEL LIKE? */}
+      {/* 10 — WHAT SHOULD REYO FEEL LIKE? */}
       <Chapter11DesignSystem />
 
       <SectionDivider />
 
-      {/* 12 — WIREFRAMES AND EARLY EXPLORATION */}
-      <Chapter12Wireframes />
-
-      <SectionDivider />
-
-      {/* 13 — TESTING WITH DESIGNERS */}
+      {/* 11 — TESTING → ITERATION */}
       <Chapter13Testing />
 
       <SectionDivider />
 
-      {/* 14 — WHAT I CHANGED AFTER FEEDBACK */}
-      <Chapter14ChangesFeedback />
-
-      <SectionDivider />
-
-      {/* 15 — FINAL UI */}
-      <Chapter15FinalUI />
-
-      <SectionDivider />
-
-      {/* 16 — BUILDING THE REAL PRODUCT */}
+      {/* 12 — BUILDING THE REAL PRODUCT */}
       <Chapter16BuildingProduct />
 
       <SectionDivider />
 
-      {/* 17 — TESTING THE WORKING PRODUCT */}
+      {/* 13 — TESTING THE WORKING PRODUCT */}
       <Chapter17TestingProduct onOpenArtifact={handleOpenArtifact} />
 
       <SectionDivider />
 
-      {/* 18 — WHAT IS NEXT */}
+      {/* 14 — WHAT IS NEXT */}
       <Chapter18WhatIsNext onBackToPortfolio={onBackToPortfolio} />
 
       {/* Shared Research Artifacts Modal */}

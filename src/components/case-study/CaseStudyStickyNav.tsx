@@ -10,24 +10,21 @@ export interface ChapterNavSection {
 }
 
 export const REYO_CHAPTERS: ChapterNavSection[] = [
+  { id: 'ch-00-product', number: '00', title: 'This is Reyo (The Product)', shortLabel: 'The Product' },
   { id: 'ch-01-origin', number: '01', title: 'Where the Idea Came From', shortLabel: 'Origin' },
-  { id: 'ch-02-validation', number: '02', title: 'Is This Actually a Real Problem?', shortLabel: 'Problem?' },
-  { id: 'ch-03-research', number: '03', title: 'Research, Validation & What I Found', shortLabel: 'Research' },
-  { id: 'ch-04-audience', number: '04', title: 'Who Am I Building For?', shortLabel: 'Audience' },
-  { id: 'ch-05-competition', number: '05', title: 'What Already Exists?', shortLabel: 'Competition' },
-  { id: 'ch-06-ideation', number: '06', title: 'What Could Reyo Become?', shortLabel: 'Ideation' },
-  { id: 'ch-07-possibility', number: '07', title: 'What Is Actually Possible?', shortLabel: 'Feasibility' },
-  { id: 'ch-08-decisions', number: '08', title: 'What Did I Decide to Build First?', shortLabel: 'Decisions' },
-  { id: 'ch-09-experience', number: '09', title: 'How Should the Experience Work?', shortLabel: 'Experience' },
-  { id: 'ch-10-architecture', number: '10', title: 'How Should Information Be Organized?', shortLabel: 'Architecture' },
-  { id: 'ch-11-feel', number: '11', title: 'What Should Reyo Feel Like?', shortLabel: 'Design System' },
-  { id: 'ch-12-wireframes', number: '12', title: 'Wireframes & Early Exploration', shortLabel: 'Wireframes' },
-  { id: 'ch-13-testing', number: '13', title: 'Testing with Designers', shortLabel: 'Testing' },
-  { id: 'ch-14-changes', number: '14', title: 'What I Changed After Feedback', shortLabel: 'Iteration' },
-  { id: 'ch-15-final-ui', number: '15', title: 'Final UI', shortLabel: 'Final UI' },
-  { id: 'ch-16-building', number: '16', title: 'Building the Real Product', shortLabel: 'Build' },
-  { id: 'ch-17-product-testing', number: '17', title: 'Testing the Working Product', shortLabel: 'Live Tests' },
-  { id: 'ch-18-next', number: '18', title: 'What Is Next', shortLabel: 'Next' },
+  { id: 'ch-02-research', number: '02', title: 'I had the problem. But was I the only one?', shortLabel: 'Research' },
+  { id: 'ch-03-audience', number: '03', title: 'Who Am I Building For?', shortLabel: 'Audience' },
+  { id: 'ch-04-competition', number: '04', title: 'What Already Exists?', shortLabel: 'Competition' },
+  { id: 'ch-05-exploration', number: '05', title: "I knew I didn't want to build another bookmark list", shortLabel: 'Exploration' },
+  { id: 'ch-06-possibility', number: '06', title: 'What Is Actually Possible?', shortLabel: 'Feasibility' },
+  { id: 'ch-07-decisions', number: '07', title: 'What Did I Decide to Build First?', shortLabel: 'Decisions' },
+  { id: 'ch-08-experience', number: '08', title: 'How Should the Experience Work?', shortLabel: 'Experience' },
+  { id: 'ch-09-architecture', number: '09', title: 'How Should Information Be Organized?', shortLabel: 'Architecture' },
+  { id: 'ch-10-feel', number: '10', title: 'What Should Reyo Feel Like?', shortLabel: 'Design System' },
+  { id: 'ch-11-testing', number: '11', title: "I put the prototype in front of 5 designers. Here's what broke, and what I changed", shortLabel: 'Testing' },
+  { id: 'ch-12-building', number: '12', title: 'Building the Real Product', shortLabel: 'Build' },
+  { id: 'ch-13-product-testing', number: '13', title: 'Testing the Working Product', shortLabel: 'Live Tests' },
+  { id: 'ch-14-next', number: '14', title: 'What Is Next', shortLabel: 'Next' },
 ];
 
 interface CaseStudyStickyNavProps {
@@ -35,7 +32,7 @@ interface CaseStudyStickyNavProps {
 }
 
 export function CaseStudyStickyNav({ onBack }: CaseStudyStickyNavProps) {
-  const [activeSection, setActiveSection] = useState<string>('ch-01-origin');
+  const [activeSection, setActiveSection] = useState<string>('ch-00-product');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
