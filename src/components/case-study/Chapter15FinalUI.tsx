@@ -8,8 +8,7 @@ interface ScreenItem {
   title: string;
   subtitle: string;
   outcome: string;
-  videoSrc: string;
-  poster: string;
+  imageSrc: string;
 }
 
 const screens: ScreenItem[] = [
@@ -20,8 +19,7 @@ const screens: ScreenItem[] = [
     title: 'Capturing Without Context-Switching',
     subtitle: 'A lightweight browser extension that ingests video URLs, cues, and timestamps in one click without interrupting the viewer’s watch flow.',
     outcome: 'Queues transcript extraction, chunking, and Gemini taxonomy classification in under 200ms.',
-    videoSrc: '/videos/reyo-save.mp4',
-    poster: '/reyo-save.png',
+    imageSrc: '/assets/videos/yt-save-screen.mp4',
   },
   {
     id: 'screen-spotlight',
@@ -30,8 +28,7 @@ const screens: ScreenItem[] = [
     title: 'Instant Recall Inside Any Workspace',
     subtitle: 'A zero-footprint HUD triggered via Alt+Shift+R that floats over Figma or any active workspace without stealing focus.',
     outcome: 'Designers surface exact timestamp solutions in under 5 seconds with zero window switching.',
-    videoSrc: '/videos/reyo-spotlight-search.mp4',
-    poster: '/reyo-overlay.png',
+    imageSrc: '/assets/videos/spotlight-search.mp4',
   },
   {
     id: 'screen-timestamp',
@@ -40,8 +37,7 @@ const screens: ScreenItem[] = [
     title: 'Pre-Cued Timestamp Video Loop',
     subtitle: 'Deep-links directly to the 30-second explanation segment with structured takeaway bullets and synchronized captions.',
     outcome: 'Users absorb the exact 20-second technique and return immediately to work with Escape.',
-    videoSrc: '/videos/reyo-timestamp.mp4',
-    poster: '/reyo-timestamp.png',
+    imageSrc: '/reyo-timestamp.png',
   },
   {
     id: 'screen-home',
@@ -50,20 +46,14 @@ const screens: ScreenItem[] = [
     title: 'Connected Knowledge Library',
     subtitle: 'A calm, structured overview organizing saved clips into 4-tier taxonomies, active project workspaces, and recall insights.',
     outcome: 'Eliminates bookmark rot by continuously connecting saves into an organized personal design library.',
-    videoSrc: '/videos/reyo-home.mp4',
-    poster: '/reyo-home.png',
+    imageSrc: '/reyo-home.png',
   },
 ];
 
 export function Chapter15FinalUI() {
   const [activeTab, setActiveTab] = useState(0);
-  const [videoError, setVideoError] = useState<Record<string, boolean>>({});
 
   const activeScreen = screens[activeTab];
-
-  const handleVideoError = (screenId: string) => {
-    setVideoError((prev) => ({ ...prev, [screenId]: true }));
-  };
 
   return (
     <section
@@ -154,46 +144,49 @@ export function Chapter15FinalUI() {
                 </div>
               </div>
 
-              {/* Video Player in the same position and dimensions (fixed aspect ratio, no layout shift) */}
-              <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-[#070b14] border border-[#1e293b] shadow-2xl">
-                <video
-                  key={activeScreen.videoSrc}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  poster={activeScreen.poster}
-                  onError={() => handleVideoError(activeScreen.id)}
-                  className={`w-full h-full object-cover block ${
-                    videoError[activeScreen.id] ? 'hidden' : 'block'
-                  }`}
-                >
-                  <source src={activeScreen.videoSrc} type="video/mp4" />
-                  {/* Fallback image inside video element */}
+              {/* Media Container */}
+              <div
+                className={`relative w-full rounded-2xl overflow-hidden bg-[#070b14] border border-[#1e293b] shadow-2xl flex items-center justify-center ${
+                  activeScreen.id === 'screen-spotlight'
+                    ? 'aspect-[1920/898]'
+                    : activeScreen.id === 'screen-save'
+                    ? 'aspect-[1920/902]'
+                    : 'aspect-[16/9]'
+                }`}
+                style={
+                  activeScreen.id === 'screen-spotlight'
+                    ? { aspectRatio: '1920 / 898' }
+                    : activeScreen.id === 'screen-save'
+                    ? { aspectRatio: '1920 / 902' }
+                    : undefined
+                }
+              >
+                {activeScreen.id === 'screen-spotlight' || activeScreen.id === 'screen-save' ? (
+                  <video
+                    key={activeScreen.id}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    onLoadedData={(e) => {
+                      e.currentTarget.play().catch(() => {});
+                    }}
+                    className="w-full h-full object-contain bg-[#070b14]"
+                  >
+                    <source src={activeScreen.imageSrc} type="video/mp4" />
+                    {activeScreen.id === 'screen-save' && (
+                      <source src="/assets/videos/yt save screen.mp4" type="video/mp4" />
+                    )}
+                  </video>
+                ) : (
                   <img
-                    src={activeScreen.poster}
+                    src={activeScreen.imageSrc}
                     alt={activeScreen.title}
-                    className="w-full h-full object-cover"
-                  />
-                </video>
-
-                {/* Fallback image if video fails to load */}
-                {videoError[activeScreen.id] && (
-                  <img
-                    src={activeScreen.poster}
-                    alt={activeScreen.title}
-                    className="w-full h-full object-cover block"
+                    className="w-full h-full object-cover object-top sm:object-contain bg-[#070b14]"
+                    referrerPolicy="no-referrer"
                   />
                 )}
-
-                {/* NoScript fallback for environments with JS disabled */}
-                <noscript>
-                  <img
-                    src={activeScreen.poster}
-                    alt={activeScreen.title}
-                    className="w-full h-full object-cover"
-                  />
-                </noscript>
               </div>
             </motion.div>
           </AnimatePresence>

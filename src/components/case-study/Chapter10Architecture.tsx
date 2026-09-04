@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
-import { Layers, Database, ArrowRight, Sparkles, Network, FileCode, CheckCircle2 } from 'lucide-react';
-import { LiveTaxonomyExplorer } from './LiveTaxonomyExplorer';
+import { Network } from 'lucide-react';
 
 interface Chapter10Props {
   onOpenArtifact: (docId: string) => void;
@@ -61,16 +60,26 @@ export function Chapter10Architecture({ onOpenArtifact }: Chapter10Props) {
           </div>
 
           {/* Chapter Headline */}
-          <h2 className="font-bold text-[28px] sm:text-[34px] md:text-[38px] text-[var(--text-primary)] leading-tight mb-4 tracking-tight">
-            Designing the 4-Tier Taxonomy Framework.
-          </h2>
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
+            <h2 className="font-bold text-[28px] sm:text-[34px] md:text-[38px] text-[var(--text-primary)] leading-tight tracking-tight">
+              Designing the 4-Tier Taxonomy Framework.
+            </h2>
+            <button
+              type="button"
+              onClick={() => onOpenArtifact('taxonomy-framework')}
+              className="text-[12px] font-mono text-[var(--accent)] hover:underline flex items-center gap-1.5 cursor-pointer self-start sm:self-auto shrink-0 pt-2"
+            >
+              <Network className="w-3.5 h-3.5" />
+              <span>Inspect Taxonomy Spec →</span>
+            </button>
+          </div>
 
-          <p className="font-light text-[16px] sm:text-[17px] text-[var(--text-secondary)] leading-[1.8] max-w-[840px] mb-12">
+          <p className="font-light text-[16px] sm:text-[17px] text-[var(--text-secondary)] leading-[1.8] max-w-[840px] mb-10">
             The biggest flaw of generic bookmarking tools is treating a 40-minute video as a single atomic item. In Reyo, a video is a collection of <strong>independent knowledge chunks</strong>. I designed a 4-tier taxonomy schema that mirrors how human memory recalls design concepts.
           </p>
 
-          {/* 4-Tier Schema Visual Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+          {/* 4-Tier Schema Visual Grid - The Four Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {taxonomyTiers.map((tier, idx) => (
               <div
                 key={idx}
@@ -101,29 +110,6 @@ export function Chapter10Architecture({ onOpenArtifact }: Chapter10Props) {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Live Interactive Taxonomy Diagram Preview */}
-          <div className="p-6 sm:p-8 rounded-[16px] bg-[var(--bg)] border border-[var(--border)] shadow-[var(--card-glow-rest)] mb-8">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[var(--border)]">
-              <div>
-                <span className="font-accent text-[10px] uppercase tracking-[1.5px] text-[var(--accent)] font-semibold block mb-1">
-                  INTERACTIVE TAXONOMY EXPLORER
-                </span>
-                <h4 className="font-bold text-[18px] text-[var(--text-primary)]">
-                  Live Hierarchy in Reyo&apos;s Knowledge Base
-                </h4>
-              </div>
-              <button
-                onClick={() => onOpenArtifact('taxonomy-framework')}
-                className="text-[12px] font-mono text-[var(--accent)] hover:underline flex items-center gap-1 cursor-pointer self-start sm:self-auto"
-              >
-                <Network className="w-3.5 h-3.5" />
-                <span>Inspect Taxonomy Spec →</span>
-              </button>
-            </div>
-
-            <LiveTaxonomyExplorer />
           </div>
         </motion.div>
       </div>
