@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { TimestampPlayerScreen } from './TimestampPlayerScreen';
+import { ReyoHomeScreen } from './ReyoHomeScreen';
 
 interface ScreenItem {
   id: string;
@@ -37,7 +39,7 @@ const screens: ScreenItem[] = [
     title: 'Pre-Cued Timestamp Video Loop',
     subtitle: 'Deep-links directly to the 30-second explanation segment with structured takeaway bullets and synchronized captions.',
     outcome: 'Users absorb the exact 20-second technique and return immediately to work with Escape.',
-    imageSrc: '/reyo-timestamp.png',
+    imageSrc: '/assets/videos/timestamp-player.mp4',
   },
   {
     id: 'screen-home',
@@ -46,7 +48,7 @@ const screens: ScreenItem[] = [
     title: 'Connected Knowledge Library',
     subtitle: 'A calm, structured overview organizing saved clips into 4-tier taxonomies, active project workspaces, and recall insights.',
     outcome: 'Eliminates bookmark rot by continuously connecting saves into an organized personal design library.',
-    imageSrc: '/reyo-home.png',
+    imageSrc: '/assets/videos/reyo-home.mp4',
   },
 ];
 
@@ -145,23 +147,23 @@ export function Chapter15FinalUI() {
               </div>
 
               {/* Media Container */}
-              <div
-                className={`relative w-full rounded-2xl overflow-hidden bg-[#070b14] border border-[#1e293b] shadow-2xl flex items-center justify-center ${
-                  activeScreen.id === 'screen-spotlight'
-                    ? 'aspect-[1920/898]'
-                    : activeScreen.id === 'screen-save'
-                    ? 'aspect-[1920/902]'
-                    : 'aspect-[16/9]'
-                }`}
-                style={
-                  activeScreen.id === 'screen-spotlight'
-                    ? { aspectRatio: '1920 / 898' }
-                    : activeScreen.id === 'screen-save'
-                    ? { aspectRatio: '1920 / 902' }
-                    : undefined
-                }
-              >
-                {activeScreen.id === 'screen-spotlight' || activeScreen.id === 'screen-save' ? (
+              {activeScreen.id === 'screen-timestamp' ? (
+                <TimestampPlayerScreen />
+              ) : activeScreen.id === 'screen-home' ? (
+                <ReyoHomeScreen />
+              ) : (
+                <div
+                  className={`relative w-full rounded-2xl overflow-hidden bg-[#070b14] border border-[#1e293b] shadow-2xl flex items-center justify-center ${
+                    activeScreen.id === 'screen-spotlight'
+                      ? 'aspect-[1920/898]'
+                      : 'aspect-[1920/902]'
+                  }`}
+                  style={
+                    activeScreen.id === 'screen-spotlight'
+                      ? { aspectRatio: '1920 / 898' }
+                      : { aspectRatio: '1920 / 902' }
+                  }
+                >
                   <video
                     key={activeScreen.id}
                     autoPlay
@@ -179,15 +181,8 @@ export function Chapter15FinalUI() {
                       <source src="/assets/videos/yt save screen.mp4" type="video/mp4" />
                     )}
                   </video>
-                ) : (
-                  <img
-                    src={activeScreen.imageSrc}
-                    alt={activeScreen.title}
-                    className="w-full h-full object-cover object-top sm:object-contain bg-[#070b14]"
-                    referrerPolicy="no-referrer"
-                  />
-                )}
-              </div>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </motion.div>

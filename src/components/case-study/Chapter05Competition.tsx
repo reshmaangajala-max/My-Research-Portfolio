@@ -22,13 +22,6 @@ const competitorTools = [
 ];
 
 export function Chapter05Competition({ onOpenArtifact }: Chapter05Props) {
-  const [filter, setFilter] = useState<'all' | 'partial' | 'none'>('all');
-
-  const filteredTools = competitorTools.filter((t) => {
-    if (filter === 'all') return true;
-    return t.status === filter;
-  });
-
   return (
     <section
       id="ch-04-competition"
@@ -47,147 +40,137 @@ export function Chapter05Competition({ onOpenArtifact }: Chapter05Props) {
               04
             </span>
             <span className="font-accent text-[11px] uppercase tracking-[3px] text-[var(--text-secondary)] font-medium">
-              WHAT ALREADY EXISTS?
+              THE COMPETITIVE REALITY
             </span>
           </div>
 
           {/* Chapter Headline */}
           <h2 className="font-bold text-[28px] sm:text-[34px] md:text-[38px] text-[var(--text-primary)] leading-tight mb-4 tracking-tight">
-            I tested 12 products. Everyone solves saving; nobody solves video retrieval.
+            Understanding the competitive landscape.
           </h2>
 
           <p className="font-light text-[16px] sm:text-[17px] text-[var(--text-secondary)] leading-[1.8] max-w-[840px] mb-10">
-            I spent 2–3 hours each with 12 existing bookmark, note-taking, and AI knowledge tools. I saved actual YouTube design tutorials into each tool and tested how easy it was to find a specific technique a week later.
+            Evaluating existing saving habits, direct retrieval tools, and platform shifts that occurred during development.
           </p>
 
-          {/* Filter Bar & Artifact Trigger */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-            <div className="flex items-center gap-2">
-              <span className="text-[12px] text-[var(--text-secondary)] font-medium">Filter by Video Understanding:</span>
-              <button
-                onClick={() => setFilter('all')}
-                className={`px-3 py-1 rounded-full text-[11px] font-mono transition-colors cursor-pointer ${
-                  filter === 'all'
-                    ? 'bg-[var(--accent)] text-white font-bold'
-                    : 'bg-[var(--surface)] text-[var(--text-secondary)] hover:text-white'
-                }`}
-              >
-                All (12)
-              </button>
-              <button
-                onClick={() => setFilter('partial')}
-                className={`px-3 py-1 rounded-full text-[11px] font-mono transition-colors cursor-pointer ${
-                  filter === 'partial'
-                    ? 'bg-amber-500/30 text-amber-300 font-bold border border-amber-500/50'
-                    : 'bg-[var(--surface)] text-[var(--text-secondary)] hover:text-white'
-                }`}
-              >
-                Partial AI (6)
-              </button>
-              <button
-                onClick={() => setFilter('none')}
-                className={`px-3 py-1 rounded-full text-[11px] font-mono transition-colors cursor-pointer ${
-                  filter === 'none'
-                    ? 'bg-red-500/30 text-red-300 font-bold border border-red-500/50'
-                    : 'bg-[var(--surface)] text-[var(--text-secondary)] hover:text-white'
-                }`}
-              >
-                Zero Video AI (6)
-              </button>
+          <div className="space-y-6 mb-10">
+            {/* Block 1: Where designers actually save today */}
+            <div className="p-6 sm:p-7 rounded-[16px] bg-[var(--surface)] border border-[var(--border)] shadow-sm">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-accent text-[11px] uppercase tracking-[2px] text-[var(--accent)] font-semibold">
+                  BLOCK 01 · WHERE DESIGNERS ACTUALLY SAVE TODAY
+                </span>
+                <span className="text-[12px] text-[var(--text-secondary)] font-mono">
+                  From my survey, 25 responses
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+                <div className="p-3 rounded-[10px] bg-[var(--bg)] border border-[var(--border)]">
+                  <div className="text-[12px] text-[var(--text-secondary)] mb-0.5">Instagram Saved</div>
+                  <div className="text-[20px] font-bold text-[var(--text-primary)] font-accent">72%</div>
+                </div>
+                <div className="p-3 rounded-[10px] bg-[var(--bg)] border border-[var(--border)]">
+                  <div className="text-[12px] text-[var(--text-secondary)] mb-0.5">Pinterest</div>
+                  <div className="text-[20px] font-bold text-[var(--text-primary)] font-accent">72%</div>
+                </div>
+                <div className="p-3 rounded-[10px] bg-[var(--bg)] border border-[var(--border)]">
+                  <div className="text-[12px] text-[var(--text-secondary)] mb-0.5">Screenshots</div>
+                  <div className="text-[20px] font-bold text-[var(--text-primary)] font-accent">68%</div>
+                </div>
+                <div className="p-3 rounded-[10px] bg-[var(--bg)] border border-[var(--border)]">
+                  <div className="text-[12px] text-[var(--text-secondary)] mb-0.5">YouTube</div>
+                  <div className="text-[20px] font-bold text-[var(--text-primary)] font-accent">60%</div>
+                </div>
+                <div className="p-3 rounded-[10px] bg-[var(--bg)] border border-[var(--border)]">
+                  <div className="text-[12px] text-[var(--text-secondary)] mb-0.5">Dribbble / Behance</div>
+                  <div className="text-[20px] font-bold text-[var(--text-primary)] font-accent">40%</div>
+                </div>
+                <div className="p-3 rounded-[10px] bg-[var(--bg)] border border-[var(--border)]">
+                  <div className="text-[12px] text-[var(--text-secondary)] mb-0.5">Notion / Notes</div>
+                  <div className="text-[20px] font-bold text-[var(--text-primary)] font-accent">40%</div>
+                </div>
+                <div className="p-3 rounded-[10px] bg-[var(--bg)] border border-[var(--border)]">
+                  <div className="text-[12px] text-[var(--text-secondary)] mb-0.5">LinkedIn</div>
+                  <div className="text-[20px] font-bold text-[var(--text-primary)] font-accent">40%</div>
+                </div>
+                <div className="p-3 rounded-[10px] bg-[var(--bg)] border border-[var(--border)]">
+                  <div className="text-[12px] text-[var(--text-secondary)] mb-0.5">Bookmarks</div>
+                  <div className="text-[20px] font-bold text-[var(--text-primary)] font-accent">32%</div>
+                </div>
+              </div>
+
+              <div className="p-3.5 rounded-[10px] bg-[var(--surface-elevated)] border border-[var(--border)] text-[14px] text-[var(--text-primary)] font-medium">
+                My real competitor is a habit, not a product — the Instagram save button and a screenshots folder.
+              </div>
             </div>
 
-            <button
-              onClick={() => onOpenArtifact('competitive-matrix')}
-              className="text-[12px] font-mono text-[var(--accent)] hover:underline flex items-center gap-1 cursor-pointer"
-            >
-              <Eye className="w-3.5 h-3.5" />
-              <span>Inspect Full Competitive Matrix Artifact →</span>
-            </button>
-          </div>
-
-          {/* Competitive Matrix Table */}
-          <div className="rounded-[14px] border border-[var(--border)] bg-[var(--surface)] overflow-hidden shadow-sm mb-12">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-[700px]">
-                <thead>
-                  <tr className="bg-[var(--surface-elevated)] border-b border-[var(--border)] text-[11px] font-accent uppercase tracking-wider text-[var(--text-secondary)]">
-                    <th className="py-3 px-4">Tool</th>
-                    <th className="py-3 px-4">Save Method</th>
-                    <th className="py-3 px-4">Organization</th>
-                    <th className="py-3 px-4">Retrieval Method</th>
-                    <th className="py-3 px-4">Deep Video Understanding</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[var(--border)] text-[13px] font-light text-[var(--text-primary)]">
-                  {filteredTools.map((tool) => (
-                    <tr key={tool.name} className="hover:bg-[var(--surface-elevated)]/50 transition-colors">
-                      <td className="py-3 px-4 font-semibold text-[var(--text-primary)]">
-                        {tool.name}
-                      </td>
-                      <td className="py-3 px-4 text-[var(--text-secondary)]">
-                        {tool.save}
-                      </td>
-                      <td className="py-3 px-4 text-[var(--text-secondary)]">
-                        {tool.org}
-                      </td>
-                      <td className="py-3 px-4 text-[var(--text-secondary)]">
-                        {tool.ret}
-                      </td>
-                      <td className="py-3 px-4">
-                        {tool.status === 'none' ? (
-                          <span className="inline-flex items-center gap-1.5 text-red-400 font-mono text-[11px]">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
-                            {tool.deepVideo}
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1.5 text-amber-400 font-mono text-[11px]">
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                            {tool.deepVideo}
-                          </span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* 3 Summary Blocks: What Everyone Does / What Some Do / What Is Still Missing */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-[14px] bg-[var(--surface)] border border-[var(--border)]">
-              <span className="font-accent text-[10px] uppercase tracking-[1.5px] text-[var(--text-secondary)] font-semibold block mb-2">
-                WHAT EVERYONE ALREADY DOES
+            {/* Block 2: Who is solving retrieval */}
+            <div className="p-6 sm:p-7 rounded-[16px] bg-[var(--surface)] border border-[var(--border)] shadow-sm">
+              <span className="font-accent text-[11px] uppercase tracking-[2px] text-[var(--accent)] font-semibold block mb-4">
+                BLOCK 02 · WHO IS SOLVING RETRIEVAL
               </span>
-              <h4 className="font-semibold text-[15px] text-[var(--text-primary)] mb-2">
-                1-Click URL Bookmarking
-              </h4>
-              <p className="text-[13px] text-[var(--text-secondary)] font-light leading-relaxed">
-                Saving links is completely commoditized. Every browser and app allows capturing a URL with a single click. Adding another generic link saver has zero value.
+
+              <div className="space-y-4">
+                <div className="p-4 rounded-[12px] bg-[var(--bg)] border border-[var(--border)]">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                    <span className="font-bold text-[15px] text-[var(--text-primary)]">Recall</span>
+                    <span className="text-[11px] font-mono text-[var(--accent)]">700k+ users</span>
+                  </div>
+                  <p className="text-[13.5px] text-[var(--text-secondary)] font-light leading-relaxed mb-2">
+                    Saves videos, articles, and podcasts; auto-organises them into a knowledge graph; offers AI chat over your sources.
+                  </p>
+                  <div className="text-[12.5px] text-amber-400/90 font-medium">
+                    Stops at: Not designer-specific, no in-flow overlay.
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-[12px] bg-[var(--bg)] border border-[var(--border)]">
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="font-bold text-[15px] text-[var(--text-primary)]">Glasp</span>
+                  </div>
+                  <p className="text-[13.5px] text-[var(--text-secondary)] font-light leading-relaxed mb-2">
+                    Highlight a moment, click it later, land on that exact second.
+                  </p>
+                  <div className="text-[12.5px] text-amber-400/90 font-medium">
+                    Stops at: You must highlight manually at watch time.
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-[12px] bg-[var(--bg)] border border-[var(--border)]">
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="font-bold text-[15px] text-[var(--text-primary)]">Eightify / summarize.tech</span>
+                  </div>
+                  <p className="text-[13.5px] text-[var(--text-secondary)] font-light leading-relaxed mb-2">
+                    AI summaries of a single video.
+                  </p>
+                  <div className="text-[12.5px] text-amber-400/90 font-medium">
+                    Stops at: Per-video, not per-library.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Block 3: What changed while I was building */}
+            <div className="p-6 sm:p-7 rounded-[16px] bg-[var(--surface)] border border-[var(--border)] shadow-sm">
+              <span className="font-accent text-[11px] uppercase tracking-[2px] text-amber-400 font-semibold block mb-3">
+                BLOCK 03 · WHAT CHANGED WHILE I WAS BUILDING
+              </span>
+              <p className="text-[14.5px] sm:text-[15px] text-[var(--text-primary)] font-light leading-relaxed mb-4">
+                In 2026, YouTube began rolling out Ask YouTube — Gemini-powered search that jumps straight to the moment in a video that answers your question. Timestamp retrieval inside YouTube is becoming a platform feature, not a product. That narrowed what Reyo can defensibly claim. Ask YouTube searches all of YouTube. Reyo searches the things I already chose to keep — and surfaces them without leaving the canvas.
+              </p>
+              <p className="text-[14.5px] sm:text-[15px] text-[var(--text-primary)] font-light leading-relaxed">
+                The differentiator is no longer &quot;jump to the moment&quot;; it is &quot;no foresight required&quot;. Tools like Glasp already let you jump to an exact second, but only if you highlighted it while watching. Reyo classifies every 45-second chunk of everything I saved, whether or not I knew it would matter.
               </p>
             </div>
 
-            <div className="p-6 rounded-[14px] bg-[var(--surface)] border border-[var(--border)]">
-              <span className="font-accent text-[10px] uppercase tracking-[1.5px] text-amber-400 font-semibold block mb-2">
-                WHAT SOME PRODUCTS DO
+            {/* Block 4: Where that leaves Reyo */}
+            <div className="p-6 sm:p-7 rounded-[16px] bg-[var(--accent)]/10 border border-[var(--accent)]/30 shadow-sm">
+              <span className="font-accent text-[11px] uppercase tracking-[2px] text-[var(--accent)] font-semibold block mb-2">
+                BLOCK 04 · WHERE THAT LEAVES REYO
               </span>
-              <h4 className="font-semibold text-[15px] text-[var(--text-primary)] mb-2">
-                AI Tagging on Text & Images
-              </h4>
-              <p className="text-[13px] text-[var(--text-secondary)] font-light leading-relaxed">
-                Products like myMind and Fabric use AI for auto-tagging articles and screenshots. But their understanding stops at metadata; they treat video as an opaque URL.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-[14px] bg-[var(--surface)] border border-[var(--accent)]/40 bg-[var(--accent)]/5">
-              <span className="font-accent text-[10px] uppercase tracking-[1.5px] text-[var(--accent)] font-semibold block mb-2">
-                WHAT IS STILL MISSING (THE GAP)
-              </span>
-              <h4 className="font-semibold text-[15px] text-[var(--text-primary)] mb-2">
-                In-Video Concept & Timestamp Recall
-              </h4>
-              <p className="text-[13px] text-[var(--text-secondary)] font-light leading-relaxed">
-                No product extracts spoken transcripts into timestamped semantic chunks, classifies them by design skills, and allows in-flow jumping to the exact 10-second answer.
+              <p className="text-[16px] sm:text-[17.5px] text-[var(--text-primary)] font-medium leading-snug">
+                Reyo makes the things you already chose to keep retrievable at the moment you need them, without requiring you to have known in advance that you would.
               </p>
             </div>
           </div>

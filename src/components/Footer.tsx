@@ -6,10 +6,10 @@ export function Footer() {
         <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-accent text-[13px] text-[var(--text-secondary)] tracking-wide mb-3">
           <a
             id="footer-email-link"
-            href="mailto:reshmaangjala@gmail.com"
+            href="mailto:reshmaangajala@gmail.com"
             className="hover:text-[var(--accent)] transition-colors focus:outline-none focus:underline"
           >
-            reshmaangjala@gmail.com
+            reshmaangajala@gmail.com
           </a>
           <span className="text-[var(--border)]">·</span>
           <a

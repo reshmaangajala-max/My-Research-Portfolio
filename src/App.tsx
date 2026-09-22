@@ -1,24 +1,27 @@
 import { useState, useEffect } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Skills } from './components/Skills';
-import { Experience } from './components/Experience';
-import { Projects } from './components/Projects';
-import { Education } from './components/Education';
-import { WhyConsiderMe } from './components/WhyConsiderMe';
-import { PersonalInterests } from './components/PersonalInterests';
-import { Footer } from './components/Footer';
-import { SectionDivider } from './components/SectionDivider';
+import { PortfolioHome } from './components/home/PortfolioHome';
 import { ReyoCaseStudy } from './components/case-study/ReyoCaseStudy';
+import { TaraCaseStudy } from './components/case-study/TaraCaseStudy';
 import { RenewCaseStudy } from './components/renew-case-study/RenewCaseStudy';
 
 export function App() {
-  const [currentView, setCurrentView] = useState<'portfolio' | 'reyo-case-study' | 'renew-case-study'>(() => {
+  const [currentView, setCurrentView] = useState<'portfolio' | 'reyo-case-study' | 'tara-case-study' | 'renew-case-study'>(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash;
-      if (hash === '#tara-case-study' || hash === '#tara' || hash === '#offload-case-study' || hash === '#offload' || hash === '#renew-case-study' || hash === '#renew') {
+      if (hash === '#tara-case-study' || hash === '#tara') {
+        return 'tara-case-study';
+      }
+      if (
+        hash === '#offload-case-study' ||
+        hash === '#offload' ||
+        hash === '#renew-case-study' ||
+        hash === '#renew' ||
+        hash === '#ev-project' ||
+        hash === '#ev-case-study' ||
+        hash === '#ev'
+      ) {
         return 'renew-case-study';
       }
       if (hash === '#reyo-case-study' || hash === '#reyo' || hash.startsWith('#case-study')) {
@@ -31,7 +34,17 @@ export function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash === '#tara-case-study' || hash === '#tara' || hash === '#offload-case-study' || hash === '#offload' || hash === '#renew-case-study' || hash === '#renew') {
+      if (hash === '#tara-case-study' || hash === '#tara') {
+        setCurrentView('tara-case-study');
+      } else if (
+        hash === '#offload-case-study' ||
+        hash === '#offload' ||
+        hash === '#renew-case-study' ||
+        hash === '#renew' ||
+        hash === '#ev-project' ||
+        hash === '#ev-case-study' ||
+        hash === '#ev'
+      ) {
         setCurrentView('renew-case-study');
       } else if (hash === '#reyo-case-study' || hash === '#reyo' || hash.startsWith('#case-study')) {
         setCurrentView('reyo-case-study');
@@ -44,69 +57,41 @@ export function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const openReyoCaseStudy = () => {
-    window.location.hash = '#reyo-case-study';
-    setCurrentView('reyo-case-study');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const openRenewCaseStudy = () => {
-    window.location.hash = '#tara-case-study';
-    setCurrentView('renew-case-study');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const backToPortfolio = () => {
-    window.location.hash = '#projects';
+    window.location.hash = '';
     setCurrentView('portfolio');
-    setTimeout(() => {
-      const el = document.getElementById('projects');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }, 50);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)] transition-colors duration-500 font-normal">
-        <Navbar
-          viewMode={currentView}
-          onNavigateHome={backToPortfolio}
-        />
+      <div
+        className={
+          currentView === 'renew-case-study'
+            ? 'min-h-screen bg-[#0f1117] text-[#e4e2de] font-normal overflow-x-hidden selection:bg-[#9570C6] selection:text-white'
+            : 'min-h-screen bg-[#F6F1EA] text-[#3B2A20] font-normal overflow-x-clip selection:bg-[#9570C6]/20 selection:text-[#9570C6]'
+        }
+      >
+        {currentView === 'renew-case-study' && (
+          <Navbar
+            viewMode={currentView}
+            onNavigateHome={backToPortfolio}
+          />
+        )}
         {currentView === 'reyo-case-study' ? (
           <main>
             <ReyoCaseStudy onBackToPortfolio={backToPortfolio} />
+          </main>
+        ) : currentView === 'tara-case-study' ? (
+          <main>
+            <TaraCaseStudy onBackToPortfolio={backToPortfolio} />
           </main>
         ) : currentView === 'renew-case-study' ? (
           <main>
             <RenewCaseStudy onBackToPortfolio={backToPortfolio} />
           </main>
         ) : (
-          <>
-            <main>
-              <Hero />
-              <About />
-              <SectionDivider />
-              <Projects
-                onOpenReyoCaseStudy={openReyoCaseStudy}
-                onOpenRenewCaseStudy={openRenewCaseStudy}
-              />
-              <SectionDivider />
-              <Skills />
-              <SectionDivider />
-              <Experience />
-              <SectionDivider />
-              <Education />
-              <SectionDivider />
-              <WhyConsiderMe />
-              <SectionDivider />
-              <PersonalInterests />
-            </main>
-            <Footer />
-          </>
+          <PortfolioHome />
         )}
       </div>
     </ThemeProvider>

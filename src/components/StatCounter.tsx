@@ -18,23 +18,42 @@ export function StatCounter({
 }: StatCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
-  const [displayCount, setDisplayCount] = useState<number>(0);
+  // Set the final value as the rendered default; never display 0 on load, fast scroll, or SSR
+  const [displayCount, setDisplayCount] = useState<number>(numericTarget ?? 0);
   const [isFinished, setIsFinished] = useState(false);
+  const hasAnimatedRef = useRef(false);
 
   useEffect(() => {
-    if (!isInView) return;
     if (numericTarget === undefined) {
       setIsFinished(true);
       return;
     }
 
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setDisplayCount(numericTarget);
+      setIsFinished(true);
+      return;
+    }
+
+    if (!isInView || hasAnimatedRef.current) {
+      return;
+    }
+
+    hasAnimatedRef.current = true;
     let startTimestamp: number | null = null;
-    const duration = 2000; // 2s duration as specified
+    const duration = 1800; // 1.8s duration
+
+    // Animate from 0 once visible
+    setDisplayCount(0);
 
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      // easeOutExpo / easeOutCubic curve
+      // easeOutCubic curve
       const easeOut = 1 - Math.pow(1 - progress, 3);
       const current = Math.round(easeOut * numericTarget);
       setDisplayCount(current);

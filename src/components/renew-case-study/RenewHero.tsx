@@ -80,7 +80,7 @@ export function RenewHero({ onBack }: RenewHeroProps) {
 
           {/* Research summary strip: 1.1s, staggered 0.1s */}
           <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Card 1: 10 */}
+            {/* Card 1: 7 */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -88,14 +88,14 @@ export function RenewHero({ onBack }: RenewHeroProps) {
               className="bg-[var(--surface)] border border-[var(--border)] rounded-[12px] p-5 flex flex-col justify-between shadow-sm hover:border-[var(--accent)]/40 transition-colors"
             >
               <div className="text-[32px] sm:text-[36px] leading-none mb-2">
-                <StatCounter numericTarget={10} isAccent={true} />
+                <StatCounter numericTarget={7} isAccent={true} />
               </div>
               <span className="font-accent text-[10px] uppercase text-[var(--text-secondary)] tracking-[1.5px] leading-tight">
-                Team Members Interviewed
+                Team Discovery Conversations
               </span>
             </motion.div>
 
-            {/* Card 2: 25+ */}
+            {/* Card 2: 15 */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -103,7 +103,7 @@ export function RenewHero({ onBack }: RenewHeroProps) {
               className="bg-[var(--surface)] border border-[var(--border)] rounded-[12px] p-5 flex flex-col justify-between shadow-sm hover:border-[var(--accent)]/40 transition-colors"
             >
               <div className="text-[32px] sm:text-[36px] leading-none mb-2">
-                <StatCounter numericTarget={25} suffix="+" isAccent={true} />
+                <StatCounter numericTarget={15} isAccent={true} />
               </div>
               <span className="font-accent text-[10px] uppercase text-[var(--text-secondary)] tracking-[1.5px] leading-tight">
                 External Survey Responses

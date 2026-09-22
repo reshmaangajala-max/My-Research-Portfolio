@@ -114,41 +114,45 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
                     <span className="border border-[var(--border)] px-2.5 py-1 rounded">LLM Classification</span>
                   </div>
 
-                  {/* View Case Study Button */}
-                  <button
+                  {/* View Case Study Link */}
+                  <a
                     id="reyo-case-study-btn"
+                    href="#reyo-case-study"
                     onClick={(e) => {
-                      e.stopPropagation();
-                      onOpenReyoCaseStudy?.();
+                      if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onOpenReyoCaseStudy?.();
+                      }
                     }}
                     className="group/btn inline-flex items-center gap-2 text-[13px] font-medium text-[var(--accent)] hover:text-[var(--text-primary)] transition-colors py-1 cursor-pointer focus:outline-none"
                   >
                     <span>Read Full Research Case Study</span>
                     <span className="transition-transform duration-200 group-hover/btn:translate-x-1">→</span>
-                  </button>
+                  </a>
                 </div>
 
                 {/* Right column (42%): stats & taxonomy diagram */}
                 <div className="w-full lg:w-[42%] flex flex-col justify-between pt-6 lg:pt-0 border-t lg:border-t-0 lg:border-l border-[var(--border)] lg:pl-8">
                   {/* Stats list with 24px between each */}
                   <div className="flex flex-col sm:flex-row lg:flex-col justify-between gap-6">
-                    {/* Stat 1: 170+ (lead accent stat, counts up, glows on finish) */}
+                    {/* Stat 1: 205 (lead accent stat, counts up, glows on finish) */}
                     <div className="flex flex-col">
                       <div className="text-[44px] md:text-[48px] leading-none">
-                        <StatCounter numericTarget={170} suffix="+" isAccent={true} />
+                        <StatCounter numericTarget={205} isAccent={true} />
                       </div>
                       <span className="font-accent text-[10px] uppercase text-[var(--text-secondary)] tracking-[2px] mt-2 font-normal">
-                        VIDEOS PROCESSED
+                        VIDEOS INDEXED
                       </span>
                     </div>
 
-                    {/* Stat 2: 91% (primary text, counts up) */}
+                    {/* Stat 2: 90% (primary text, counts up) */}
                     <div className="flex flex-col">
                       <div className="text-[44px] md:text-[48px] leading-none">
-                        <StatCounter numericTarget={91} suffix="%" isAccent={false} />
+                        <StatCounter numericTarget={90} suffix="%" isAccent={false} />
                       </div>
                       <span className="font-accent text-[10px] uppercase text-[var(--text-secondary)] tracking-[2px] mt-2 font-normal">
-                        TRANSCRIPT COVERAGE
+                        TRANSCRIPTS EXTRACTED
                       </span>
                     </div>
 
@@ -236,29 +240,33 @@ export function Projects({ onOpenReyoCaseStudy, onOpenRenewCaseStudy }: Projects
                     Tara is an Android-first digital best friend designed to catch what you might miss — from bills and insurance to appointments and subscriptions. She finds important information scattered across everyday life, understands what it means, prioritizes what needs your attention, and helps you take care of it before it becomes a problem.
                   </p>
 
-                  {/* View Case Study Button */}
-                  <button
+                  {/* View Case Study Link */}
+                  <a
                     id="tara-case-study-btn"
+                    href="#tara-case-study"
                     onClick={(e) => {
-                      e.stopPropagation();
-                      onOpenRenewCaseStudy?.();
+                      if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onOpenRenewCaseStudy?.();
+                      }
                     }}
                     className="group/btn inline-flex items-center gap-2 text-[13px] font-medium text-[var(--accent)] hover:text-[var(--text-primary)] transition-colors py-1 cursor-pointer focus:outline-none"
                   >
                     <span>Read Full Research Case Study</span>
                     <span className="transition-transform duration-200 group-hover/btn:translate-x-1">→</span>
-                  </button>
+                  </a>
                 </div>
 
                 {/* Right column (42%): stats */}
                 <div className="w-full lg:w-[42%] flex flex-col sm:flex-row lg:flex-col justify-between gap-6 pt-6 lg:pt-0 border-t lg:border-t-0 lg:border-l border-[var(--border)] lg:pl-8">
-                  {/* Stat 1: 20+ (accent, counts up, glows on finish) */}
+                  {/* Stat 1: 15 */}
                   <div className="flex flex-col">
                     <div className="text-[44px] md:text-[48px] leading-none">
-                      <StatCounter numericTarget={20} suffix="+" isAccent={true} />
+                      <StatCounter numericTarget={15} isAccent={true} />
                     </div>
                     <span className="font-accent text-[10px] uppercase text-[var(--text-secondary)] tracking-[2px] mt-2 font-normal">
-                      RESPONDENTS
+                      SURVEY RESPONSES
                     </span>
                   </div>
 

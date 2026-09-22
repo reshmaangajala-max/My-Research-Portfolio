@@ -1,30 +1,36 @@
 import { motion } from 'motion/react';
 
+// TODO: Deleted unverified survey percentages in principles and mappings:
+// - 71% of surveyed users have no dedicated tool
+// - 43% have paid late fees from missed deadlines
+// - 58% named privacy as their top concern
+// - 82% interested in AI auto-detection
+// Replace with verified counts out of 15 when user supplies them.
 const principles = [
   {
     title: 'Zero Unnecessary Effort',
     evidence:
-      "71% of surveyed users have no dedicated tool — they won't adopt something that requires setup work. If the app needs manual input to be useful, it's already failed.",
+      "Surveyed users consistently report having no dedicated tool — they won't adopt something that requires setup work. If the app needs manual input to be useful, it's already failed.",
   },
   {
     title: "Don't Remind — Resolve",
     evidence:
-      '43% have paid late fees from missed deadlines. A reminder that gets snoozed is useless. The product should help the user take action, not just alert them.',
+      'Users frequently report paying late fees from missed deadlines. A reminder that gets snoozed is useless. The product should help the user take action, not just alert them.',
   },
   {
     title: 'Attention is Earned',
     evidence:
-      'Interview finding: every participant mentioned notification fatigue. The app must only notify when action is truly needed — never for marketing, never for low-priority items.',
+      'Team conversation finding: participants highlighted severe notification fatigue. The app must only notify when action is truly needed — never for marketing, never for low-priority items.',
   },
   {
     title: 'Permission Before Action',
     evidence:
-      '58% named privacy as their top concern. Every data access must be explicitly requested, clearly explained, and revocable. No silent scanning.',
+      'Users consistently named privacy as their top concern. Every data access must be explicitly requested, clearly explained, and revocable. No silent scanning.',
   },
   {
     title: 'Privacy by Default',
     evidence:
-      'Interview insight: trust is built gradually. Default to on-device processing. Cloud sync is opt-in, not assumed. No data selling, ever.',
+      'Discovery conversation insight: trust is built gradually. Default to on-device processing. Cloud sync is opt-in, not assumed. No data selling, ever.',
   },
   {
     title: 'One Place for Life Obligations',
@@ -35,17 +41,17 @@ const principles = [
 
 const decisionMappings = [
   {
-    finding: '71% use no dedicated tool — rely on memory alone',
+    finding: 'Survey finding: Users lack a dedicated tool and rely on memory alone',
     decision:
       'Auto-detect obligations from documents and emails — never require manual entry as the primary input',
   },
   {
-    finding: '82% interested in AI auto-detection from their documents',
+    finding: 'Survey finding: High interest in AI auto-detection from documents',
     decision:
       'Build document scanning (camera + share sheet) that extracts dates, amounts, and obligation types using AI',
   },
   {
-    finding: '58% said privacy is their top concern',
+    finding: 'Survey finding: Privacy identified as top non-negotiable concern',
     decision:
       'On-device processing by default, cloud opt-in only, no third-party data sharing',
   },
@@ -56,12 +62,12 @@ const decisionMappings = [
       'Cover all life obligation categories in one app: insurance, vehicle, medical, bills, subscriptions, government deadlines',
   },
   {
-    finding: '43% have paid late fees due to missed renewals',
+    finding: 'Survey finding: Users incur penalty late fees due to missed renewals',
     decision:
       'Prioritize high-stakes obligations (insurance expiry, license renewal) over routine tasks — urgency-based notification hierarchy',
   },
   {
-    finding: 'Notification fatigue mentioned in every interview',
+    finding: 'Notification fatigue voiced across team discovery conversations',
     decision:
       'Notification budget system — limit total notifications per day, escalate only for approaching deadlines, never notify for marketing',
   },

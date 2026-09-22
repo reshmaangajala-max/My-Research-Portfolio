@@ -30,13 +30,13 @@ export function generateResumePdf() {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(11);
   doc.setTextColor(accentColor[0], accentColor[1], accentColor[2]);
-  doc.text('PRODUCT ENGINEER · RESEARCH EXPERT', margin, y);
+  doc.text('PRODUCT DESIGNER', margin, y);
   y += 6;
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9);
   doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2]);
-  const contactText = 'reshmaangjala@gmail.com   |   +91 7008762566   |   linkedin.com/in/reshma-angajala';
+  const contactText = 'reshmaangajala@gmail.com   |   +91 7008762566   |   linkedin.com/in/reshma-angajala';
   doc.text(contactText, margin, y);
   y += 4;
 

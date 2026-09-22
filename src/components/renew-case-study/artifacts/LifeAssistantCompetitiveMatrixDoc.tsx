@@ -448,7 +448,7 @@ export function LifeAssistantCompetitiveMatrixDoc({
           </div>
           <div className="mt-3 pt-2.5 border-t border-[#1f2937] flex items-center justify-between text-[10px] font-mono text-[#818cf8]">
             <span>NOTICE → UNDERSTAND → PRIORITIZE → HELP</span>
-            <span className="text-[#a855f7]">100% TRANSPARENT</span>
+            <span className="text-[#a855f7]">TOTAL TRANSPARENCY</span>
           </div>
         </div>
       </div>

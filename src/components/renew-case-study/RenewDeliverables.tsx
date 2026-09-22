@@ -8,9 +8,9 @@ const deliverables = [
     step: '01',
     docId: 'renew-survey-analysis',
     title: 'Research Documentation',
-    desc: 'User interview synthesis, survey analysis (107 respondents), all raw data preserved',
+    desc: 'Team discovery conversation synthesis, survey analysis (15 respondents), all raw data preserved',
     placeholder: 'Research documentation',
-    badge: '107 Respondents Dataset',
+    badge: '15 Respondents Dataset',
   },
   {
     step: '02',

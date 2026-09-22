@@ -133,7 +133,7 @@ export function CaseStudyHero({ onBack }: CaseStudyHeroProps) {
 
           {/* Research summary strip: 1.1s, staggered 0.1s */}
           <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Card 1 */}
+            {/* Card 1: 25 Survey Responses */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -141,14 +141,14 @@ export function CaseStudyHero({ onBack }: CaseStudyHeroProps) {
               className="bg-[var(--surface)] border border-[var(--border)] rounded-[12px] p-5 flex flex-col justify-between shadow-sm hover:border-[var(--accent)]/40 transition-colors"
             >
               <div className="text-[32px] sm:text-[36px] leading-none mb-2">
-                <StatCounter numericTarget={10} isAccent={true} />
+                <StatCounter numericTarget={25} isAccent={true} />
               </div>
               <span className="font-accent text-[10px] uppercase text-[var(--text-secondary)] tracking-[1.5px] leading-tight">
-                Designers Interviewed
+                Survey Responses
               </span>
             </motion.div>
 
-            {/* Card 2 */}
+            {/* Card 2: 12 Competitor Tools Tested */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -156,14 +156,14 @@ export function CaseStudyHero({ onBack }: CaseStudyHeroProps) {
               className="bg-[var(--surface)] border border-[var(--border)] rounded-[12px] p-5 flex flex-col justify-between shadow-sm hover:border-[var(--accent)]/40 transition-colors"
             >
               <div className="text-[32px] sm:text-[36px] leading-none mb-2">
-                <StatCounter numericTarget={30} suffix="+" isAccent={true} />
+                <StatCounter numericTarget={12} isAccent={true} />
               </div>
               <span className="font-accent text-[10px] uppercase text-[var(--text-secondary)] tracking-[1.5px] leading-tight">
-                Survey Responses
+                Competitor Tools Tested
               </span>
             </motion.div>
 
-            {/* Card 3 */}
+            {/* Card 3: 205 Videos Indexed */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -171,14 +171,14 @@ export function CaseStudyHero({ onBack }: CaseStudyHeroProps) {
               className="bg-[var(--surface)] border border-[var(--border)] rounded-[12px] p-5 flex flex-col justify-between shadow-sm hover:border-[var(--accent)]/40 transition-colors"
             >
               <div className="text-[32px] sm:text-[36px] leading-none mb-2">
-                <StatCounter numericTarget={12} isAccent={true} />
+                <StatCounter numericTarget={205} isAccent={true} />
               </div>
               <span className="font-accent text-[10px] uppercase text-[var(--text-secondary)] tracking-[1.5px] leading-tight">
-                Competitor Tools Analyzed
+                Videos Indexed
               </span>
             </motion.div>
 
-            {/* Card 4 */}
+            {/* Card 4: 4 months Solo Research & Build */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}

@@ -2,12 +2,12 @@ import { motion } from 'motion/react';
 
 const methodologySteps = [
   {
-    title: 'Internal Interviews',
-    desc: '10 team members',
+    title: 'Team Conversations',
+    desc: '7 team members (informal discovery)',
   },
   {
     title: 'External Survey',
-    desc: '25+ responses via Google Forms',
+    desc: '15 responses via Google Forms',
   },
   {
     title: 'Competitive Analysis',

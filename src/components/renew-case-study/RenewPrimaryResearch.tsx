@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { StatCounter } from '../StatCounter';
 import { SurveyInfoAnalysisDoc } from './artifacts/SurveyInfoAnalysisDoc';
 import { RenewInterviewGuideDoc } from './artifacts/RenewInterviewGuideDoc';
 import { RenewResearchArtifactModal } from './artifacts/RenewResearchArtifactModal';
@@ -13,44 +12,14 @@ const keyQuestions = [
   'How do you feel about notifications — when do they help vs. annoy you?',
 ];
 
-const surveyStats = [
-  {
-    target: 78,
-    suffix: '%',
-    isAccent: true,
-    finding: 'have missed at least one important deadline (renewal, bill, subscription) in the past 6 months',
-  },
-  {
-    target: 65,
-    suffix: '%',
-    isAccent: false,
-    finding: 'rely on memory alone for tracking recurring obligations',
-  },
-  {
-    target: 82,
-    suffix: '%',
-    isAccent: false,
-    finding: 'expressed interest in an AI that auto-detects deadlines from their documents and emails',
-  },
-  {
-    target: 58,
-    suffix: '%',
-    isAccent: false,
-    finding: 'said privacy is their top concern with any app that accesses personal documents',
-  },
-  {
-    target: 71,
-    suffix: '%',
-    isAccent: false,
-    finding: 'use no dedicated tool for life admin — just mental notes, calendar entries, or nothing',
-  },
-  {
-    target: 43,
-    suffix: '%',
-    isAccent: false,
-    finding: 'have paid a late fee or penalty due to a missed renewal or bill',
-  },
-];
+// TODO: Deleted manufactured survey percentage stats:
+// - 78% have missed at least one important deadline in past 6 months
+// - 65% rely on memory alone for tracking recurring obligations
+// - 82% expressed interest in AI auto-detection from documents
+// - 58% said privacy is top concern
+// - 71% use no dedicated tool for life admin
+// - 43% have paid late fee or penalty
+// Restore with verified counts out of 15 when user supplies them.
 
 export function RenewPrimaryResearch() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -80,12 +49,16 @@ export function RenewPrimaryResearch() {
 
           <h2
             id="renew-primary-research-heading"
-            className="font-bold text-[24px] sm:text-[28px] text-[var(--text-primary)] mb-14 tracking-tight"
+            className="font-bold text-[24px] sm:text-[28px] text-[var(--text-primary)] mb-4 tracking-tight"
           >
             Direct Insights into Life Admin
           </h2>
 
-          {/* Sub-section A: Internal Team Interviews */}
+          <p className="font-light text-[15px] sm:text-[16px] text-[var(--text-secondary)] italic leading-relaxed mb-12 max-w-[840px]">
+            A 15-response survey and 7 internal conversations are a small base, so I&apos;ve reported counts rather than percentages throughout. The patterns were consistent enough to point at a direction, not to size a market.
+          </p>
+
+          {/* Sub-section A: Internal Team Conversations */}
           <div className="mb-20">
             <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 items-start">
               {/* Left column (50%) */}
@@ -94,7 +67,7 @@ export function RenewPrimaryResearch() {
                   Talking to the Team
                 </h3>
                 <p className="font-light text-[16px] text-[var(--text-primary)] leading-[1.8] mb-6">
-                  Conducted one-on-one interviews with 10 team members at Hanyaa Auto Technologies. These were working professionals aged 22-35 across different roles — developers, designers, operations, and management. Interviews were semi-structured, focusing on: what life admin tasks they regularly forget, how they currently track obligations and deadlines, their comfort level with AI accessing personal documents, and what would make them trust a digital assistant with sensitive information like insurance or financial documents.
+                  Conducted one-on-one informal discovery conversations with 7 team members at Hanyaa Auto Technologies. These were working professionals aged 22-35 across different roles — developers, designers, operations, and management. Conversations focused on: what life admin tasks they regularly forget, how they currently track obligations and deadlines, their comfort level with AI accessing personal documents, and what would make them trust a digital assistant with sensitive information like insurance or financial documents.
                 </p>
 
                 {/* Key Questions Asked Box */}
@@ -128,48 +101,21 @@ export function RenewPrimaryResearch() {
           <div className="pt-8 border-t border-[var(--border)]">
             <div className="mb-8">
               <h3 className="font-semibold text-[20px] text-[var(--text-primary)] mb-3 tracking-tight">
-                Validating Beyond the Office · Survey Analysis (107 Respondents)
+                Validating Beyond the Office · Survey Analysis (15 Respondents)
               </h3>
               <p className="font-light text-[16px] text-[var(--text-primary)] leading-[1.8] max-w-[840px] mb-8">
-                Designed a structured quantitative study covering reminder habits, frustration points, AI auto-detection interest, privacy comfort, and notification preferences. Received 107 verified responses from working professionals validating the core opportunity.
+                Designed a structured quantitative study covering reminder habits, frustration points, AI auto-detection interest, privacy comfort, and notification preferences. Received 15 verified responses from working professionals validating the core opportunity.
               </p>
 
               {/* Rich Interactive Artifact for Survey Info & Analysis */}
-              <div className="mb-10">
+              <div className="mb-8">
                 <SurveyInfoAnalysisDoc
                   onExpand={() => openDoc('renew-survey-analysis')}
                 />
               </div>
             </div>
 
-            {/* Survey Findings Data Grid: 2 cols x 3 rows */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-              {surveyStats.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{
-                    duration: 0.45,
-                    delay: idx * 0.08,
-                    ease: 'easeOut',
-                  }}
-                  className="bg-[var(--surface-elevated)] border border-[var(--border)] rounded-[12px] p-5 flex flex-col justify-between shadow-sm hover:border-[var(--accent)]/30 transition-colors"
-                >
-                  <div className="text-[32px] font-accent leading-none mb-3">
-                    <StatCounter
-                      numericTarget={item.target}
-                      suffix={item.suffix}
-                      isAccent={item.isAccent}
-                    />
-                  </div>
-                  <p className="text-[14px] text-[var(--text-secondary)] font-light leading-relaxed">
-                    {item.finding}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+            {/* TODO: Deleted unverified percentage stats (78% missed deadline in past 6 months, 65% rely on memory alone, 82% AI auto-detection interest, 58% privacy top concern, 71% no dedicated tool, 43% paid late fees). Replace with true verified counts out of 15 when user supplies them from survey notes. */}
 
             {/* Insight Box */}
             <div className="bg-[var(--surface-elevated)] border-l-[3px] border-l-[var(--accent)] border-y border-r border-[var(--border)] rounded-[10px] p-6 shadow-sm">

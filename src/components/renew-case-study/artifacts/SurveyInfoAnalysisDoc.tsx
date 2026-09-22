@@ -24,9 +24,14 @@ interface SurveyInfoAnalysisDocProps {
 }
 
 export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoAnalysisDocProps) {
+  // TODO: Deleted unverified percentage stats:
+  // - Top Concern: Privacy (formerly 58%)
+  // - Have paid late fees from missed deadlines (formerly 43%)
+  // - Have no dedicated tool (formerly 71%)
+  // Restore with verified counts out of 15 when confirmed by user.
   const topStats = [
     {
-      stat: '120+',
+      stat: '15',
       label: 'Responses',
       desc: 'Across age groups and professions',
       icon: Users,
@@ -35,27 +40,27 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
       border: 'border-[#9333ea]/30',
     },
     {
-      stat: '58%',
+      stat: 'Privacy',
       label: 'Top Concern',
-      desc: 'Privacy of personal and financial data',
+      desc: 'Personal & financial document protection',
       icon: Target,
       color: 'text-[#f43f5e]',
       bg: 'bg-[#881337]/20',
       border: 'border-[#f43f5e]/30',
     },
     {
-      stat: '43%',
-      label: 'Have paid late fees',
-      desc: 'from missed deadlines',
+      stat: 'Late Fees',
+      label: 'Financial Friction',
+      desc: 'Reported penalties from missed due dates',
       icon: AlertTriangle,
       color: 'text-[#fb923c]',
       bg: 'bg-[#7c2d12]/20',
       border: 'border-[#ea580c]/30',
     },
     {
-      stat: '71%',
-      label: 'Have no dedicated tool',
-      desc: 'Manage obligations across multiple places',
+      stat: 'No Tool',
+      label: 'Adoption Gap',
+      desc: 'Rely on memory or scattered manual notes',
       icon: BellOff,
       color: 'text-[#facc15]',
       bg: 'bg-[#713f12]/20',
@@ -63,26 +68,36 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
     },
   ];
 
+  // TODO: Deleted unverified challenge percentages:
+  // - Forgetting subscription cancellations (formerly 68%)
+  // - Missing insurance renewals (formerly 62%)
+  // - Losing track of bill due dates (formerly 59%)
+  // - Forgetting vehicle service & maintenance (formerly 54%)
+  // - Scattered information across places (formerly 81%)
   const challenges = [
-    { name: 'Forgetting subscription cancellations', pct: 68, icon: '🔄' },
-    { name: 'Missing insurance renewals', pct: 62, icon: '📄' },
-    { name: 'Losing track of bill due dates', pct: 59, icon: '💳' },
-    { name: 'Forgetting vehicle service & other maintenance', pct: 54, icon: '🚗' },
-    { name: 'Scattered information across places', pct: 81, icon: '📂' },
+    { name: 'Forgetting subscription cancellations', icon: '🔄' },
+    { name: 'Missing insurance renewals', icon: '📄' },
+    { name: 'Losing track of bill due dates', icon: '💳' },
+    { name: 'Forgetting vehicle service & other maintenance', icon: '🚗' },
+    { name: 'Scattered information across places', icon: '📂' },
   ];
 
+  // TODO: Deleted unverified channel percentages:
+  // Calendar Apps (32%), Notes (21%), Email (18%), WhatsApp (15%), Bank Apps (9%), Paper (5%)
   const managementChannels = [
-    { name: 'Calendar Apps', pct: 32, color: 'bg-[#3b82f6]', text: 'text-[#60a5fa]' },
-    { name: 'Notes / Notebooks', pct: 21, color: 'bg-[#8b5cf6]', text: 'text-[#a78bfa]' },
-    { name: 'Email', pct: 18, color: 'bg-[#06b6d4]', text: 'text-[#22d3ee]' },
-    { name: 'WhatsApp / Messages', pct: 15, color: 'bg-[#f97316]', text: 'text-[#fb923c]' },
-    { name: 'Bank / Finance Apps', pct: 9, color: 'bg-[#22c55e]', text: 'text-[#4ade80]' },
-    { name: 'Paper / Physical Docs', pct: 5, color: 'bg-[#94a3b8]', text: 'text-[#cbd5e1]' },
+    { name: 'Calendar Apps', color: 'bg-[#3b82f6]', text: 'text-[#60a5fa]' },
+    { name: 'Notes / Notebooks', color: 'bg-[#8b5cf6]', text: 'text-[#a78bfa]' },
+    { name: 'Email', color: 'bg-[#06b6d4]', text: 'text-[#22d3ee]' },
+    { name: 'WhatsApp / Messages', color: 'bg-[#f97316]', text: 'text-[#fb923c]' },
+    { name: 'Bank / Finance Apps', color: 'bg-[#22c55e]', text: 'text-[#4ade80]' },
+    { name: 'Paper / Physical Docs', color: 'bg-[#94a3b8]', text: 'text-[#cbd5e1]' },
   ];
 
+  // TODO: Deleted unverified user desires percentages:
+  // Automatically detects deadlines (89%), Sends smart reminders (86%), Brings into one place (83%),
+  // Protects privacy (76%), Prioritizes context (71%)
   const userDesires = [
     {
-      pct: '89%',
       label: 'Automatically detects important deadlines for me',
       icon: Brain,
       color: 'text-[#c084fc]',
@@ -90,7 +105,6 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
       border: 'border-[#9333ea]/30',
     },
     {
-      pct: '86%',
       label: 'Sends timely, smart reminders',
       icon: Bell,
       color: 'text-[#38bdf8]',
@@ -98,7 +112,6 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
       border: 'border-[#0284c7]/30',
     },
     {
-      pct: '83%',
       label: 'Brings everything into one place',
       icon: Folder,
       color: 'text-[#34d399]',
@@ -106,7 +119,6 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
       border: 'border-[#059669]/30',
     },
     {
-      pct: '76%',
       label: 'Protects my privacy and asks permission',
       icon: ShieldCheck,
       color: 'text-[#fb923c]',
@@ -114,7 +126,6 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
       border: 'border-[#ea580c]/30',
     },
     {
-      pct: '71%',
       label: 'Understands context and prioritizes what matters',
       icon: Sparkles,
       color: 'text-[#f472b6]',
@@ -193,32 +204,20 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
             <h4 className="text-[14px] font-bold text-white mb-4">
               Top Challenges Faced
             </h4>
-            <div className="space-y-3.5">
+            <div className="space-y-2.5">
               {challenges.map((item) => (
-                <div key={item.name} className="space-y-1.5">
-                  <div className="flex items-center justify-between text-[12px]">
-                    <span className="text-[#cbd5e1] flex items-center gap-2">
-                      <span>{item.icon}</span>
-                      <span>{item.name}</span>
-                    </span>
-                    <span className="font-mono font-bold text-white">{item.pct}%</span>
-                  </div>
-                  <div className="w-full h-2.5 rounded-full bg-[#1e293b] overflow-hidden">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-[#6366f1] to-[#818cf8]"
-                      style={{ width: `${item.pct}%` }}
-                    />
-                  </div>
+                <div
+                  key={item.name}
+                  className="flex items-center gap-3 p-2.5 rounded-[8px] bg-[#1e293b]/40 border border-[#334155]/30 text-[12px]"
+                >
+                  <span className="text-base">{item.icon}</span>
+                  <span className="text-[#cbd5e1] font-light">{item.name}</span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="pt-3 mt-3 border-t border-[#1f2937] flex items-center justify-between text-[10px] text-[#64748b] font-mono">
-            <span>0%</span>
-            <span>25%</span>
-            <span>50%</span>
-            <span>75%</span>
-            <span>100%</span>
+          <div className="pt-3 mt-3 border-t border-[#1f2937] text-[10.5px] text-[#94a3b8] font-light italic">
+            *Recurring pain points identified across respondent cohort
           </div>
         </div>
 
@@ -238,7 +237,7 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
                     <span className={`w-3 h-3 rounded-full ${item.color} shrink-0`} />
                     <span className="text-[#cbd5e1]">{item.name}</span>
                   </div>
-                  <span className={`font-mono font-bold ${item.text}`}>{item.pct}%</span>
+                  <span className="text-[11px] text-[#64748b] font-mono">Reported channel</span>
                 </div>
               ))}
             </div>
@@ -266,9 +265,6 @@ export function SurveyInfoAnalysisDoc({ onExpand, compact = false }: SurveyInfoA
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
                     <Icon className={`w-4 h-4 ${item.color}`} />
                   </div>
-                  <span className={`text-[20px] font-bold ${item.color} font-mono leading-none`}>
-                    {item.pct}
-                  </span>
                 </div>
                 <p className="text-[11.5px] text-[#e2e8f0] font-medium leading-snug">
                   {item.label}

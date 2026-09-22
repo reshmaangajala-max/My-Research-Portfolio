@@ -20,7 +20,7 @@ export function RenewInterviewGuideDoc({ onExpand, compact = false }: RenewInter
   const keyQuestions = [
     {
       q: 'What bills, renewals, or deadlines have you missed in the past year?',
-      insight: '8/10 missed motor insurance, PUC renewal, or forgotten quarterly utility bills.',
+      insight: '[TODO_VERIFY]/7 missed motor insurance, PUC renewal, or forgotten quarterly utility bills.',
     },
     {
       q: 'How do you currently keep track of recurring obligations?',
@@ -28,7 +28,7 @@ export function RenewInterviewGuideDoc({ onExpand, compact = false }: RenewInter
     },
     {
       q: 'Would you let an AI scan your emails or documents to detect upcoming deadlines?',
-      insight: '7/10 open to automated scanning, provided no banking passwords/OTPs are touched.',
+      insight: '[TODO_VERIFY]/7 open to automated scanning, provided no banking passwords/OTPs are touched.',
     },
     {
       q: 'What would make you trust or distrust an app with your personal documents?',
@@ -60,7 +60,7 @@ export function RenewInterviewGuideDoc({ onExpand, compact = false }: RenewInter
           <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider bg-[#312e81]/60 text-[#a5b4fc] border border-[#4338ca]/40">
             INTERNAL TEAM RESEARCH
           </span>
-          <span className="text-[11px] text-[#64748b] font-mono">10 INTERVIEWS @ HANYAA AUTO</span>
+          <span className="text-[11px] text-[#64748b] font-mono">7 TEAM CONVERSATIONS @ HANYAA AUTO</span>
         </div>
         <span className="text-[11px] text-[#94a3b8] font-mono">CONFIDENTIAL</span>
       </div>
@@ -69,7 +69,7 @@ export function RenewInterviewGuideDoc({ onExpand, compact = false }: RenewInter
         Team Discovery & Life Admin Friction Log
       </h4>
       <p className="text-[12px] text-[#94a3b8] font-light leading-relaxed mb-4">
-        Synthesized insights from 10 working professionals (ages 22–35) across engineering, design, and operations.
+        Synthesized insights from 7 working professionals (ages 22–35) across engineering, design, and operations.
       </p>
 
       {/* Questions list */}
@@ -91,9 +91,10 @@ export function RenewInterviewGuideDoc({ onExpand, compact = false }: RenewInter
       <div className="pt-3 border-t border-[#1e293b] flex items-center justify-between text-[11px] text-[#94a3b8]">
         <div className="flex items-center gap-1.5">
           <Users className="w-3.5 h-3.5 text-[#34d399]" />
-          <span>100% experienced missed deadlines in last 12 months</span>
+          {/* TODO: Deleted unconfirmed claim "100% experienced missed deadlines in last 12 months" */}
+          <span>Reported recurring missed deadlines across discovery conversations</span>
         </div>
-        <span className="text-[#818cf8] font-medium">Click to read full transcript →</span>
+        <span className="text-[#818cf8] font-medium">Click to read full notes →</span>
       </div>
     </div>
   );

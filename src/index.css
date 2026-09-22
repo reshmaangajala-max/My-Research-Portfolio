@@ -86,3 +86,97 @@ h1, h2, h3, h4, h5, h6 {
 .font-handwriting {
   font-family: 'Caveat', 'Dancing Script', cursive;
 }
+
+.font-archivo {
+  font-family: 'Archivo Black', sans-serif;
+}
+
+.font-dm-serif {
+  font-family: 'DM Serif Display', serif;
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.font-fraunces {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+.font-caveat {
+  font-family: 'Caveat', cursive;
+}
+
+.font-special-elite {
+  font-family: 'Special Elite', monospace;
+}
+
+.font-typewriter {
+  font-family: 'Special Elite', monospace;
+}
+
+.font-jakarta {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+@keyframes pin-wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+.animate-pin-wobble {
+  animation: pin-wobble 0.3s ease-in-out;
+}
+
+.group:hover .animate-pin-wobble {
+  animation: pin-wobble 0.3s ease-in-out;
+}
+
+@keyframes curly-arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.animate-arrow-bounce {
+  animation: curly-arrow-bounce 1.6s ease-in-out infinite;
+}
+
+/* Nav Link Underline Draw-in (200ms) */
+.nav-link-draw {
+  position: relative;
+  display: inline-block;
+  color: #F6F1EA;
+  transition: color 200ms ease;
+}
+
+.nav-link-draw::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1.5px;
+  background-color: #DDD0F3;
+  transition: width 200ms ease-out;
+  border-radius: 9999px;
+}
+
+.nav-link-draw:hover {
+  color: #DDD0F3;
+}
+
+.nav-link-draw:hover::after {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .animate-pin-wobble,
+  .animate-pin-wobble,
+  .animate-arrow-bounce {
+    animation: none !important;
+  }
+  .nav-link-draw::after {
+    transition: none !important;
+  }
+}

@@ -36,25 +36,29 @@ export interface RenewArtifactDocInfo {
   securityLevel: 'Confidential' | 'Internal Research' | 'Peer Review' | 'Public Brief';
 }
 
+// TODO: Deleted manufactured percentages from survey artifact summary:
+// - 83% forget crucial renewals
+// - 71% lack a dedicated system
+// - 91% demand automated detection
 export const RENEW_ARTIFACT_DOCS: RenewArtifactDocInfo[] = [
   {
     id: 'renew-interview-guide',
-    title: 'User interview question guide & findings',
+    title: 'Team discovery conversation guide & findings',
     category: 'Primary Research',
-    type: 'Interview Synthesis & Quotes',
-    summary: 'Discovery transcripts from 10 working professionals at Hanyaa Auto Technologies exploring life admin friction points and deadline misses.',
+    type: 'Discovery Synthesis & Quotes',
+    summary: 'Discovery transcripts from 7 working professionals at Hanyaa Auto Technologies exploring life admin friction points and deadline misses.',
     date: 'May 2026',
-    pagesOrSize: '10 Transcripts · 12 Pages',
+    pagesOrSize: '7 Conversations · 12 Pages',
     securityLevel: 'Confidential',
   },
   {
     id: 'renew-survey-analysis',
     title: 'Survey information & response analysis',
     category: 'Primary Research',
-    type: 'Quantitative Dataset (107 Respondents)',
-    summary: 'Comprehensive quantitative analysis verifying that 83% forget crucial renewals, 71% lack a dedicated system, and 91% demand automated detection.',
+    type: 'Quantitative Dataset (15 Respondents)',
+    summary: 'Structured quantitative analysis across 15 respondents verifying recurring missed deadlines, absence of dedicated systems, and high interest in automated detection.',
     date: 'May 2026',
-    pagesOrSize: '107 Respondents · 8 Analytics Charts',
+    pagesOrSize: '15 Respondents · 8 Analytics Modules',
     securityLevel: 'Internal Research',
   },
   {
@@ -412,7 +416,7 @@ export function RenewResearchArtifactModal({
                       {/* Extended Verbatim Quotes & Thematic Analysis */}
                       <div className="rounded-[14px] bg-[#111827]/80 border border-[#1f2937] p-5 sm:p-6 text-[13px]">
                         <span className="font-mono text-[10px] uppercase tracking-wider text-[#818cf8] block mb-3 font-semibold">
-                          VERBATIM USER DISCOVERY TRANSCRIPTS (EXTRACTS)
+                          VERBATIM TEAM DISCOVERY TRANSCRIPTS (EXTRACTS)
                         </span>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -428,7 +432,7 @@ export function RenewResearchArtifactModal({
 
                           <div className="p-4 rounded-[10px] bg-[#1e293b]/40 border border-[#334155]/40 space-y-2">
                             <div className="flex items-center justify-between text-[11px] text-[#94a3b8]">
-                              <span className="font-bold text-white">Participant #05 (UI Designer, 24)</span>
+                              <span className="font-bold text-white">Participant #04 (UI Designer, 24)</span>
                               <span>SaaS Subscriptions</span>
                             </div>
                             <p className="text-[#cbd5e1] font-light leading-relaxed italic">
@@ -438,7 +442,7 @@ export function RenewResearchArtifactModal({
 
                           <div className="p-4 rounded-[10px] bg-[#1e293b]/40 border border-[#334155]/40 space-y-2">
                             <div className="flex items-center justify-between text-[11px] text-[#94a3b8]">
-                              <span className="font-bold text-white">Participant #08 (Operations Lead, 31)</span>
+                              <span className="font-bold text-white">Participant #06 (Operations Lead, 31)</span>
                               <span>Utility Bills & Municipal Taxes</span>
                             </div>
                             <p className="text-[#cbd5e1] font-light leading-relaxed italic">
@@ -448,11 +452,11 @@ export function RenewResearchArtifactModal({
 
                           <div className="p-4 rounded-[10px] bg-[#1e293b]/40 border border-[#334155]/40 space-y-2">
                             <div className="flex items-center justify-between text-[11px] text-[#94a3b8]">
-                              <span className="font-bold text-white">Participant #10 (Product Manager, 34)</span>
+                              <span className="font-bold text-white">Participant #07 (Product Manager, 34)</span>
                               <span>Data Privacy & Trust</span>
                             </div>
                             <p className="text-[#cbd5e1] font-light leading-relaxed italic">
-                              &ldquo;I will never give my net banking password to a 3rd party app. But if the app parses my PDF policy or screenshot locally on my phone without uploading my salary or bank statements to a random server, I am 100% in.&rdquo;
+                              &ldquo;I will never give my net banking password to a 3rd party app. But if the app parses my PDF policy or screenshot locally on my phone without uploading my salary or bank statements to a random server, I am completely on board.&rdquo;
                             </p>
                           </div>
                         </div>

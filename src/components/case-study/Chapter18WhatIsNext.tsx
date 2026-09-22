@@ -45,7 +45,7 @@ export function Chapter18WhatIsNext({ onBackToPortfolio }: Chapter18Props) {
           {/* Chapter Eyebrow */}
           <div className="flex items-center gap-2 mb-3">
             <span className="font-mono text-[12px] font-semibold text-[var(--accent)] px-2 py-0.5 rounded bg-[var(--accent)]/10 border border-[var(--accent)]/20">
-              14
+              13
             </span>
             <span className="font-accent text-[11px] uppercase tracking-[3px] text-[var(--text-secondary)] font-medium">
               WHAT IS NEXT
@@ -58,7 +58,7 @@ export function Chapter18WhatIsNext({ onBackToPortfolio }: Chapter18Props) {
           </h2>
 
           <p className="font-light text-[16px] sm:text-[17px] text-[var(--text-secondary)] leading-[1.8] max-w-[840px] mb-12">
-            Reyo started from a personal frustration with cluttered bookmarks and grew into a working product backed by 10 in-depth interviews, 30+ survey respondents, and a full-stack AI pipeline. The first working version isn’t the end — it’s the foundation for the next iteration.
+            Reyo started from a personal frustration with cluttered bookmarks and grew into a working product backed by a 25-designer survey, competitive testing of 12 tools, and a full-stack AI pipeline. The first working version isn’t the end — it’s the foundation for the next iteration.
           </p>
 
           {/* 3 Next Steps Cards */}

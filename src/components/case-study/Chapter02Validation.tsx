@@ -14,77 +14,70 @@ const wantedToKnow = [
   'What tools do they use now?',
 ];
 
-const repeatedFindings = [
+// Real data from 25-response survey
+const surveyStats = [
   {
-    target: 85,
+    target: 84,
     suffix: '%',
-    title: 'Save weekly or more',
-    desc: 'Designers constantly bookmark tutorials, design breakdowns, and talks.',
+    title: 'Fail at retrieval weekly',
+    desc: 'Fail to find something they know they saved, at least once a week.',
     isAccent: true,
-  },
-  {
-    target: 72,
-    suffix: '%',
-    title: 'Fail at retrieval',
-    desc: 'Tried and failed to locate a previously saved video on a tight deadline.',
-    isAccent: false,
-  },
-  {
-    target: 68,
-    suffix: '%',
-    title: 'Re-Google & re-watch',
-    desc: 'Give up on bookmarks entirely and re-learn the technique from scratch.',
-    isAccent: false,
   },
   {
     target: 44,
     suffix: '%',
-    title: 'Use 3+ save tools',
-    desc: 'Juggling saves across YouTube playlists, Notion, browser bookmarks, and Slack.',
+    title: 'High management frustration',
+    desc: 'Rate managing saved content 4 or 5 out of 5 for frustration.',
+    isAccent: true,
+  },
+  {
+    target: 40,
+    suffix: '%',
+    title: 'Give up & re-search',
+    desc: 'Either fail to find it, or give up and search Google again.',
+    isAccent: false,
+  },
+  {
+    target: 88,
+    suffix: '%',
+    title: 'Save for future inspiration',
+    desc: 'Save content as inspiration for future design projects.',
+    isAccent: false,
+  },
+  {
+    target: 36,
+    suffix: '%',
+    title: 'Need it mid-design',
+    desc: 'Need saved content mid-design, in the moment of execution.',
+    isAccent: false,
+  },
+  {
+    target: 16,
+    suffix: '%',
+    title: 'Find what they saved quickly',
+    desc: 'Only 16% report being able to find what they saved quickly.',
     isAccent: false,
   },
 ];
 
-const researchInsights = [
+const surveyQuotes = [
   {
-    number: '01',
-    category: 'RETRIEVAL VS STORAGE',
-    research: '85% save weekly, but 72% fail to retrieve when needed.',
-    quote: '“I save obsessively, organize nothing, and search when I need. But search can’t find that 30-second Figma trick.” — P4',
-    insight: 'Saving is solved; retrieval is broken. Designers don’t need another storage box.',
-    decision: 'Position Reyo as an instant recall engine, measuring success by retrieval speed (<5 seconds).',
-    icon: Search,
-    color: 'text-indigo-400 border-indigo-500/30 bg-indigo-950/15',
+    quote:
+      '“When I’m in a situation when I need to reference something that I saved, I actually forget that I even had something saved for that situation.”',
+    author: 'Survey respondent',
+    takeaway: 'In-flow recall failure: saving happens, but connection to the active task is lost.',
   },
   {
-    number: '02',
-    category: 'ZERO MANUAL OVERHEAD',
-    research: 'Designers abandon tools that require manual tagging, folders, or note-taking.',
-    quote: '“I treat my bookmark folder like a graveyard. I know I will never scroll back to organize it.” — P7',
-    insight: 'Any required manual taxonomy triggers immediate abandonment.',
-    decision: 'Build an automated 4-tier LLM classifier (Topic → Objective → Concept → Skill). Zero manual tagging required.',
-    icon: Layers,
-    color: 'text-cyan-400 border-cyan-500/30 bg-cyan-950/15',
+    quote:
+      '“Something like apple or raycast search bar whenever i want to search i can search based on the tags i save.”',
+    author: 'Survey respondent',
+    takeaway: 'Keyboard-first, spotlight-style retrieval is the natural mental model for fast lookup.',
   },
   {
-    number: '03',
-    category: 'TIMESTAMP-LEVEL GRANULARITY',
-    research: 'Tutorials average 20–45 mins, but the needed tip is only 15–30 seconds.',
-    quote: '“I can’t scrub through a 40-minute video when I’m stuck. It’s faster to just re-Google it.” — P2',
-    insight: 'Video knowledge value is trapped in specific micro-moments.',
-    decision: 'Segment video transcripts into ~45-second semantic chunks with 1-click timestamp jumps.',
-    icon: Play,
-    color: 'text-amber-400 border-amber-500/30 bg-amber-950/15',
-  },
-  {
-    number: '04',
-    category: 'IN-FLOW ACCESSIBILITY',
-    research: 'Switching away from Figma or the canvas to a separate app causes context loss.',
-    quote: '“If I have to open a heavy browser tab, I lose my train of thought.” — P9',
-    insight: 'Recall must happen inside the designer’s active workspace.',
-    decision: 'Create an in-flow Spotlight HUD triggered via global shortcut (Alt+Shift+R).',
-    icon: Zap,
-    color: 'text-emerald-400 border-emerald-500/30 bg-emerald-950/15',
+    quote:
+      '“If there were a category-based search option, it would be easier to find saved items. Sometimes I remember the designer’s name but not the topic.”',
+    author: 'Survey respondent',
+    takeaway: 'Recall is fuzzy — designers remember fragments (creator, tool, or general technique), not video titles.',
   },
 ];
 
@@ -118,7 +111,7 @@ export function Chapter02Validation({ onOpenArtifact }: Chapter02Props) {
 
           {/* Intro Paragraph */}
           <p className="font-light text-[16px] sm:text-[17px] text-[var(--text-secondary)] leading-[1.8] max-w-[840px] mb-10">
-            Before designing anything, I needed to know whether this was just my problem. Over three weeks I ran 10 in-depth interviews with working UI/UX designers, a 30+ respondent survey, and hands-on testing of 12 competitor tools — looking for hard numbers and honest stories, not polite validation.
+            Before designing anything, I needed to know whether this was just my problem. I ran a survey of 25 designers and hands-on testing of 12 competitor tools — looking for hard numbers and honest stories, not polite validation.
           </p>
 
           {/* Compact Horizontal Strip: WHAT I WANTED TO KNOW */}
@@ -143,76 +136,18 @@ export function Chapter02Validation({ onOpenArtifact }: Chapter02Props) {
             </div>
           </div>
 
-          {/* 4 Core RESEARCH -> INSIGHT -> DECISION Cards */}
-          <div className="space-y-6 mb-12">
-            <span className="font-accent text-[11px] uppercase tracking-[2px] text-[var(--accent)] font-semibold block mb-2">
-              4 CORE RESEARCH-TO-DECISION SHIFTS
-            </span>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {researchInsights.map((card) => {
-                return (
-                  <div
-                    key={card.number}
-                    className={`p-6 rounded-[16px] border ${card.color.split(' ')[1]} bg-[var(--surface)] flex flex-col justify-between shadow-sm`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="font-mono text-[11px] font-bold text-[var(--accent)]">
-                          INSIGHT {card.number}
-                        </span>
-                        <span className="font-accent text-[10px] uppercase tracking-wider text-[var(--text-secondary)]">
-                          {card.category}
-                        </span>
-                      </div>
-
-                      {/* Research finding & quote */}
-                      <div className="p-3 rounded-[10px] bg-[var(--bg)] border border-[var(--border)] mb-3.5">
-                        <div className="text-[11px] font-accent uppercase text-[var(--text-secondary)] mb-1">
-                          Research Evidence:
-                        </div>
-                        <p className="text-[13px] text-[var(--text-primary)] font-light leading-snug mb-2">
-                          {card.research}
-                        </p>
-                        <p className="text-[12px] text-[var(--text-secondary)] italic">
-                          {card.quote}
-                        </p>
-                      </div>
-
-                      {/* Insight */}
-                      <div className="mb-3.5">
-                        <div className="text-[11px] font-accent uppercase text-amber-400 font-semibold mb-1">
-                          Key Insight:
-                        </div>
-                        <p className="text-[13.5px] text-[var(--text-primary)] font-medium leading-snug">
-                          {card.insight}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Decision */}
-                    <div className="pt-3 border-t border-[var(--border)]">
-                      <div className="text-[11px] font-accent uppercase text-[var(--accent)] font-semibold mb-1 flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        <span>Product Decision:</span>
-                      </div>
-                      <p className="text-[13px] text-[var(--text-secondary)] font-light leading-relaxed">
-                        {card.decision}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Survey Metric Counters (The Numbers) */}
+          {/* Survey of 25 designers - Metric Counters */}
           <div className="mb-12">
-            <span className="font-accent text-[11px] uppercase tracking-[2px] text-[var(--accent)] font-semibold block mb-3">
-              BY THE NUMBERS (SURVEY OF 30+ DESIGNERS)
-            </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {repeatedFindings.map((item, idx) => (
+            <div className="flex items-center justify-between mb-4">
+              <span className="font-accent text-[12px] uppercase tracking-[2px] text-[var(--accent)] font-semibold">
+                Survey of 25 designers
+              </span>
+              <span className="text-[12px] text-[var(--text-secondary)] font-mono">
+                25 Verified Responses
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {surveyStats.map((item, idx) => (
                 <div
                   key={idx}
                   className="p-5 rounded-[14px] bg-[var(--surface)] border border-[var(--border)] flex flex-col justify-between shadow-sm hover:border-[var(--accent)]/40 transition-colors"
@@ -225,11 +160,41 @@ export function Chapter02Validation({ onOpenArtifact }: Chapter02Props) {
                         isAccent={item.isAccent}
                       />
                     </div>
-                    <h4 className="font-semibold text-[14px] text-[var(--text-primary)] mb-1">
+                    <h4 className="font-semibold text-[14px] text-[var(--text-primary)] mb-1.5">
                       {item.title}
                     </h4>
-                    <p className="text-[12px] text-[var(--text-secondary)] font-light leading-relaxed">
+                    <p className="text-[12.5px] text-[var(--text-secondary)] font-light leading-relaxed">
                       {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Verbatim Quotes from Survey Respondents */}
+          <div className="mb-12">
+            <span className="font-accent text-[11px] uppercase tracking-[2px] text-[var(--accent)] font-semibold block mb-3">
+              WHAT DESIGNERS SAID (VERBATIM OPEN-ENDED RESPONSES)
+            </span>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {surveyQuotes.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 rounded-[14px] bg-[var(--surface)] border border-[var(--border)] flex flex-col justify-between shadow-sm"
+                >
+                  <div>
+                    <p className="text-[13.5px] text-[var(--text-primary)] font-light leading-relaxed mb-4 italic">
+                      {item.quote}
+                    </p>
+                  </div>
+                  <div className="pt-3 border-t border-[var(--border)]">
+                    <div className="text-[11px] font-mono text-[var(--accent)] font-semibold mb-1">
+                      — {item.author}
+                    </div>
+                    <p className="text-[11.5px] text-[var(--text-secondary)] font-light leading-tight">
+                      {item.takeaway}
                     </p>
                   </div>
                 </div>
@@ -258,11 +223,11 @@ export function Chapter02Validation({ onOpenArtifact }: Chapter02Props) {
 
             <div className="flex items-center gap-3 self-start md:self-auto">
               <button
-                onClick={() => onOpenArtifact('interview-analysis')}
+                onClick={() => onOpenArtifact('survey-responses')}
                 className="px-3.5 py-2 rounded-full bg-[var(--surface)] hover:bg-[var(--border)] border border-[var(--border)] text-[12px] text-[var(--accent)] font-medium transition-colors flex items-center gap-1.5 cursor-pointer"
               >
                 <Eye className="w-3.5 h-3.5" />
-                <span>Interviews Doc</span>
+                <span>Survey Dataset</span>
               </button>
               <button
                 onClick={() => onOpenArtifact('scalehouse-feedback')}

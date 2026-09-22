@@ -1,0 +1,34 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250' width='400' height='250'>
+  <rect width='100%' height='100%' fill='#252830'/>
+  <defs>
+    <pattern id='grid' width='20' height='20' patternUnits='userSpaceOnUse'>
+      <path d='M 20 0 L 0 0 0 20' fill='none' stroke='#333745' stroke-width='0.75'/>
+    </pattern>
+  </defs>
+  <rect width='100%' height='100%' fill='url(#grid)'/>
+  <!-- EV Scooter Blueprint Sketch -->
+  <g stroke='#9570C6' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'>
+    <!-- Wheels -->
+    <circle cx='100' cy='180' r='32' stroke='#C9B6F2' stroke-width='2.5'/>
+    <circle cx='100' cy='180' r='14' stroke='#C9B6F2' stroke-dasharray='3,3'/>
+    <circle cx='300' cy='180' r='32' stroke='#C9B6F2' stroke-width='2.5'/>
+    <circle cx='300' cy='180' r='14' stroke='#C9B6F2' stroke-dasharray='3,3'/>
+    <!-- Chassis / Body Frame -->
+    <path d='M100 180 L160 180 L230 150 L280 150 L300 180' stroke='#E2D9F3' stroke-width='2.5'/>
+    <path d='M160 180 L180 130 L230 130 L230 150'/>
+    <path d='M275 150 L260 85 L245 75 M260 85 L285 78' stroke='#A78BFA' stroke-width='2.5'/>
+    <!-- Battery Pack module -->
+    <rect x='170' y='145' width='50' height='26' rx='4' fill='#3B2D54' stroke='#C9B6F2' stroke-width='1.5'/>
+    <text x='195' y='162' fill='#E2D9F3' font-family='sans-serif' font-size='9' text-anchor='middle' font-weight='bold'>48V Li-Ion</text>
+    <!-- Ergonomic Seat -->
+    <path d='M175 125 C 200 120, 235 125, 245 130 L240 135 L175 132 Z' fill='#9570C6' stroke='none'/>
+    <!-- Dimension annotations -->
+    <path d='M90 60 L140 60' stroke='#8E8CA0' stroke-width='1' stroke-dasharray='2,2'/>
+    <text x='115' y='52' fill='#A5A3B8' font-family='sans-serif' font-size='8' text-anchor='middle'>RIDER ERGONOMICS</text>
+    <!-- Telemetry node -->
+    <circle cx='260' cy='85' r='4' fill='#34D399'/>
+    <text x='270' y='70' fill='#34D399' font-family='sans-serif' font-size='8'>SOS HUD</text>
+  </g>
+  <text x='20' y='30' fill='#EEE9DF' font-family='sans-serif' font-size='12' font-weight='bold'>NEXT-GEN EV MOBILITY RESEARCH</text>
+  <text x='20' y='46' fill='#94A3B8' font-family='sans-serif' font-size='9'>Qualitative study on young commuter ergonomics & range anxiety</text>
+</svg>

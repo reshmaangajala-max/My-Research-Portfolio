@@ -21,10 +21,9 @@ export const REYO_CHAPTERS: ChapterNavSection[] = [
   { id: 'ch-08-experience', number: '08', title: 'How Should the Experience Work?', shortLabel: 'Experience' },
   { id: 'ch-09-architecture', number: '09', title: 'How Should Information Be Organized?', shortLabel: 'Architecture' },
   { id: 'ch-10-feel', number: '10', title: 'What Should Reyo Feel Like?', shortLabel: 'Design System' },
-  { id: 'ch-11-testing', number: '11', title: "I put the prototype in front of 5 designers. Here's what broke, and what I changed", shortLabel: 'Testing' },
-  { id: 'ch-12-building', number: '12', title: 'Building the Real Product', shortLabel: 'Build' },
-  { id: 'ch-13-product-testing', number: '13', title: 'Testing the Working Product', shortLabel: 'Live Tests' },
-  { id: 'ch-14-next', number: '14', title: 'What Is Next', shortLabel: 'Next' },
+  { id: 'ch-12-building', number: '11', title: 'Building the Real Product', shortLabel: 'Build' },
+  { id: 'ch-13-product-testing', number: '12', title: 'Testing the Working Product', shortLabel: 'Live Tests' },
+  { id: 'ch-14-next', number: '13', title: 'What Is Next', shortLabel: 'Next' },
 ];
 
 interface CaseStudyStickyNavProps {

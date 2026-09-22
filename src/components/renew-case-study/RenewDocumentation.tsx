@@ -38,7 +38,7 @@ export function RenewDocumentation() {
                 Research Artifacts Produced
               </h2>
               <p className="font-light text-[15px] sm:text-[16px] text-[var(--text-secondary)] leading-[1.75] max-w-[720px]">
-                A structured repository of primary research synthesis, survey datasets (107 respondents), competitive landscape matrices, low-fi wireframes, and technical specifications produced during the project.
+                A structured repository of primary research synthesis, survey datasets (15 respondents), competitive landscape matrices, low-fi wireframes, and technical specifications produced during the project.
               </p>
             </div>
 

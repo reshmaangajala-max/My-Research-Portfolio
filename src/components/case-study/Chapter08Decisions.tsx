@@ -92,9 +92,19 @@ export function Chapter08Decisions() {
             Four key decisions that shaped Reyo.
           </h2>
 
-          <p className="font-light text-[16px] sm:text-[17px] text-[var(--text-secondary)] leading-[1.8] max-w-[840px] mb-10">
+          <p className="font-light text-[16px] sm:text-[17px] text-[var(--text-secondary)] leading-[1.8] max-w-[840px] mb-8">
             For every major architectural fork in the road, I evaluated the trade-offs against a single principle: <em>Does this eliminate the friction between getting stuck in Figma and seeing the 10-second answer?</em>
           </p>
+
+          {/* Scoping to YouTube First callout */}
+          <div className="p-6 rounded-[14px] bg-[var(--bg)] border border-[var(--border)] mb-10 max-w-[840px]">
+            <span className="font-accent text-[11px] uppercase tracking-[2px] text-[var(--accent)] font-semibold block mb-2">
+              WHY SCOPE TO YOUTUBE FIRST (DESPITE SURVEY DATA)?
+            </span>
+            <p className="text-[14px] sm:text-[14.5px] text-[var(--text-secondary)] font-light leading-relaxed">
+              My survey showed designers save most to Instagram (72%) and Pinterest (72%), with YouTube fourth at 60%. But video is where retrieval is hardest — scrubbing a 40-minute tutorial for a 30-second Figma trick is genuinely painful in a way that looking at a saved image is not. YouTube had open caption tracks, rich spoken content, and the highest density of actionable design technique. I scoped to YouTube not because it was the most-saved platform, but because the retrieval failure was most severe there, and because solving video creates the hardest technical foundation first.
+            </p>
+          </div>
 
           {/* 4 Deep Decision Cards: Problem -> Considered -> Chose -> Why */}
           <div className="space-y-6 mb-12">

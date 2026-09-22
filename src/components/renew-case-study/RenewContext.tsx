@@ -6,7 +6,7 @@ const projectDetails = [
   { label: 'Duration', value: '~3 months (Jan–Mar 2025)' },
   {
     label: 'Methods',
-    value: 'User Interviews, External Survey, Competitive Analysis, SWOT, Product Principles Definition',
+    value: 'Informal Discovery Conversations, External Survey, Competitive Analysis, SWOT, Product Principles Definition',
   },
   {
     label: 'Tools',

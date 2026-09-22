@@ -17,7 +17,6 @@ import {
   Eye
 } from 'lucide-react';
 
-import { InterviewAnalysisDoc } from './InterviewAnalysisDoc';
 import { ScaleHouseFeedbackDoc } from './ScaleHouseFeedbackDoc';
 import { CompetitiveMatrixDoc } from './CompetitiveMatrixDoc';
 import { ClassificationPipelineDoc } from './ClassificationPipelineDoc';
@@ -35,23 +34,13 @@ export interface ArtifactDocInfo {
 
 export const ARTIFACT_DOCS: ArtifactDocInfo[] = [
   {
-    id: 'interview-notes',
-    title: 'Interview notes & question guide',
-    category: 'Primary Research',
-    type: 'Interview Synthesis & Quotes',
-    summary: 'Detailed synthesis of 10 designer interviews covering save habits, recall failure modes, and platform fragmentation.',
-    date: 'March 2026',
-    pagesOrSize: '10 Transcripts · 18 Pages',
-    securityLevel: 'Confidential',
-  },
-  {
     id: 'survey-responses',
     title: 'Survey form & raw responses',
     category: 'Primary Research',
     type: 'Quantitative Dataset',
-    summary: 'Raw and aggregated data from 30+ verified UI/UX and product designers validating retrieval failure at scale.',
+    summary: 'Raw and aggregated data from 25 verified UI/UX and product designers validating retrieval failure at scale.',
     date: 'April 2026',
-    pagesOrSize: '30+ Responses · 6 Visual Charts',
+    pagesOrSize: '25 Responses · 6 Visual Charts',
     securityLevel: 'Internal Research',
   },
   {
@@ -380,12 +369,6 @@ export function ResearchArtifactModal({
                 </div>
 
                 {/* Render appropriate high-fidelity visual preview */}
-                {activeDocId === 'interview-notes' && (
-                  <div>
-                    <InterviewAnalysisDoc compact={false} />
-                  </div>
-                )}
-
                 {activeDocId === 'scalehouse-feedback' && (
                   <div>
                     <ScaleHouseFeedbackDoc compact={false} />
@@ -409,25 +392,31 @@ export function ResearchArtifactModal({
                   <div className="p-6 rounded-[14px] bg-[#0c1017] border border-[#1e293b] text-[#e2e8f0]">
                     <h3 className="font-bold text-[16px] text-white mb-2">Designer Survey Form & Empirical Findings</h3>
                     <p className="text-[13px] text-[#94a3b8] mb-4">
-                      Circulated across 30+ product, brand, and UI/UX designers validating quantitative retrieval frequency and tool usage.
+                      Circulated across 25 verified product, brand, and UI/UX designers validating quantitative retrieval frequency and tool usage.
                     </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[12px]">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[12px] mb-6">
                       <div className="p-3 rounded bg-[#131b2c] border border-[#1e293b]">
-                        <span className="text-[#818cf8] font-bold text-[18px] block mb-1">85%</span>
-                        <span>Save learning videos or tutorials at least weekly.</span>
+                        <span className="text-[#818cf8] font-bold text-[18px] block mb-1">92%</span>
+                        <span>Save design content to refer back to later.</span>
                       </div>
                       <div className="p-3 rounded bg-[#131b2c] border border-[#1e293b]">
-                        <span className="text-[#c084fc] font-bold text-[18px] block mb-1">72%</span>
-                        <span>Fail to find previously saved resources when active in a design problem.</span>
+                        <span className="text-[#c084fc] font-bold text-[18px] block mb-1">68%</span>
+                        <span>Rarely or never go back to what they saved (only 4% always do).</span>
                       </div>
                       <div className="p-3 rounded bg-[#131b2c] border border-[#1e293b]">
-                        <span className="text-[#38bdf8] font-bold text-[18px] block mb-1">68%</span>
-                        <span>Give up and re-search YouTube or Google from scratch.</span>
+                        <span className="text-[#38bdf8] font-bold text-[18px] block mb-1">84%</span>
+                        <span>Spend time re-searching for something they know they saved.</span>
                       </div>
                       <div className="p-3 rounded bg-[#131b2c] border border-[#1e293b]">
-                        <span className="text-[#34d399] font-bold text-[18px] block mb-1">90%</span>
-                        <span>Would use a tool that jumps directly to the exact timestamp concept.</span>
+                        <span className="text-[#34d399] font-bold text-[18px] block mb-1">76%</span>
+                        <span>Look across multiple places when trying to find a saved item.</span>
                       </div>
+                    </div>
+                    <div className="p-4 rounded-[10px] bg-[#131b2c] border border-[#1e293b] text-[12px] space-y-2">
+                      <div className="font-semibold text-white">Platform fragmentation (where designers save):</div>
+                      <p className="text-[#94a3b8]">Instagram (72%), Pinterest (72%), YouTube (60%), Bookmarks bar (48%), LinkedIn (44%), Twitter/X (36%), Notion (36%).</p>
+                      <div className="font-semibold text-white pt-2">What designers asked for:</div>
+                      <p className="text-[#94a3b8]">68% search within content, 68% auto-tagging, 56% save in fewer clicks, 40% visual preview of the exact moment.</p>
                     </div>
                   </div>
                 )}
