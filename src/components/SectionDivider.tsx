@@ -1,16 +1,9 @@
-import { motion } from 'motion/react';
+import React from 'react';
 
-export function SectionDivider({ className = '' }: { className?: string }) {
+export function SectionDivider() {
   return (
-    <div className={`w-full max-w-[1200px] mx-auto px-6 overflow-hidden ${className}`}>
-      <motion.div
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        style={{ transformOrigin: 'left' }}
-        className="w-full h-[1px] bg-[var(--accent)] opacity-40"
-      />
+    <div className="w-full max-w-5xl mx-auto px-6 py-8" aria-hidden="true">
+      <div className="w-full h-px bg-current opacity-10" />
     </div>
   );
 }
