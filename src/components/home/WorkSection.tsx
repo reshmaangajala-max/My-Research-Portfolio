@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Heart, Bookmark, Smile, Home, ArrowUpRight, Play, Pause, Maximize2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import figmaOverlayVideo from '../../assets/videos/figma overlay.mp4';
 
 interface ProjectItem {
   id: string;
@@ -12,6 +11,7 @@ interface ProjectItem {
   href: string;
   videoSrc?: string;
   posterSrc?: string;
+  imageSrc?: string;
   fitMode?: 'cover' | 'contain';
 }
 
@@ -32,8 +32,7 @@ const projects: ProjectItem[] = [
     line: 'A save-and-retrieve tool that remembers what you saved — and finds it in 30 seconds, not 40 minutes.',
     statusText: 'Working out the details..',
     href: '#reyo-case-study',
-    videoSrc: figmaOverlayVideo,
-    fitMode: 'cover',
+    imageSrc: '/reyo-figma.png',
   },
   {
     id: 'tara',
@@ -171,7 +170,23 @@ export function WorkSection() {
 
                   {/* Dynamic screen content: Video if available, else decorative dashed placeholder */}
                   <AnimatePresence mode="wait">
-                    {currentProject.videoSrc ? (
+                    {currentProject.imageSrc ? (
+                      <motion.div
+                        key={currentProject.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                        className="w-full h-full flex items-center justify-center bg-[#2B211C]"
+                      >
+                        <img
+                          src={currentProject.imageSrc}
+                          alt={`${currentProject.title} product visual`}
+                          data-testid={`work-image-${currentProject.id}`}
+                          className="block w-full h-full max-w-full object-cover object-center"
+                        />
+                      </motion.div>
+                    ) : currentProject.videoSrc ? (
                       <motion.div
                         key={currentProject.id}
                         initial={{ opacity: 0 }}
@@ -195,13 +210,6 @@ export function WorkSection() {
                           }`}
                         >
                           <source src={currentProject.videoSrc} type="video/mp4" />
-                          {currentProject.id === 'reyo' && (
-                            <>
-                              <source src="/figma-overlay.mp4" type="video/mp4" />
-                              <source src="/assets/videos/figma-overlay.mp4" type="video/mp4" />
-                              <source src="/assets/videos/figma overlay.mp4" type="video/mp4" />
-                            </>
-                          )}
                         </video>
 
                         {/* Bottom-left play / pause control badge */}
