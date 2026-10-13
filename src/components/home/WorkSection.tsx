@@ -12,6 +12,7 @@ interface ProjectItem {
   videoSrc?: string;
   posterSrc?: string;
   imageSrc?: string;
+  device?: 'laptop' | 'phone';
   fitMode?: 'cover' | 'contain';
 }
 
@@ -41,11 +42,40 @@ const projects: ProjectItem[] = [
     line: "A proactive reminder assistant that catches the things you'd forget — before they become a problem.",
     statusText: 'Working out the details..',
     href: '#tara-case-study',
-    videoSrc: '/tara-prototype.mp4',
-    posterSrc: '/tara-poster.png',
-    fitMode: 'contain',
+    imageSrc: '/tara-home-horizon.png',
+    device: 'phone',
   },
 ];
+
+function PhoneMockup({ project }: { project: ProjectItem }) {
+  return (
+    <motion.a
+      key={project.id}
+      href={project.href}
+      aria-label={`Open ${project.title} case study`}
+      data-testid={`phone-mockup-${project.id}`}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+      className="group/phone relative isolate mx-auto block w-[min(100%,240px)] md:w-[calc((min(78vh,720px)_-_20px)_*_0.459_+_20px)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9570C6] rounded-[36px] md:rounded-[46px]"
+    >
+      <div className="absolute -inset-8 md:-inset-14 -z-10 rounded-full bg-[#9570C6]/25 blur-3xl pointer-events-none" aria-hidden="true" />
+      <span className="absolute -right-[3px] top-[18%] h-[9%] w-[3px] rounded-r-sm bg-[#2A2A2E]" aria-hidden="true" />
+      <span className="absolute -right-[3px] top-[31%] h-[14%] w-[3px] rounded-r-sm bg-[#2A2A2E]" aria-hidden="true" />
+      <div className="relative rounded-[36px] md:rounded-[46px] p-[8px] md:p-[10px] bg-[linear-gradient(150deg,#3A3A40_0%,#17171A_35%,#0C0C0E_100%)] border border-white/10 shadow-[0_40px_80px_-24px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(255,255,255,0.12)] transition-transform duration-300 group-hover/phone:-translate-y-1">
+        <div className="relative w-full aspect-[268/584] overflow-hidden rounded-[28px] md:rounded-[36px] bg-black">
+          <img
+            src={project.imageSrc}
+            alt={`${project.title} home screen`}
+            data-testid={`work-image-${project.id}`}
+            className="absolute inset-0 block w-full h-full object-cover"
+          />
+          <span className="absolute top-[1.6%] left-1/2 -translate-x-1/2 w-[9px] h-[9px] md:w-[11px] md:h-[11px] rounded-full bg-black ring-1 ring-white/10" aria-hidden="true" />
+        </div>
+      </div>
+    </motion.a>
+  );
+}
 
 export function WorkSection() {
   // Starts with Reyo in between (index 1)
@@ -136,6 +166,9 @@ export function WorkSection() {
 
           {/* CENTER: MACBOOK MOCKUP */}
           <div className="w-full max-w-[820px] relative">
+            {currentProject.device === 'phone' ? (
+              <PhoneMockup project={currentProject} />
+            ) : (
             <a
               href={currentProject.href}
               className="group/laptop block w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9570C6] rounded-[24px]"
@@ -291,6 +324,7 @@ export function WorkSection() {
                 />
               </div>
             </a>
+            )}
           </div>
 
           {/* RIGHT SCROLL INDICATION */}
