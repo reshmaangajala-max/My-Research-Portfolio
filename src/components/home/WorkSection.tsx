@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, ArrowRight, Heart, Bookmark, Smile, Home, ArrowUpRight, Play, Pause, Maximize2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Play, Pause, Maximize2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface ProjectItem {
@@ -16,16 +16,8 @@ interface ProjectItem {
   fitMode?: 'cover' | 'contain';
 }
 
-// Order: Left = EV Project (index 0), In Between = Reyo (index 1, active by default), Right = Tara (index 2)
+// Order: Reyo (index 0, active by default), Tara (index 1); arrows loop
 const projects: ProjectItem[] = [
-  {
-    id: 'ev-project',
-    title: 'EV Project',
-    badge: 'Research Deep-dive',
-    line: "A research deep-dive into EV adoption — talking to riders, students, and professionals to find out what's really stopping them.",
-    statusText: 'Working out the details..',
-    href: '#ev-project',
-  },
   {
     id: 'reyo',
     title: 'Reyo',
@@ -78,8 +70,7 @@ function PhoneMockup({ project }: { project: ProjectItem }) {
 }
 
 export function WorkSection() {
-  // Starts with Reyo in between (index 1)
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -265,42 +256,7 @@ export function WorkSection() {
                           </span>
                         </div>
                       </motion.div>
-                    ) : (
-                      <motion.div
-                        key={currentProject.id}
-                        initial={{ opacity: 0, scale: 0.96 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.96 }}
-                        transition={{ duration: 0.25, ease: 'easeOut' }}
-                        className="w-full h-full flex flex-col items-center justify-center text-center p-4 sm:p-8 relative z-10"
-                      >
-                        {/* Dashed Rounded Rectangle Box (matching Image 1) */}
-                        <div
-                          className="relative border border-dashed border-[#F6F1EA]/25 bg-black/20 rounded-[12px] sm:rounded-[18px] max-w-[92%] w-[190px] sm:w-[320px] md:w-[390px] h-[105px] sm:h-[180px] md:h-[210px] p-3 sm:p-6 overflow-hidden flex flex-col justify-between shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] transition-all duration-300 group-hover/laptop:border-[#DDD0F3]/40"
-                          style={{
-                            backgroundImage:
-                              'repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 6px)',
-                          }}
-                        >
-                          {/* Top row of outline icons: Heart (left), Bookmark (right) */}
-                          <div className="flex items-center justify-between w-full px-1.5 sm:px-3 pt-0.5 sm:pt-1">
-                            <Heart className="w-4 h-4 sm:w-6 sm:h-6 stroke-[1.4] text-[#F6F1EA]/50 transform -rotate-6 transition-transform group-hover/laptop:scale-110 group-hover/laptop:text-[#DDD0F3]" />
-                            <Bookmark className="w-3.5 h-3.5 sm:w-5 sm:h-5 stroke-[1.4] text-[#F6F1EA]/40 transform rotate-3" />
-                          </div>
-
-                          {/* Bottom row of outline icons: Smiley (left), Home (right) */}
-                          <div className="flex items-end justify-between w-full px-4 sm:px-8 pb-0.5 sm:pb-1">
-                            <Smile className="w-4 h-4 sm:w-6 sm:h-6 stroke-[1.4] text-[#F6F1EA]/50 transform rotate-6 transition-transform group-hover/laptop:scale-110 group-hover/laptop:text-[#DDD0F3]" />
-                            <Home className="w-5 h-5 sm:w-7 sm:h-7 stroke-[1.4] text-[#F6F1EA]/55 transform -rotate-3 transition-transform group-hover/laptop:scale-110" />
-                          </div>
-                        </div>
-
-                        {/* Status line directly below the dashed box: "Working out the details.." */}
-                        <p className="mt-4 sm:mt-5 font-jakarta font-normal text-[13px] sm:text-[15px] text-[#F6F1EA]/70 tracking-wide select-none">
-                          {currentProject.statusText}
-                        </p>
-                      </motion.div>
-                    )}
+                    ) : null}
                   </AnimatePresence>
                 </div>
               </div>
@@ -373,7 +329,7 @@ export function WorkSection() {
             </a>
           </div>
 
-          {/* 3 Pagination dots (EV, Reyo, Tara) */}
+          {/* Pagination dots (Reyo, Tara) */}
           <div className="mt-8 flex items-center justify-center gap-2.5">
             {projects.map((p, idx) => (
               <button

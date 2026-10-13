@@ -17,10 +17,7 @@ export function App() {
         hash === '#offload-case-study' ||
         hash === '#offload' ||
         hash === '#renew-case-study' ||
-        hash === '#renew' ||
-        hash === '#ev-project' ||
-        hash === '#ev-case-study' ||
-        hash === '#ev'
+        hash === '#renew'
       ) {
         return 'renew-case-study';
       }
@@ -40,10 +37,7 @@ export function App() {
         hash === '#offload-case-study' ||
         hash === '#offload' ||
         hash === '#renew-case-study' ||
-        hash === '#renew' ||
-        hash === '#ev-project' ||
-        hash === '#ev-case-study' ||
-        hash === '#ev'
+        hash === '#renew'
       ) {
         setCurrentView('renew-case-study');
       } else if (hash === '#reyo-case-study' || hash === '#reyo' || hash.startsWith('#case-study')) {

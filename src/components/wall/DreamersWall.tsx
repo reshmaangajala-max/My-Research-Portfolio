@@ -146,7 +146,7 @@ export function DreamersWall() {
         {/* ========================================================
             LAYER 4: MAIN CONTENT
             Centre: Name (highest z-index, never overlapped)
-            4 Corner objects: Reyo, Tara, EV, Polaroid
+            3 Corner objects: Reyo, Tara, Polaroid
             ======================================================== */}
         <div className="relative w-full flex-1 flex flex-col justify-start min-[1100px]:justify-center items-center px-4 sm:px-6 pt-24 pb-8 min-[1100px]:py-0 z-20">
           {/* CENTRE: NAME (Vertical centre sits at 44% of viewport height on desktop) */}

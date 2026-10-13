@@ -120,15 +120,13 @@ function RustyStaple({ className = '' }: { className?: string }) {
 export function WallCards({ animated = false }: WallCardsProps) {
   const [reyoImgError, setReyoImgError] = useState(false);
   const [taraImgError, setTaraImgError] = useState(false);
-  const [evImgError, setEvImgError] = useState(false);
   const [meImgError, setMeImgError] = useState(false);
 
   // Staggered load delays clockwise from top-left:
-  // Reyo: 1300ms, Tara: 1450ms, Polaroid: 1600ms, EV: 1750ms
+  // Reyo: 1300ms, Tara: 1450ms, Polaroid: 1600ms
   const reyoDelay = 1300;
   const taraDelay = 1450;
   const polaroidDelay = 1600;
-  const evDelay = 1750;
 
   return (
     <div className="w-full max-w-sm md:max-w-3xl min-[1100px]:max-w-none mx-auto min-[1100px]:contents flex flex-col md:grid md:grid-cols-2 min-[1100px]:block gap-8 md:gap-10 min-[1100px]:gap-0 items-center justify-items-center">
@@ -315,99 +313,7 @@ export function WallCards({ animated = false }: WallCardsProps) {
       </div>
 
       {/* ========================================================
-          3) EV — bottom-left
-          Desktop (≥1100px): left 6vw, bottom 15vh, rotate 3°
-          Card width: clamp(220px, 19vw, 320px)
-          NOT a link, no hover lift, only subtle pin wobble
-          ======================================================== */}
-      <div
-        className="w-full sm:w-[280px] md:w-[clamp(240px,36vw,310px)] min-[1100px]:w-[clamp(220px,19vw,320px)] min-[1100px]:absolute min-[1100px]:left-[6vw] min-[1100px]:bottom-[15vh] z-20"
-        style={{
-          transform: animated
-            ? 'translateY(0) scale(1)'
-            : 'translateY(12px) scale(1.04)',
-          opacity: animated ? 1 : 0,
-          transition: `transform 500ms ease-out ${evDelay}ms, opacity 400ms ease ${evDelay}ms`,
-        }}
-      >
-        <div
-          id="card-ev-research"
-          className="group relative w-full p-3.5 sm:p-4 rounded-[2px] shadow-[2px_10px_24px_rgba(0,0,0,0.65)] select-none -rotate-1.5 md:rotate-3 min-[1100px]:rotate-3"
-          style={{
-            backgroundColor: '#EDE3CC', // Old ruled notebook page base
-            clipPath:
-              'polygon(0% 2px, 99% 0px, 98% 97%, 100% 100%, 1% 99%, 0% 6%)',
-            boxShadow: 'inset 0 0 14px rgba(100, 75, 40, 0.3), 2px 10px 24px rgba(0,0,0,0.65)',
-            // Faded blue horizontal lines + faded red margin line + curled bottom corner
-            backgroundImage: `
-              linear-gradient(315deg, rgba(70, 50, 30, 0.25) 0%, transparent 14px),
-              linear-gradient(to right, transparent 24px, rgba(215, 110, 110, 0.5) 24px, rgba(215, 110, 110, 0.5) 25.5px, transparent 25.5px),
-              repeating-linear-gradient(to bottom, transparent 0, transparent 22px, rgba(140, 165, 195, 0.45) 22px, rgba(140, 165, 195, 0.45) 23px)
-            `,
-          }}
-        >
-          {/* Amethyst Pushpin with pop delay (wobbles on group hover) */}
-          <AmethystPushpin className="top-1.5 left-1/2" popDelay={evDelay + 100} animated={animated} />
-
-          {/* Screenshot as PRINTED PHOTO: 6px off-white border, 16:10, rotated 1° */}
-          <div className="relative mb-3 pl-3">
-            <div
-              className="w-full aspect-[16/10] bg-[#F6F1EA] p-[6px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.3)] transform rotate-[1deg]"
-              style={{
-                clipPath: 'polygon(1% 0%, 99% 1%, 98% 99%, 0% 98%)',
-              }}
-            >
-              <div className="w-full h-full overflow-hidden bg-[#1E293B] relative">
-                {!evImgError ? (
-                  <img
-                    src="/wall/ev.png"
-                    alt="EV for young riders research preview"
-                    className="w-full h-full object-cover"
-                    onError={() => setEvImgError(true)}
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center p-3 text-center bg-[#F6F1EA] text-[#3B2A20]">
-                    <span className="font-special-elite text-xs uppercase tracking-wider font-bold">
-                      EV Research
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Rusty staple across screenshot's top edge */}
-            <RustyStaple className="-top-1.5 left-1/2 -translate-x-1/2" />
-          </div>
-
-          {/* Text Content */}
-          <div className="space-y-1 text-left text-[#3B2A20]/90 pl-3">
-            {/* Typewriter label in Special Elite, 12px, letter-spacing 0.12em */}
-            <p className="font-special-elite text-[12px] tracking-[0.12em] uppercase font-bold text-[#3B2A20]/80">
-              FIELD RESEARCH 03
-            </p>
-
-            {/* Project name, Plus Jakarta Sans 600, 20px */}
-            <h3 className="font-jakarta font-semibold text-[20px] text-[#3B2A20] leading-tight">
-              EV for young riders
-            </h3>
-
-            {/* Handwritten one-liner in Caveat 600, 20px */}
-            <p className="font-caveat font-semibold text-[20px] text-[#3B2A20]/90 leading-tight">
-              What young riders want from their next EV.
-            </p>
-
-            {/* Bottom-right corner: small lavender stamp-style tag "coming soon" */}
-            <div className="pt-1.5 flex justify-end">
-              <span className="inline-block bg-[#DDD0F3] border border-[#9570C6]/50 text-[#4C1D95] px-2 py-0.5 rounded-[2px] font-mono text-[10px] uppercase font-bold tracking-wider shadow-xs transform rotate-1">
-                coming soon
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ========================================================
-          4) POLAROID — bottom-right
+          3) POLAROID — bottom-right
           Desktop (≥1100px): right 6vw, bottom 14vh, rotate -5°
           Card width: clamp(220px, 19vw, 320px)
           Real <a href="#about">
