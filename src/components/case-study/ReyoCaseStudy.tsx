@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import {
   X,
@@ -440,7 +441,9 @@ interface BuildPanel {
   tag: string;
   heading: string;
   bullets: string[];
-  statRow?: { number: string; label: string }[];
+  callout: { label: string; text: string };
+  image: string;
+  caption: string;
   visualTag: string;
   visualTitle: string;
   visualDescription: string;
@@ -452,92 +455,226 @@ const buildPanels: BuildPanel[] = [
     tag: 'USER RESEARCH',
     heading: "First, I made sure I wasn't the only one",
     bullets: [
-      "Talked to designers directly to find out exactly where the problem was hitting them",
-      "Not a guess — the real pain point, from real conversations",
+      'Interviewed [5] designers — from interns to [2.5]-year pros — about how they save and find references',
+      'Asked about real past moments, not "would you use this?"',
     ],
+    callout: { label: 'Found:', text: 'Everyone saves. Almost no one finds it again when they need it.' },
+    image: '/images/reyo/01-interviews.png',
+    caption: 'Interview notes from [5] designers',
     visualTag: 'USER RESEARCH',
-    visualTitle: 'Research & Survey Visual',
-    visualDescription: 'Design interview synthesis, survey findings & verbatim quotes',
+    visualTitle: 'Interview Notes',
+    visualDescription: 'Interview notes from [5] designers',
   },
   {
     step: '02',
-    tag: 'COMPETITIVE AUDIT / MARKET RESEARCH',
-    heading: "Then I checked what's already out there",
+    tag: 'MARKET RESEARCH',
+    heading: "Then I checked who's already solving it",
     bullets: [
-      "It's 2026 — a new AI tool launches every day, so I had to know: does one already solve this?",
-      "Went through international and Indian tools, deep-dived YouTube, explored every emerging idea in the space",
-      "Found close attempts. Nothing that actually closed the gap",
+      'Compared [5] tools — mymind, Raindrop, Eagle, Cosmos, recent.design',
+      'Mapped them by how they organise vs how personal their results are',
     ],
-    visualTag: 'COMPETITIVE ANALYSIS',
-    visualTitle: 'Competitive Analysis Visual',
-    visualDescription: 'Tool audit & feature gap matrix across international & regional apps',
+    callout: { label: 'Found:', text: "Organising is solved. Finding the right save while you work isn't." },
+    image: '/images/reyo/02-competitors.png',
+    caption: 'Positioning map of existing tools',
+    visualTag: 'MARKET RESEARCH',
+    visualTitle: 'Positioning Map',
+    visualDescription: 'Positioning map of existing tools',
   },
   {
     step: '03',
-    tag: 'BRAINSTORMING / PLANNING',
-    heading: "So I sat down with Claude and tested the idea",
+    tag: 'SYNTHESIS',
+    heading: 'Patterns started repeating',
     bullets: [
-      "Walked Claude through the gap I'd found — could I actually build something to fill it?",
-      "Validated it technically, then planned the whole thing — tech stack, what to build first, what to lock for later",
+      'Grouped [60+] quotes into themes on an affinity map',
+      'Split users into two types: collectors (save everything) and searchers (save nothing, search or ask AI)',
     ],
-    visualTag: 'PLANNING & ROADMAP',
-    visualTitle: 'Planning / Roadmap Visual',
-    visualDescription: 'Technical feasibility breakdown, tech stack choices & phased release plan',
+    callout: { label: 'Found:', text: 'Collectors have the pain. Searchers have a habit Reyo must beat.' },
+    image: '/images/reyo/03-affinity.png',
+    caption: 'Affinity map: quotes grouped into themes',
+    visualTag: 'SYNTHESIS',
+    visualTitle: 'Affinity Map',
+    visualDescription: 'Affinity map: quotes grouped into themes',
   },
   {
     step: '04',
-    tag: 'BRANDING & VISUAL DIRECTION',
-    heading: "Then I gave it a personality",
+    tag: 'THE INSIGHT',
+    heading: "The problem isn't saving. It's forgetting why.",
     bullets: [
-      "Chose the typography, color, tone, and positioning",
-      "Named it, gave it a visual identity — not just a UI",
+      '"After six months, I don\'t know why I saved it." — designer, [2.5] yrs',
+      'A saved video is useless without its context — so is a timestamp without its reason',
     ],
-    visualTag: 'BRAND VISUAL',
-    visualTitle: 'Brand & Identity Visual',
-    visualDescription: 'Typography, color system, tone & positioning',
+    callout: { label: 'Found:', text: 'Reyo needs to remember the intent, not just the link.' },
+    image: '/images/reyo/04-insight.png',
+    caption: 'The insight that changed the product',
+    visualTag: 'THE INSIGHT',
+    visualTitle: 'The Insight',
+    visualDescription: 'The insight that changed the product',
   },
   {
     step: '05',
-    tag: 'WIREFRAMES',
-    heading: "Then I sketched it out",
+    tag: 'DESIGN DECISIONS',
+    heading: 'So I redesigned what Reyo remembers',
     bullets: [
-      "Rough wireframes first — structure before polish",
-      "Ran them through AI tools, refined until the flow actually made sense",
+      'Every save gets a short "note to future you" — AI-written, editable in one tap',
+      'Saves are organised by what designers build — buttons, navigation, forms — not by topic',
     ],
-    visualTag: 'WIREFRAMES',
-    visualTitle: 'Wireframe Visual',
-    visualDescription: 'Early structure sketches & flow refinement',
+    callout: { label: 'Chose not to:', text: 'Store full videos or scan screens in the background. Links only, and reading only when asked.' },
+    image: '/images/reyo/05-decisions.png',
+    caption: 'Insight → decision',
+    visualTag: 'DESIGN DECISIONS',
+    visualTitle: 'Insight → Decision',
+    visualDescription: 'Insight → decision',
   },
   {
     step: '06',
-    tag: 'UI',
-    heading: "Then I made it real",
+    tag: 'DESIGN SYSTEM',
+    heading: 'Built a system, not just screens',
     bullets: [
-      "Refined until it passed real UX principles — not just \"looks good,\" but functions well",
-      "Built the frontend, then the backend",
+      'Tokens for color, type, spacing and dark mode, plus [30+] components',
+      'Berry and cream with DM Sans — warm, calm, and clearly not another AI-purple tool',
     ],
-    visualTag: 'UI',
-    visualTitle: 'Final UI Visual',
-    visualDescription: 'Finished interface screens',
+    callout: { label: 'Result:', text: 'Every screen is built from the same parts — consistent and ready to hand off.' },
+    image: '/images/reyo/06-design-system.png',
+    caption: 'Tokens and components',
+    visualTag: 'DESIGN SYSTEM',
+    visualTitle: 'Tokens & Components',
+    visualDescription: 'Tokens and components',
   },
   {
     step: '07',
-    tag: 'TESTING',
-    heading: "Then I tested it on myself, for real",
+    tag: 'VALIDATION',
+    heading: 'Then I put it back in front of designers',
     bullets: [
-      "Connected my own YouTube account and tried it live in Figma — first",
-      "Tested the backend too — how deeply it understands and classifies each video",
+      'Tested the new save and find flows with [3] designers — "Find the button you saved last month"',
+      '[Result line]',
     ],
-    statRow: [
-      { number: '[NUMBER]', label: 'saves processed' },
-      { number: '[NUMBER]%', label: 'transcribed' },
-      { number: '[NUMBER]%', label: 'classified' },
-    ],
-    visualTag: 'PRODUCT SCREENSHOT / DEMO',
-    visualTitle: 'Product Screenshot / Demo Visual',
-    visualDescription: 'Live test environment showing in-app shortcut retrieval & video transcription classification',
+    callout: { label: 'Next:', text: 'Pinterest and screenshot imports, and a Claude connector so Reyo brings saves into AI chats.' },
+    image: '/images/reyo/07-validation.png',
+    caption: 'Usability test results',
+    visualTag: 'VALIDATION',
+    visualTitle: 'Usability Test Results',
+    visualDescription: 'Usability test results',
   },
 ];
+
+const stepImageStatus: Record<string, 'loaded' | 'error'> = {};
+
+function StepCallout({ callout }: { callout: BuildPanel['callout'] }) {
+  return (
+    <p data-testid="behind-loop-callout" className="mt-4 border-l-2 border-[#9570C6] pl-3 text-left">
+      <span className="font-jakarta font-semibold text-[12px] uppercase tracking-[0.04em] text-[#9570C6] block mb-1">
+        {callout.label}
+      </span>
+      <span className="font-jakarta font-medium text-[15px] lg:text-[16px] text-[#3B2A20] leading-relaxed">
+        {callout.text}
+      </span>
+    </p>
+  );
+}
+
+function StepPlaceholder({ panel }: { panel: BuildPanel }) {
+  return (
+    <div className="w-full rounded-[20px] border border-[#F6F1EA]/15 bg-[#1E140E] p-7 lg:p-10 flex flex-col items-center justify-center text-center shadow-2xl">
+      <div className="w-14 h-14 rounded-full bg-[#9570C6]/20 border border-[#9570C6]/40 flex items-center justify-center mb-5 text-[#DDD0F3]">
+        {getStepIcon(panel.step)}
+      </div>
+      <span className="px-3.5 py-1 rounded-full bg-[#9570C6]/15 border border-[#9570C6]/30 text-[#DDD0F3] font-jakarta font-semibold text-[11px] lg:text-[12px] uppercase tracking-[0.05em] mb-3">
+        {panel.visualTag}
+      </span>
+      <h4 className="font-fraunces font-semibold text-[19px] lg:text-[21px] text-[#F6F1EA] mb-2 leading-snug">
+        {panel.visualTitle}
+      </h4>
+      <p className="font-jakarta text-[13.5px] lg:text-[14px] text-[#F6F1EA]/65 max-w-[300px] leading-relaxed">
+        {panel.visualDescription}
+      </p>
+    </div>
+  );
+}
+
+function StepVisual({ panel, onOpen }: { panel: BuildPanel; onOpen: (p: BuildPanel) => void }) {
+  const [status, setStatus] = useState<'loading' | 'loaded' | 'error'>(stepImageStatus[panel.image] ?? 'loading');
+  const mark = (s: 'loaded' | 'error') => {
+    stepImageStatus[panel.image] = s;
+    setStatus(s);
+  };
+
+  return (
+    <figure data-testid={`behind-loop-visual-${panel.step}`} className="w-full m-0">
+      {status !== 'loaded' && <StepPlaceholder panel={panel} />}
+      {status !== 'error' && (
+        <button
+          type="button"
+          onClick={() => onOpen(panel)}
+          aria-label={`Enlarge image: ${panel.caption}`}
+          data-testid={`behind-loop-image-btn-${panel.step}`}
+          className={`${status === 'loaded' ? 'block' : 'hidden'} w-full rounded-[20px] border border-[#F6F1EA]/15 bg-[#1E140E] overflow-hidden shadow-2xl cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9570C6]`}
+        >
+          <img
+            src={panel.image}
+            alt={panel.caption}
+            onLoad={() => mark('loaded')}
+            onError={() => mark('error')}
+            className="block w-full h-auto max-h-[62vh] object-contain rounded-[20px]"
+          />
+        </button>
+      )}
+      {status === 'loaded' && (
+        <figcaption className="mt-3 font-jakarta text-[13px] text-[#F6F1EA]/65 text-center leading-relaxed">
+          {panel.caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+function StepLightbox({ panel, onClose }: { panel: BuildPanel | null; onClose: () => void }) {
+  useEffect(() => {
+    if (!panel) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [panel, onClose]);
+
+  return createPortal(
+    <AnimatePresence>
+      {panel && (
+        <motion.div
+          key="behind-loop-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label={panel.caption}
+          data-testid="behind-loop-lightbox"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          onClick={onClose}
+          className="fixed inset-0 z-[200] bg-[#140D09]/92 backdrop-blur-sm flex flex-col items-center justify-center p-4 sm:p-10 cursor-zoom-out"
+        >
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close image"
+            data-testid="behind-loop-lightbox-close"
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#F6F1EA]/10 border border-[#F6F1EA]/20 text-[#F6F1EA] flex items-center justify-center hover:bg-[#F6F1EA]/20 transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+          <img
+            src={panel.image}
+            alt={panel.caption}
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-full max-h-[85vh] object-contain rounded-[12px] border border-[#F6F1EA]/15 cursor-default"
+          />
+          <p className="mt-3 font-jakarta text-[13px] text-[#F6F1EA]/75 text-center">{panel.caption}</p>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body
+  );
+}
 
 function getStepIcon(step: string) {
   switch (step) {
@@ -548,14 +685,14 @@ function getStepIcon(step: string) {
     case '03':
       return <Map className="w-6 h-6 stroke-[1.8]" />;
     case '04':
-      return <Palette className="w-6 h-6 stroke-[1.8]" />;
+      return <Sparkles className="w-6 h-6 stroke-[1.8]" />;
     case '05':
       return <Layers className="w-6 h-6 stroke-[1.8]" />;
     case '06':
-      return <Sparkles className="w-6 h-6 stroke-[1.8]" />;
+      return <Palette className="w-6 h-6 stroke-[1.8]" />;
     case '07':
     default:
-      return <Play className="w-6 h-6 stroke-[1.8]" />;
+      return <CheckCircle2 className="w-6 h-6 stroke-[1.8]" />;
   }
 }
 
@@ -563,6 +700,8 @@ function BehindTheLoopSection() {
   const shouldReduceMotion = useReducedMotion();
   const [activeStep, setActiveStep] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [lightboxPanel, setLightboxPanel] = useState<BuildPanel | null>(null);
+  const closeLightbox = React.useCallback(() => setLightboxPanel(null), []);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -630,7 +769,7 @@ function BehindTheLoopSection() {
                 {/* Step indicator label for mobile */}
                 <div className="flex items-center gap-2 mb-2.5">
                   <span className="font-jakarta font-semibold text-[12px] uppercase tracking-[0.04em] text-[#9570C6]">
-                    Step {idx + 1} of 7 — {panel.tag}
+                    {panel.step} · {panel.tag}
                   </span>
                 </div>
 
@@ -652,42 +791,19 @@ function BehindTheLoopSection() {
                   ))}
                 </ul>
 
-                {panel.statRow && (
-                  <div className="mt-6 pt-5 border-t border-[#3B2A20]/15 flex flex-wrap items-baseline gap-6">
-                    {panel.statRow.map((stat, sIdx) => (
-                      <div key={sIdx} className="flex flex-col">
-                        <span className="font-fraunces font-semibold text-[20px] text-[#9570C6] leading-tight">
-                          {stat.number}
-                        </span>
-                        <span className="font-jakarta font-normal text-[12px] text-[#3B2A20]/75 mt-0.5">
-                          {stat.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <StepCallout callout={panel.callout} />
               </div>
 
-              {/* Single clean placeholder card side */}
+              {/* Step image (falls back to placeholder card) */}
               <div className="w-full bg-[#2A1E17] px-6 py-10 flex items-center justify-center">
-                <div className="w-full max-w-[380px] rounded-[18px] border border-[#F6F1EA]/15 bg-[#1E140E] p-7 flex flex-col items-center justify-center text-center shadow-lg">
-                  <div className="w-12 h-12 rounded-full bg-[#9570C6]/20 border border-[#9570C6]/40 flex items-center justify-center mb-4 text-[#DDD0F3]">
-                    {getStepIcon(panel.step)}
-                  </div>
-                  <span className="px-3.5 py-1 rounded-full bg-[#9570C6]/15 border border-[#9570C6]/30 text-[#DDD0F3] font-jakarta font-semibold text-[11px] uppercase tracking-[0.05em] mb-2.5">
-                    {panel.visualTag}
-                  </span>
-                  <h4 className="font-fraunces font-semibold text-[17px] text-[#F6F1EA] mb-1.5 leading-snug">
-                    {panel.visualTitle}
-                  </h4>
-                  <p className="font-jakarta text-[13px] text-[#F6F1EA]/65 leading-relaxed max-w-[280px]">
-                    {panel.visualDescription}
-                  </p>
+                <div className="w-full max-w-[520px]">
+                  <StepVisual panel={panel} onOpen={setLightboxPanel} />
                 </div>
               </div>
             </div>
           ))}
         </div>
+        <StepLightbox panel={lightboxPanel} onClose={closeLightbox} />
       </section>
     );
   }
@@ -760,7 +876,7 @@ function BehindTheLoopSection() {
               >
                 {/* Small step tag */}
                 <span className="font-jakarta font-semibold text-[12px] sm:text-[13px] uppercase tracking-[0.04em] text-[#9570C6] block mb-2 sm:mb-2.5">
-                  {buildPanels[activeStep].tag}
+                  {buildPanels[activeStep].step} · {buildPanels[activeStep].tag}
                 </span>
 
                 {/* Step Heading — 20-25% smaller than before so Behind the loop is the clear anchor */}
@@ -783,21 +899,7 @@ function BehindTheLoopSection() {
                   ))}
                 </ul>
 
-                {/* Optional Stat Row for Panel 7 */}
-                {buildPanels[activeStep].statRow && (
-                  <div className="mt-6 pt-5 border-t border-[#3B2A20]/15 flex flex-wrap items-baseline gap-6 sm:gap-8">
-                    {buildPanels[activeStep].statRow!.map((stat, sIdx) => (
-                      <div key={sIdx} className="flex flex-col">
-                        <span className="font-fraunces font-semibold text-[20px] lg:text-[23px] text-[#9570C6] leading-tight tracking-tight">
-                          {stat.number}
-                        </span>
-                        <span className="font-jakarta font-normal text-[12.5px] lg:text-[13px] text-[#3B2A20]/75 mt-0.5">
-                          {stat.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <StepCallout callout={buildPanels[activeStep].callout} />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -811,7 +913,7 @@ function BehindTheLoopSection() {
 
         {/* Right Side: Dark Background with SINGLE Clean Placeholder Card */}
         <div className="w-1/2 bg-[#2A1E17] h-full flex items-center justify-center p-8 lg:p-12 pr-[max(2.5rem,calc((100vw-1120px)/2+1.5rem))] pl-8 lg:pl-12">
-          <div className="w-full max-w-[440px]">
+          <div className="w-full max-w-[560px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeStep}
@@ -819,32 +921,15 @@ function BehindTheLoopSection() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.98, y: -12 }}
                 transition={{ duration: 0.28, ease: 'easeOut' }}
-                className="w-full rounded-[20px] border border-[#F6F1EA]/15 bg-[#1E140E] p-8 lg:p-10 flex flex-col items-center justify-center text-center shadow-2xl"
+                className="w-full"
               >
-                {/* One Icon */}
-                <div className="w-14 h-14 rounded-full bg-[#9570C6]/20 border border-[#9570C6]/40 flex items-center justify-center mb-5 text-[#DDD0F3]">
-                  {getStepIcon(buildPanels[activeStep].step)}
-                </div>
-
-                {/* One Label */}
-                <span className="px-3.5 py-1 rounded-full bg-[#9570C6]/15 border border-[#9570C6]/30 text-[#DDD0F3] font-jakarta font-semibold text-[11px] lg:text-[12px] uppercase tracking-[0.05em] mb-3">
-                  {buildPanels[activeStep].visualTag}
-                </span>
-
-                {/* Visual Title */}
-                <h4 className="font-fraunces font-semibold text-[19px] lg:text-[21px] text-[#F6F1EA] mb-2 leading-snug">
-                  {buildPanels[activeStep].visualTitle}
-                </h4>
-
-                {/* One Short Caption Line Underneath */}
-                <p className="font-jakarta text-[13.5px] lg:text-[14px] text-[#F6F1EA]/65 max-w-[300px] leading-relaxed">
-                  {buildPanels[activeStep].visualDescription}
-                </p>
+                <StepVisual panel={buildPanels[activeStep]} onOpen={setLightboxPanel} />
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
       </div>
+      <StepLightbox panel={lightboxPanel} onClose={closeLightbox} />
     </div>
   );
 }
